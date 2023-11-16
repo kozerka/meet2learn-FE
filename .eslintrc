@@ -1,0 +1,35 @@
+{
+	"extends": [
+		"react-app",
+		"standard",
+		"plugin:react/recommended",
+		"plugin:prettier/recommended",
+		"prettier"
+	],
+	"rules": {
+		"node/handle-callback-err": ["off"],
+		"operator-linebreak": ["off"],
+		"react/jsx-curly-spacing": [
+			"warn",
+			"never",
+			{
+				"allowMultiline": true
+			}
+		],
+		"react/jsx-curly-brace-presence": [
+			"warn",
+			{
+				"props": "always",
+				"children": "never"
+			}
+		],
+		"react/jsx-max-props-per-line": ["error", { "maximum": 1, "when": "multiline" }],
+		"react/jsx-closing-tag-location": ["warn"],
+		"react/jsx-closing-bracket-location": ["warn"],
+		"react/jsx-first-prop-new-line": ["warn", "multiline"],
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-uses-react": "off",
+		"react/display-name": "off",
+		"prettier/prettier": "error"
+	}
+}
