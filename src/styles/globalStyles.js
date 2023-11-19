@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:  'Montserrat', 'Roboto',
+  font-family: 'Rubik', 'Open Sans','Gluten', 'Grandstander', 'Itim',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -16,7 +16,7 @@ const TimelineItems = styled.div`
 		position: absolute;
 		width: 0.1rem;
 		height: 100%;
-		background-color: ${({ theme }) => theme.primary};
+		background-color: ${({ theme }) => theme.secondary};
 		left: calc(50% - 0.05rem);
 		border-radius: 1rem;
 
@@ -48,7 +48,7 @@ const TimelineItem = styled.div`
 const TimelineDot = styled.div`
 	height: 1.5rem;
 	width: 1.5rem;
-	background-color: ${({ theme }) => theme.primary};
+	background-color: ${({ theme }) => theme.secondary};
 	position: absolute;
 	left: calc(50% - 0.75rem);
 	border-radius: 50%;
@@ -59,11 +59,11 @@ const TimelineNumber = styled.div`
 	font-size: 2rem;
 	color: ${({ theme }) => theme.primary};
 	margin: 0.5rem 0 1rem;
-	font-family: 'Itim', sans-serif;
 `;
 
 const TimelineContent = styled.div`
 	background-color: ${({ theme }) => theme.background};
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
 	padding: 2rem;
 	border-radius: 0.5rem;
 	text-align: center;

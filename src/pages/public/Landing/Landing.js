@@ -1,7 +1,6 @@
-import Faqs from '../../../components/Faqs';
-import Features from '../../../components/Features';
-import Hero from '../../../components/Hero';
-import Timeline from '../../../components/Timeline';
+import Features from '../../../components/features/Features';
+import Hero from '../../../components/features/Hero';
+import { Timeline, Faqs } from '../../../components';
 import Wrapper from '../../../components/layout/Wrapper';
 
 const Landing = () => {

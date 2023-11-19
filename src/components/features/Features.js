@@ -1,4 +1,4 @@
-import Wrapper from './layout/Wrapper';
+import Wrapper from '../layout/Wrapper';
 
 const Features = () => {
 	return (
@@ -11,6 +11,7 @@ const Features = () => {
 				</p>
 				<p>Be curious. Ask questions.</p>
 				<p>Take notes and manage your knowledge.</p>
+				<p>Meet friends to learn together.</p>
 				<p>Stay in constant contact with your tutors</p>
 				<p>
 					If you are a tutor, acquire new clients if you offer services, or simply expand your

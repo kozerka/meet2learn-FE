@@ -20,8 +20,8 @@ const Item = styled.div`
 	border-radius: 0.5rem;
 
 	&.open {
-		border-bottom: 0.5rem solid ${({ theme }) => theme.primary};
-		border-top: 0.5rem solid ${({ theme }) => theme.primary};
+		border-bottom: 0.5rem solid ${({ theme }) => theme.secondary};
+		border-top: 0.5rem solid ${({ theme }) => theme.secondary};
 
 		.hiddenBox {
 			display: block;
