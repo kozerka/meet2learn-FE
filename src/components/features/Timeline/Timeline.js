@@ -23,9 +23,10 @@ const TimelineItemComponent = ({ title, link, linkText, index }) => {
 			<TimelineContent>
 				<p>{title}</p>
 				{link && (
-					<Button $primary={true}>
-						<StyledLink to={link}>{linkText}</StyledLink>
-					</Button>
+					<StyledLink to={link}>
+						{' '}
+						<Button $primary={true}>{linkText}</Button>
+					</StyledLink>
 				)}
 			</TimelineContent>
 		</ResponsiveTimelineItem>

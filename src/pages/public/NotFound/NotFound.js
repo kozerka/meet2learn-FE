@@ -22,9 +22,10 @@ const NotFound = () => {
 					<ErrorNumber>404</ErrorNumber>
 					<StyledHeading>Oops! Page not found!</StyledHeading>
 					<StyledParagraph>We can&apos;t find the page you are looking for...</StyledParagraph>
-					<Button $primary={true}>
-						<StyledLink to={'/'}>Back Home</StyledLink>
-					</Button>
+
+					<StyledLink to={'/'}>
+						<Button $primary={true}>Back Home</Button>
+					</StyledLink>
 				</StyledNotFoundContainer>
 			</Wrapper>
 		);

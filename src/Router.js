@@ -19,6 +19,8 @@ const router = createBrowserRouter([
 		errorElement: <NotFound />,
 		children: [
 			{ index: true, element: <Landing /> },
+			{ path: '/login', element: <Login />, errorElement: <NotFound /> },
+			{ path: '/register', element: <Register />, errorElement: <NotFound /> },
 			{ path: 'about', element: <About /> },
 			{ path: 'tutors', element: <Tutors /> },
 			{ path: 'contact', element: <Contact /> },
@@ -34,8 +36,6 @@ const router = createBrowserRouter([
 			},
 		],
 	},
-	{ path: '/login', element: <Login />, errorElement: <NotFound /> },
-	{ path: '/register', element: <Register />, errorElement: <NotFound /> },
 ]);
 
 export default router;

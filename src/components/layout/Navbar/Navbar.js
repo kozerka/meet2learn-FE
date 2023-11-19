@@ -1,0 +1,76 @@
+// Navbar.js
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTheme } from '../../../store/slices/themeSlice';
+import {
+	Nav,
+	NavbarContainer,
+	NavLogo,
+	NavMenu,
+	NavItem,
+	MobileIcon,
+	ThemeToggler,
+	StyledLink,
+	NavBtn,
+} from './Navbar.styled';
+import { NavigationLink } from './NavigationLink.styled';
+import Button from '../../ui/Button';
+import MobileNavbar from './MobileNavbar';
+import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
+
+const Navbar = () => {
+	const dispatch = useDispatch();
+	const currentTheme = useSelector(state => state.theme.theme);
+	const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+	const handleToggleTheme = () => dispatch(toggleTheme());
+	const toggleMobileNav = () => setIsMobileNavOpen(prevState => !prevState);
+
+	return (
+		<Nav>
+			<NavbarContainer>
+				<NavLogo to={'/'}>
+					meet<span>2</span>learn
+				</NavLogo>
+				<NavMenu>
+					<NavItem>
+						<NavigationLink to={'/'} activeClassName={'active'}>
+							Home
+						</NavigationLink>
+					</NavItem>
+					<NavItem>
+						<NavigationLink to={'/tutors'} activeClassName={'active'}>
+							Tutors
+						</NavigationLink>
+					</NavItem>
+					<NavItem>
+						<NavigationLink to={'/contact'} activeClassName={'active'}>
+							Contact
+						</NavigationLink>
+					</NavItem>
+				</NavMenu>
+				<NavBtn>
+					<StyledLink to={'/login'}>
+						<Button $primary={true}>Login </Button>
+					</StyledLink>
+
+					<ThemeToggler onClick={handleToggleTheme}>
+						{currentTheme === 'dark' ? <FaSun /> : <FaMoon />}
+					</ThemeToggler>
+				</NavBtn>
+				<MobileIcon onClick={toggleMobileNav}>
+					{isMobileNavOpen ? <FaTimes /> : <FaBars />}
+				</MobileIcon>
+			</NavbarContainer>
+			<MobileNavbar
+				isOpen={isMobileNavOpen}
+				toggleNav={toggleMobileNav}
+				isMobileNavOpen={isMobileNavOpen}
+				currentTheme={currentTheme}
+				handleToggleTheme={handleToggleTheme}
+			/>
+		</Nav>
+	);
+};
+
+export default Navbar;

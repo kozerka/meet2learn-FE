@@ -1,5 +1,5 @@
 const Register = () => {
-	return <div>Register</div>;
+	return <div style={{ marginTop: '5rem' }}>Register</div>;
 };
 
 export default Register;

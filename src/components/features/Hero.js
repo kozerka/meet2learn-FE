@@ -28,12 +28,13 @@ const Hero = () => {
 						Sign up for a free account and enjoy collaborative learning.
 					</Paragraph>
 					<ButtonContainer>
-						<Button $primary={true}>
-							<StyledLink to={'/register'}>Register</StyledLink>
-						</Button>
-						<Button $secondary={true}>
-							<a href={'#timeline'}>Learn more</a>
-						</Button>
+						<StyledLink to={'/register'}>
+							<Button $primary={true}>Register</Button>
+						</StyledLink>
+
+						<a href={'#timeline'}>
+							<Button $secondary={true}>Learn more</Button>
+						</a>
 					</ButtonContainer>
 				</Content>
 

@@ -8,7 +8,7 @@ const StyledButton = styled.button`
 	border-radius: 0.25rem;
 	font-size: 1.125rem;
 	font-weight: 600;
-	margin-bottom: 1rem;
+
 	cursor: pointer;
 	box-shadow: ${({ theme }) => theme.buttonBoxShadow};
 	transition: all 0.2s ease-in-out;
