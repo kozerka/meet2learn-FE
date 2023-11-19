@@ -6,8 +6,7 @@ import Wrapper from '../../../components/layout/Wrapper';
 const Landing = () => {
 	return (
 		<Wrapper>
-			<div>
-				<h1>Landing</h1>
+			<div style={{ padding: '2rem' }}>
 				<Hero />
 				<Features />
 				<Timeline />

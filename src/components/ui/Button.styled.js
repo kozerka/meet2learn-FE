@@ -4,14 +4,12 @@ const StyledButton = styled.button`
 	background-color: ${({ theme }) => theme.primaryButton};
 	color: ${({ theme }) => theme.text};
 	text-align: center;
-	outline: none;
 	padding: 0.75rem 2rem;
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 	border-radius: 0.25rem;
 	font-size: 1.125rem;
 	font-weight: 600;
+	margin-bottom: 1rem;
 	cursor: pointer;
-	border: none;
 	box-shadow: ${({ theme }) => theme.buttonBoxShadow};
 	transition: all 0.2s ease-in-out;
 
@@ -41,11 +39,14 @@ const StyledButton = styled.button`
 	${({ $primary, theme }) =>
 		$primary &&
 		css`
-			background-color: ${theme.primaryColor};
+			padding: 0.8rem 2rem;
+			background-color: ${theme.primaryButton};
+			border: 2px solid ${theme.primaryButton};
 			color: ${theme.body};
 
 			&:hover {
-				background-color: ${theme.primaryHoverBackground};
+				background-color: ${theme.primaryButtonHover};
+				border: 2px solid ${theme.primaryButtonHover};
 				color: ${theme.body};
 			}
 

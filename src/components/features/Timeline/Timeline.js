@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import {
 	TimelineSection,
@@ -7,9 +6,12 @@ import {
 	TimelineNumber,
 	TimelineContent,
 	ResponsiveTimelineItem,
+	StyledLink,
 } from './Timeline.styled';
 import { timelineData } from '../../../data/timelineData';
 import Proptypes from 'prop-types';
+import IntersectionTitle from '../../layout/IntersectionTitle';
+import Button from '../../ui/Button';
 
 const TimelineItemComponent = ({ title, link, linkText, index }) => {
 	const [ref, inView] = useInView({ threshold: 0.1 });
@@ -20,7 +22,11 @@ const TimelineItemComponent = ({ title, link, linkText, index }) => {
 			<TimelineNumber>{index + 1}</TimelineNumber>
 			<TimelineContent>
 				<p>{title}</p>
-				{link && <Link to={link}>{linkText}</Link>}
+				{link && (
+					<Button $primary={true}>
+						<StyledLink to={link}>{linkText}</StyledLink>
+					</Button>
+				)}
 			</TimelineContent>
 		</ResponsiveTimelineItem>
 	);
@@ -28,9 +34,8 @@ const TimelineItemComponent = ({ title, link, linkText, index }) => {
 
 const Timeline = () => {
 	return (
-		<div>
-			<h2>How it works</h2>
-			<p>it is easy</p>
+		<div id={'timeline'}>
+			<IntersectionTitle title={'How it works'} text={"It's easy"} />
 			<TimelineSection>
 				<TimelineItems>
 					{timelineData.map((item, index) => (

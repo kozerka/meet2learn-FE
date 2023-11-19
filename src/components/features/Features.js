@@ -1,24 +1,21 @@
-import Wrapper from '../layout/Wrapper';
+import IntersectionTitle from '../layout/IntersectionTitle';
+import { featuresData } from '../../data/featuresData';
+import { FeaturesContainer, FeatureBox, FeatureImg } from './Features.styled';
 
 const Features = () => {
 	return (
-		<Wrapper>
-			<h2>Features</h2>
-			<div>
-				<p>
-					Find your tutor or become one, correspond with other participants, exchange knowledge and
-					experience.
-				</p>
-				<p>Be curious. Ask questions.</p>
-				<p>Take notes and manage your knowledge.</p>
-				<p>Meet friends to learn together.</p>
-				<p>Stay in constant contact with your tutors</p>
-				<p>
-					If you are a tutor, acquire new clients if you offer services, or simply expand your
-					contacts if you want to help.
-				</p>
-			</div>
-		</Wrapper>
+		<div>
+			<IntersectionTitle title={'Features'} text={'What you get'} />
+			<FeaturesContainer>
+				{featuresData.map((feature, index) => (
+					<FeatureBox key={index}>
+						<FeatureImg src={feature.img} alt={feature.title} />
+						<h3>{feature.title}</h3>
+						<p>{feature.text}</p>
+					</FeatureBox>
+				))}
+			</FeaturesContainer>
+		</div>
 	);
 };
 

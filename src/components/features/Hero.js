@@ -3,8 +3,6 @@
 import {
 	Section,
 	Container,
-	ImageContainer,
-	Image,
 	Content,
 	Heading,
 	Span,
@@ -12,8 +10,10 @@ import {
 	ButtonContainer,
 	StyledLink,
 } from './Hero.styled';
-import forum2 from '../../assets/img/forum2.png';
+import animation from '../../assets/animations/Animation - 1699902481250.json';
+import Lottie from 'lottie-react';
 import Button from '../ui/Button';
+
 const Hero = () => {
 	return (
 		<Section>
@@ -32,13 +32,12 @@ const Hero = () => {
 							<StyledLink to={'/register'}>Register</StyledLink>
 						</Button>
 						<Button $secondary={true}>
-							<StyledLink href={'#'}>Learn more</StyledLink>
+							<a href={'#timeline'}>Learn more</a>
 						</Button>
 					</ButtonContainer>
 				</Content>
-				<ImageContainer>
-					<Image src={forum2} alt={'people chating'} />
-				</ImageContainer>
+
+				<Lottie animationData={animation} loop={true} />
 			</Container>
 		</Section>
 	);

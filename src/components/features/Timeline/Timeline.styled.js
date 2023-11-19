@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const TimelineSection = styled.section`
-	padding: 3rem 1rem;
+	padding: 1rem;
 `;
 
 const TimelineItems = styled.div`
@@ -14,12 +15,11 @@ const TimelineItems = styled.div`
 	&::before {
 		content: '';
 		position: absolute;
-		width: 0.1rem;
+		width: 0.25rem;
 		height: 100%;
 		background-color: ${({ theme }) => theme.secondary};
 		left: calc(50% - 0.05rem);
 		border-radius: 1rem;
-
 		@media (max-width: 767px) {
 			left: 0.5rem;
 		}
@@ -27,7 +27,7 @@ const TimelineItems = styled.div`
 `;
 
 const TimelineItem = styled.div`
-	margin-bottom: 2.5rem;
+	margin-bottom: 1rem;
 	width: 100%;
 	position: relative;
 
@@ -62,14 +62,21 @@ const TimelineNumber = styled.div`
 `;
 
 const TimelineContent = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	background-color: ${({ theme }) => theme.background};
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
-	padding: 2rem;
 	border-radius: 0.5rem;
 	text-align: center;
+	padding: 2rem;
+	gap: 2rem;
 
 	p {
-		line-height: 1.5rem;
+		line-height: 1.2rem;
+		text-transform: uppercase;
+		padding: 0 1rem;
 	}
 `;
 
@@ -101,6 +108,13 @@ const ResponsiveTimelineItem = styled(TimelineItem)`
 		}
 	}
 `;
+const StyledLink = styled(Link)`
+	font-size: 1.125rem;
+	font-weight: 600;
+	text-decoration: none;
+	display: inline-block;
+	color: inherit;
+`;
 
 export {
 	TimelineSection,
@@ -111,4 +125,5 @@ export {
 	TimelineContent,
 	ResponsiveTimelineItem,
 	fadeIn,
+	StyledLink,
 };

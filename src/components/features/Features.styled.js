@@ -1,66 +1,50 @@
 import styled from 'styled-components';
 
-const StyledBox = styled.div`
-	background-color: #f7fafc; /* Adjust for dark mode if needed */
-	/* Add other styles as needed */
+const FeaturesContainer = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+	padding: 1rem;
 `;
 
-const StyledContainer = styled.div`
-	max-width: 7xl;
-	padding: 4rem 0;
-	margin: auto;
-	display: flex;
-	flex-direction: column;
-	gap: 3rem; /* Adjust as needed */
-`;
+const FeatureImg = styled.img`
+	max-width: 180px;
+	height: auto;
+	margin-bottom: 1rem;
+	padding: 2rem;
+	transition: transform 0.3s ease;
 
-const StyledStack = styled.div`
-	display: flex;
-	flex-direction: column; /* Adjust based on responsive design */
-	gap: 1rem; /* Adjust as needed */
-
-	@media (min-width: 768px) {
-		flex-direction: row; /* For responsive design */
+	&:hover {
+		transform: scale(1.1);
 	}
 `;
 
-const StyledHeading = styled.h2`
-	/* Add your heading styles */
+const FeatureBox = styled.div`
+	display: flex;
+	min-width: 18.75rem;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	max-width: 300px;
+	padding: 1rem;
+	gap: 2rem;
+	overflow: hidden;
+	margin: 1rem;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 0.5rem;
+	background-color: ${({ theme }) => theme.background};
+	p {
+		padding: 0 1rem 1rem;
+		font-size: 0.9rem;
+	}
+	@media (min-width: 772px) and (max-width: 1199px) {
+		flex: 0 0 48%;
+	}
+
+	@media (min-width: 1200px) {
+		flex: 0 0 30%;
+	}
 `;
 
-const StyledText = styled.p`
-	/* Add your text styles */
-`;
-
-const StyledAvatar = styled.img`
-	border-radius: 50%;
-	/* Add other avatar styles */
-`;
-
-const TestimonialBox = styled.div`
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-	padding: 2rem;
-	border-radius: 1rem;
-	/* Add other styles */
-`;
-
-const TestimonialHeading = styled.h3`
-	font-size: 1.5rem; /* Adjust as needed */
-	/* Add other styles */
-`;
-
-const TestimonialText = styled.p`
-	color: #4a5568; /* Adjust for dark mode if needed */
-	/* Add other styles */
-`;
-export {
-	StyledBox,
-	StyledContainer,
-	StyledStack,
-	StyledHeading,
-	StyledText,
-	StyledAvatar,
-	TestimonialBox,
-	TestimonialHeading,
-	TestimonialText,
-};
+export { FeaturesContainer, FeatureImg, FeatureBox };

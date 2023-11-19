@@ -1,23 +1,40 @@
-import { Link, useRouteError } from 'react-router-dom';
-import Wrapper from '../../../components/layout/Wrapper';
+import { useRouteError } from 'react-router-dom';
+import erroronpage from '../../../assets/img/erroronpage.png';
+import Button from '../../../components/ui/Button';
+import {
+	ErrorNumber,
+	StyledHeading,
+	StyledImage,
+	StyledLink,
+	StyledNotFoundContainer,
+	StyledParagraph,
+	Wrapper,
+} from './NotFound.styled';
+
 const NotFound = () => {
 	const error = useRouteError();
 
 	if (error.status === 404) {
 		return (
 			<Wrapper>
-				<div>
-					<h3>Oppps! page not found</h3>
-					<p>we can&apos;t find the page you are looking for</p>
-					<Link to={'/'}>back home</Link>
-				</div>
+				<StyledNotFoundContainer>
+					<StyledImage src={erroronpage} alt={'Error on page'} />
+					<ErrorNumber>404</ErrorNumber>
+					<StyledHeading>Oops! Page not found!</StyledHeading>
+					<StyledParagraph>We can&apos;t find the page you are looking for...</StyledParagraph>
+					<Button $primary={true}>
+						<StyledLink to={'/'}>Back Home</StyledLink>
+					</Button>
+				</StyledNotFoundContainer>
 			</Wrapper>
 		);
 	}
 
 	return (
 		<Wrapper>
-			<h3>Something went wrong and error ocurred</h3>
+			<StyledNotFoundContainer>
+				<StyledHeading>Something went wrong and an error occurred</StyledHeading>
+			</StyledNotFoundContainer>
 		</Wrapper>
 	);
 };

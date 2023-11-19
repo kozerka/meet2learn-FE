@@ -10,42 +10,12 @@ const Container = styled.div`
 	justify-content: center;
 	padding: 1.5rem;
 	margin: auto;
-
+	gap: 2rem;
 	@media (min-width: 1024px) {
 		flex-direction: row;
 		justify-content: space-between;
 		padding-top: 6rem;
 		padding-bottom: 6rem;
-	}
-`;
-
-const ImageContainer = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 1.5rem;
-	margin-top: 2rem;
-	height: 18rem;
-	@media (min-width: 1024px) {
-		margin-top: 0;
-		height: 24rem;
-	}
-	@media (min-width: 1280px) {
-		height: 28rem;
-	}
-`;
-
-const Image = styled.img`
-	object-fit: contain;
-	height: 18rem;
-	@media (min-width: 772px) {
-		height: 22rem;
-	}
-	@media (min-width: 992px) {
-		height: 24rem;
-	}
-	@media (min-width: 1280px) {
-		height: 28rem;
 	}
 `;
 
@@ -107,15 +77,4 @@ const StyledLink = styled(Link)`
 	display: inline-block;
 	color: inherit;
 `;
-export {
-	Container,
-	ImageContainer,
-	Image,
-	Content,
-	Heading,
-	Span,
-	Paragraph,
-	ButtonContainer,
-	StyledLink,
-	Section,
-};
+export { Container, Content, Heading, Span, Paragraph, ButtonContainer, StyledLink, Section };
