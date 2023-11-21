@@ -24,7 +24,7 @@ const Accordion = () => {
 
 	return (
 		<div>
-			<IntersectionTitle title={'FAQs'} text={'Ask, we will help'} />
+			<IntersectionTitle title={'FAQ'} text={'Ask, we will help'} />
 			<Container>
 				<ImageContainer>
 					<Image src={question} alt={'faqs'} />
