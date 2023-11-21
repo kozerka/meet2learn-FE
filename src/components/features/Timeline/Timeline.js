@@ -17,7 +17,7 @@ const TimelineItemComponent = ({ title, link, linkText, index }) => {
 	const [ref, inView] = useInView({ threshold: 0.1 });
 
 	return (
-		<ResponsiveTimelineItem ref={ref} isVisible={inView} delay={index * 0.5}>
+		<ResponsiveTimelineItem ref={ref} $isVisible={inView} $delay={index * 0.5}>
 			<TimelineDot />
 			<TimelineNumber>{index + 1}</TimelineNumber>
 			<TimelineContent>

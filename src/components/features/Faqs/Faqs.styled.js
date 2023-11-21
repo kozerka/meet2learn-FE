@@ -59,7 +59,7 @@ const Icon = styled(BiSolidDownArrow)`
 	transition: transform 0.3s ease;
 	font-size: 1.3rem;
 	margin-right: 1rem;
-	${props => props.isOpen && rotateIcon}
+	${props => props.$isOpen && rotateIcon}
 `;
 const Container = styled.div`
 	display: flex;

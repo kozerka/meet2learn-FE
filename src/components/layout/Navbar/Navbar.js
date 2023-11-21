@@ -1,4 +1,3 @@
-// Navbar.js
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from '../../../store/slices/themeSlice';
@@ -34,17 +33,20 @@ const Navbar = () => {
 				</NavLogo>
 				<NavMenu>
 					<NavItem>
-						<NavigationLink to={'/'} activeClassName={'active'}>
+						<NavigationLink to={'/'} className={({ isActive }) => (isActive ? 'active' : '')}>
 							Home
 						</NavigationLink>
 					</NavItem>
 					<NavItem>
-						<NavigationLink to={'/tutors'} activeClassName={'active'}>
+						<NavigationLink to={'/tutors'} className={({ isActive }) => (isActive ? 'active' : '')}>
 							Tutors
 						</NavigationLink>
 					</NavItem>
 					<NavItem>
-						<NavigationLink to={'/contact'} activeClassName={'active'}>
+						<NavigationLink
+							to={'/contact'}
+							className={({ isActive }) => (isActive ? 'active' : '')}
+						>
 							Contact
 						</NavigationLink>
 					</NavItem>
@@ -63,7 +65,7 @@ const Navbar = () => {
 				</MobileIcon>
 			</NavbarContainer>
 			<MobileNavbar
-				isOpen={isMobileNavOpen}
+				$isOpen={isMobileNavOpen}
 				toggleNav={toggleMobileNav}
 				isMobileNavOpen={isMobileNavOpen}
 				currentTheme={currentTheme}

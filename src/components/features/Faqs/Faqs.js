@@ -38,7 +38,7 @@ const Accordion = () => {
 						>
 							<Number>{item.number}</Number>
 							<Text>{item.question}</Text>
-							<Icon isOpen={openItemIndex === index} />
+							<Icon $isOpen={openItemIndex === index} />
 							<HiddenBox className={'hiddenBox'}>
 								<Paragraph>{item.answer}</Paragraph>
 							</HiddenBox>

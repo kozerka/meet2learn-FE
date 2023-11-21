@@ -27,9 +27,9 @@ const FormInput = ({ label, errorMessage, onChange, type, ...inputProps }) => {
 		<Container>
 			<label>{label}</label>
 			{type === 'textarea' ? (
-				<textarea {...inputProps} onChange={onChange} className="textareaField" />
+				<textarea {...inputProps} onChange={onChange} className={'textareaField'} />
 			) : (
-				<input {...inputProps} type={type} onChange={onChange} className="inputField" />
+				<input {...inputProps} type={type} onChange={onChange} className={'inputField'} />
 			)}
 		</Container>
 	);
@@ -40,7 +40,7 @@ FormInput.propTypes = {
 	errorMessage: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 	type: PropTypes.string.isRequired,
-	inputProps: PropTypes.object.isRequired,
+	inputProps: PropTypes.object,
 };
 
 export default FormInput;

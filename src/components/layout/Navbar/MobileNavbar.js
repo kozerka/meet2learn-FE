@@ -4,21 +4,33 @@ import { FaTimes, FaBars, FaSun, FaMoon } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import Button from '../../ui/Button';
 
-const MobileNavbar = ({ isOpen, toggleNav, isMobileNavOpen, currentTheme, handleToggleTheme }) => {
+const MobileNavbar = ({ $isOpen, toggleNav, isMobileNavOpen, currentTheme, handleToggleTheme }) => {
 	return (
-		<SidebarContainer isOpen={isOpen}>
+		<SidebarContainer $isOpen={$isOpen}>
 			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
 				<MobileIcon onClick={toggleNav}>{isMobileNavOpen ? <FaTimes /> : <FaBars />}</MobileIcon>
 				<NavLogo to={'/'} onClick={toggleNav}>
 					meet<span>2</span>learn
 				</NavLogo>
-				<NavigationLinkMobile to={'/'} onClick={toggleNav} activeClassName={'active'}>
+				<NavigationLinkMobile
+					to={'/'}
+					onClick={toggleNav}
+					className={({ isActive }) => (isActive ? 'active' : '')}
+				>
 					Home
 				</NavigationLinkMobile>
-				<NavigationLinkMobile to={'/tutors'} onClick={toggleNav} activeClassName={'active'}>
+				<NavigationLinkMobile
+					to={'/tutors'}
+					onClick={toggleNav}
+					className={({ isActive }) => (isActive ? 'active' : '')}
+				>
 					Tutors
 				</NavigationLinkMobile>
-				<NavigationLinkMobile to={'/contact'} onClick={toggleNav} activeClassName={'active'}>
+				<NavigationLinkMobile
+					to={'/contact'}
+					onClick={toggleNav}
+					className={({ isActive }) => (isActive ? 'active' : '')}
+				>
 					Contact
 				</NavigationLinkMobile>
 				<div>
@@ -43,7 +55,7 @@ const MobileNavbar = ({ isOpen, toggleNav, isMobileNavOpen, currentTheme, handle
 };
 
 MobileNavbar.propTypes = {
-	isOpen: PropTypes.bool.isRequired,
+	$isOpen: PropTypes.bool.isRequired,
 	toggleNav: PropTypes.func.isRequired,
 	isMobileNavOpen: PropTypes.bool.isRequired,
 	currentTheme: PropTypes.string.isRequired,

@@ -86,9 +86,9 @@ const fadeIn = css`
 
 const ResponsiveTimelineItem = styled(TimelineItem)`
 	opacity: 0;
-	transition: opacity 0.5s ease-out ${props => props.delay}s;
+	transition: opacity 0.5s ease-out ${props => props.$delay}s;
 
-	${props => props.isVisible && fadeIn}
+	${props => props.$isVisible && fadeIn}
 
 	@media (max-width: 767px) {
 		&:nth-child(odd),
