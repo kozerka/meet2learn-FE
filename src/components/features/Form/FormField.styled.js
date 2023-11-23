@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledInput = styled.input`
+	position: relative;
 	min-width: 320px;
 	width: 100%;
-	padding: 1rem;
+	padding: 1rem 2.5rem;
 	border: none;
 	display: block;
 	background-color: ${({ theme }) => theme.body};

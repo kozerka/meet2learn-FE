@@ -7,6 +7,7 @@ import FormField from '../../../components/features/Form/FormField';
 import { PageContainer, ContentContainer, FormContainer } from '../../../components/ui/Containers';
 import { Image, ImageContainer } from '../../../components/ui/Image.styled';
 import { LinkStyled } from '../../../components/ui/Link.styled';
+import { FiMail, FiLock } from 'react-icons/fi';
 // import { toast } from 'react-toastify';
 // import axios from 'axios';
 
@@ -52,6 +53,7 @@ const Login = () => {
 							touched={touched}
 							handleChange={handleChange}
 							handleBlur={handleBlur}
+							icon={<FiMail />}
 						/>
 						<FormField
 							label={'Password'}
@@ -62,6 +64,7 @@ const Login = () => {
 							touched={touched}
 							handleChange={handleChange}
 							handleBlur={handleBlur}
+							icon={<FiLock />}
 						/>
 
 						<Button $disabled={isSubmitting} $primary $fullWidth type={'submit'}>

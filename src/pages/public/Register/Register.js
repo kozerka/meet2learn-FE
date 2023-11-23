@@ -69,6 +69,7 @@ const Register = () => {
 								touched={touched}
 								handleChange={handleChange}
 								handleBlur={handleBlur}
+								icon={field.icon}
 							/>
 						))}
 
