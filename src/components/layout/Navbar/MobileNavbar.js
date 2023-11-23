@@ -1,17 +1,16 @@
-import { SidebarContainer, MobileIcon, ThemeToggler, StyledLink, NavLogo } from './Navbar.styled';
+import { SidebarContainer, MobileIcon, ThemeToggler, StyledLink } from './Navbar.styled';
 import { NavigationLinkMobile } from './NavigationLink.styled';
 import { FaTimes, FaBars, FaSun, FaMoon } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import Button from '../../ui/Button';
+import Logo from '../../ui/Logo/Logo';
 
 const MobileNavbar = ({ $isOpen, toggleNav, isMobileNavOpen, currentTheme, handleToggleTheme }) => {
 	return (
 		<SidebarContainer $isOpen={$isOpen}>
 			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
 				<MobileIcon onClick={toggleNav}>{isMobileNavOpen ? <FaTimes /> : <FaBars />}</MobileIcon>
-				<NavLogo to={'/'} onClick={toggleNav}>
-					meet<span>2</span>learn
-				</NavLogo>
+				<Logo isLink={true} linkTo={'/'} />
 				<NavigationLinkMobile
 					to={'/'}
 					onClick={toggleNav}

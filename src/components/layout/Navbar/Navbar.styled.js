@@ -27,21 +27,7 @@ const NavbarContainer = styled.div`
 	padding: 0 2rem;
 	max-width: 75rem;
 `;
-const NavLogo = styled(Link)`
-	color: ${({ theme }) => theme.text};
-	justify-self: flex-start;
-	cursor: pointer;
-	font-size: 1.5rem;
-	display: flex;
-	align-items: center;
-	margin-left: 1.5rem;
-	font-weight: bold;
-	text-decoration: none;
-	span {
-		color: ${({ theme }) => theme.primary};
-		font-size: 2.5rem;
-	}
-`;
+
 const NavMenu = styled.ul`
 	display: flex;
 	align-items: center;
@@ -117,7 +103,6 @@ const ThemeToggler = styled.button`
 export {
 	Nav,
 	NavbarContainer,
-	NavLogo,
 	NavMenu,
 	NavItem,
 	MobileIcon,

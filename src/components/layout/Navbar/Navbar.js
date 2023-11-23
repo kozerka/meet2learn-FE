@@ -4,7 +4,6 @@ import { toggleTheme } from '../../../store/slices/themeSlice';
 import {
 	Nav,
 	NavbarContainer,
-	NavLogo,
 	NavMenu,
 	NavItem,
 	MobileIcon,
@@ -16,6 +15,7 @@ import { NavigationLink } from './NavigationLink.styled';
 import Button from '../../ui/Button';
 import MobileNavbar from './MobileNavbar';
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
+import Logo from '../../ui/Logo/Logo';
 
 const Navbar = () => {
 	const dispatch = useDispatch();
@@ -28,9 +28,7 @@ const Navbar = () => {
 	return (
 		<Nav>
 			<NavbarContainer>
-				<NavLogo to={'/'}>
-					meet<span>2</span>learn
-				</NavLogo>
+				<Logo isLink={true} linkTo={'/'} />
 				<NavMenu>
 					<NavItem>
 						<NavigationLink to={'/'} className={({ isActive }) => (isActive ? 'active' : '')}>
