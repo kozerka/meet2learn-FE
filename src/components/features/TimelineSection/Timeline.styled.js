@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const TimelineSection = styled.section`
+	margin: 8rem auto;
 	padding: 1rem;
 `;
 

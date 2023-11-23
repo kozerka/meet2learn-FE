@@ -7,10 +7,10 @@ const Content = styled.div`
 	align-items: center;
 	justify-content: center;
 	text-align: center;
+
 	padding: 0 2rem;
 	@media (min-width: 1024px) {
 		margin: 0 auto;
-		align-items: flex-start;
 		text-align: left;
 	}
 `;
@@ -26,7 +26,7 @@ const Title = styled.h2`
 
 const SubTitle = styled.h3`
 	margin-top: 0.5rem;
-	margin-bottom: 6rem;
+	/* margin-bottom: 6rem; */
 	color: ${({ theme }) => theme.text};
 	font-size: 2.5rem;
 	text-transform: uppercase;

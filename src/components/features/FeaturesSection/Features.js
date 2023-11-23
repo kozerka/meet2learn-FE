@@ -1,5 +1,5 @@
-import IntersectionTitle from '../layout/IntersectionTitle';
-import { featuresData } from '../../data/featuresData';
+import IntersectionTitle from '../../layout/IntersectionTitle';
+import { featuresData } from '../../../data';
 import { FeaturesContainer, FeatureBox, FeatureImg } from './Features.styled';
 
 const Features = () => {

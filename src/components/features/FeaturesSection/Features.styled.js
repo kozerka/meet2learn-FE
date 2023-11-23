@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const FeaturesContainer = styled.div`
+	margin: 8rem auto;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;

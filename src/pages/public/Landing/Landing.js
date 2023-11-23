@@ -1,5 +1,5 @@
-import Features from '../../../components/features/Features';
-import Hero from '../../../components/features/Hero';
+import Features from '../../../components/features/FeaturesSection/Features';
+import Hero from '../../../components/features/HeroSection/Hero';
 import { Timeline, Faqs } from '../../../components';
 import Wrapper from '../../../components/layout/Wrapper';
 

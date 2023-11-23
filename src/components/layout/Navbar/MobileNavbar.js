@@ -4,6 +4,7 @@ import { FaTimes, FaBars, FaSun, FaMoon } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import Button from '../../ui/Button';
 import Logo from '../../ui/Logo/Logo';
+import { navLinks } from '../../../data';
 
 const MobileNavbar = ({ $isOpen, toggleNav, isMobileNavOpen, currentTheme, handleToggleTheme }) => {
 	return (
@@ -11,31 +12,18 @@ const MobileNavbar = ({ $isOpen, toggleNav, isMobileNavOpen, currentTheme, handl
 			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
 				<MobileIcon onClick={toggleNav}>{isMobileNavOpen ? <FaTimes /> : <FaBars />}</MobileIcon>
 				<Logo isLink={true} linkTo={'/'} />
-				<NavigationLinkMobile
-					to={'/'}
-					onClick={toggleNav}
-					className={({ isActive }) => (isActive ? 'active' : '')}
-				>
-					Home
-				</NavigationLinkMobile>
-				<NavigationLinkMobile
-					to={'/tutors'}
-					onClick={toggleNav}
-					className={({ isActive }) => (isActive ? 'active' : '')}
-				>
-					Tutors
-				</NavigationLinkMobile>
-				<NavigationLinkMobile
-					to={'/contact'}
-					onClick={toggleNav}
-					className={({ isActive }) => (isActive ? 'active' : '')}
-				>
-					Contact
-				</NavigationLinkMobile>
+				{navLinks.map((link, index) => (
+					<NavigationLinkMobile
+						key={index}
+						to={link.to}
+						onClick={toggleNav}
+						className={({ isActive }) => (isActive ? 'active' : '')}
+					>
+						{link.text}
+					</NavigationLinkMobile>
+				))}
 				<div>
-					{' '}
 					<StyledLink to={'/login'}>
-						{' '}
 						<Button $primary={true} onClick={toggleNav}>
 							Login
 						</Button>

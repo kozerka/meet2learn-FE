@@ -7,6 +7,7 @@ const StyledLogo = styled.div`
 	font-size: 1.5rem;
 	display: flex;
 	align-items: center;
+	line-height: 5rem;
 	margin-left: 1.5rem;
 	font-weight: bold;
 	text-decoration: none;

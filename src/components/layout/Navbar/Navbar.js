@@ -16,6 +16,7 @@ import Button from '../../ui/Button';
 import MobileNavbar from './MobileNavbar';
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
 import Logo from '../../ui/Logo/Logo';
+import { navLinks } from '../../../data';
 
 const Navbar = () => {
 	const dispatch = useDispatch();
@@ -30,24 +31,13 @@ const Navbar = () => {
 			<NavbarContainer>
 				<Logo isLink={true} linkTo={'/'} />
 				<NavMenu>
-					<NavItem>
-						<NavigationLink to={'/'} className={({ isActive }) => (isActive ? 'active' : '')}>
-							Home
-						</NavigationLink>
-					</NavItem>
-					<NavItem>
-						<NavigationLink to={'/tutors'} className={({ isActive }) => (isActive ? 'active' : '')}>
-							Tutors
-						</NavigationLink>
-					</NavItem>
-					<NavItem>
-						<NavigationLink
-							to={'/contact'}
-							className={({ isActive }) => (isActive ? 'active' : '')}
-						>
-							Contact
-						</NavigationLink>
-					</NavItem>
+					{navLinks.map((link, index) => (
+						<NavItem key={index}>
+							<NavigationLink to={link.to} className={({ isActive }) => (isActive ? 'active' : '')}>
+								{link.text}
+							</NavigationLink>
+						</NavItem>
+					))}
 				</NavMenu>
 				<NavBtn>
 					<StyledLink to={'/login'}>

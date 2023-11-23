@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { faqsData } from '../../../data/faqsData';
+import { faqsData } from '../../../data';
 import question from '../../../assets/img/question.png';
 import {
 	AccordionSection,
