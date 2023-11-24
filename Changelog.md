@@ -23,3 +23,9 @@
 - Split into smaller components
 ### Removed
 
+## [0.3.0] - 2023-11-24
+
+### Added
+- Dashboard with media
+- Sidebar 
+- Pages for dashboard
