@@ -1,10 +1,14 @@
 import { Outlet } from 'react-router-dom';
+import Sidebar from '../../../components/layout/Sidebar/Sidebar';
+import { Container, DashContainer } from './Dashboard.styled';
 const Dashboard = () => {
 	return (
-		<>
-			<h1>Dashboard - sidebars</h1>
-			<Outlet />
-		</>
+		<Container>
+			<DashContainer>
+				<Sidebar />
+				<Outlet />
+			</DashContainer>
+		</Container>
 	);
 };
 

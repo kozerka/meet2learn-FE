@@ -10,6 +10,10 @@ import {
 	Tutors,
 	Dashboard,
 	Stats,
+	Forum,
+	MyNotes,
+	Tutoring,
+	Profile,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -32,6 +36,10 @@ const router = createBrowserRouter([
 						index: true,
 						element: <Stats />,
 					},
+					{ path: 'forum', element: <Forum /> },
+					{ path: 'my-notes', element: <MyNotes /> },
+					{ path: 'my-tutoring', element: <Tutoring /> },
+					{ path: 'profile', element: <Profile /> },
 				],
 			},
 		],
