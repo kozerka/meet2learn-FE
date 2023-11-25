@@ -12,3 +12,4 @@ export { default as Forum } from './private/Forum/Forum';
 export { default as MyNotes } from './private/MyNotes/MyNotes';
 export { default as Tutoring } from './private/Tutoring/Tutoring';
 export { default as Profile } from './private/Profile/Profile';
+export { default as TutorProfile } from './public/TutorProfile/TutorProfile';
