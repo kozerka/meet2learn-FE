@@ -24,22 +24,24 @@ const TutorCard = ({ tutor }) => {
 	return (
 		<TutorCardWrapper>
 			<ImageContainer>
-				<img src={tutor.image} alt={tutor.name} />
+				<img src={tutor.avatar} alt={tutor.name} />
 			</ImageContainer>
 			<ItemInfo>
 				<TopSection>
-					<Name>{tutor.name}</Name>
+					<Name>
+						{tutor.firstName} {tutor.lastName}
+					</Name>
 					<Rating>
-						<FaStar /> {tutor.rating}
+						<FaStar /> {tutor.averageRating}
 					</Rating>
 				</TopSection>
 				<Categories>
-					{tutor.categories.map((category, index) => (
-						<CategoryLabel key={index}>{category}</CategoryLabel>
+					{tutor.subjects.map((subject, index) => (
+						<CategoryLabel key={index}>{subject}</CategoryLabel>
 					))}
 				</Categories>
 				<Divider />
-				<Reviews>{`${tutor.numberOfReviews} Reviews from all users`}</Reviews>
+				<Reviews>{`${tutor.totalRating} Reviews from all users`}</Reviews>
 			</ItemInfo>
 			<ViewProfileButton onClick={viewProfile}>View Profile</ViewProfileButton>
 		</TutorCardWrapper>
@@ -49,11 +51,13 @@ const TutorCard = ({ tutor }) => {
 TutorCard.propTypes = {
 	tutor: PropTypes.shape({
 		id: PropTypes.string.isRequired,
-		image: PropTypes.string.isRequired,
+		avatar: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
-		categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-		rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-		numberOfReviews: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+		firstName: PropTypes.string.isRequired,
+		lastName: PropTypes.string.isRequired,
+		subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+		averageRating: PropTypes.number.isRequired,
+		totalRating: PropTypes.number.isRequired,
 	}).isRequired,
 };
 

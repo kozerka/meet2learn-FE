@@ -9,6 +9,7 @@ const Wrapper = styled.div`
 	justify-content: center;
 	max-width: 75rem;
 	width: 100%;
+	gap: 3rem;
 `;
 
 export default Wrapper;
