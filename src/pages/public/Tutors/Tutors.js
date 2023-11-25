@@ -1,124 +1,45 @@
 import TutorCard from '../../../components/features/TutorCard/TutorCard';
 import Wrapper from '../../../components/layout/Wrapper';
 import IntersectionTitle from '../../../components/layout/IntersectionTitle';
-import styled from 'styled-components';
+import { useState } from 'react';
+import { tutorsData } from '../../../data/tutorsData';
+import SearchBar from '../../../components/features/SearchBar/SearchBar';
+import noTutorFound from '../../../assets/img/noTutorFound.png';
 
-const TutorsGrid = styled.div`
-	display: grid;
-	gap: 4rem;
-	margin: 2rem auto;
-	padding: 1rem;
+import { TutorsGrid, NoResultsMessage } from './Tutors.styled';
 
-	@media (min-width: 1200px) {
-		grid-template-columns: repeat(3, 1fr);
-	}
-
-	@media (min-width: 768px) and (max-width: 1199px) {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	@media (max-width: 767px) {
-		grid-template-columns: 1fr;
-	}
-`;
 const Tutors = () => {
+	const [filteredTutors, setFilteredTutors] = useState(tutorsData);
+
+	const handleSearch = searchValue => {
+		const filtered = tutorsData.filter(
+			tutor =>
+				tutor.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+				tutor.categories.some(category =>
+					category.toLowerCase().includes(searchValue.toLowerCase())
+				)
+		);
+		setFilteredTutors(filtered);
+	};
+
 	return (
 		<Wrapper>
 			<div style={{ marginTop: '6rem' }}></div>
 			<IntersectionTitle title={'Tutors'} text={'Find your tutor'} />
-			<div>search bar</div>
-			<TutorsGrid>
-				<TutorCard
-					tutor={{
-						id: '123',
-						image: 'https://picsum.photos/200/300',
-						name: 'Jane Doe',
-						categories: ['Math', 'Science'],
-						rating: '4.5',
-						numberOfReviews: '25',
-					}}
-				/>
-				<TutorCard
-					tutor={{
-						id: '123',
-						image: 'https://picsum.photos/200/300',
-						name: 'Jane Doe',
-						categories: ['Math', 'Science'],
-						rating: '4.5',
-						numberOfReviews: '25',
-					}}
-				/>
-				<TutorCard
-					tutor={{
-						id: '123',
-						image: 'https://picsum.photos/200/300',
-						name: 'Jane Doe',
-						categories: ['Math', 'Science'],
-						rating: '4.5',
-						numberOfReviews: '25',
-					}}
-				/>
-				<TutorCard
-					tutor={{
-						id: '123',
-						image: 'https://picsum.photos/200/300',
-						name: 'Jane Doe',
-						categories: ['Math', 'Science'],
-						rating: '4.5',
-						numberOfReviews: '25',
-					}}
-				/>
-				<TutorCard
-					tutor={{
-						id: '123',
-						image: 'https://picsum.photos/200/300',
-						name: 'Jane Doe',
-						categories: ['Math', 'Science'],
-						rating: '4.5',
-						numberOfReviews: '25',
-					}}
-				/>
-				<TutorCard
-					tutor={{
-						id: '123',
-						image: 'https://picsum.photos/200/300',
-						name: 'Jane Doe',
-						categories: ['Math', 'Science'],
-						rating: '4.5',
-						numberOfReviews: '25',
-					}}
-				/>
-				<TutorCard
-					tutor={{
-						id: '123',
-						image: 'https://picsum.photos/200/300',
-						name: 'Jane Doe',
-						categories: ['Math', 'Science'],
-						rating: '4.5',
-						numberOfReviews: '25',
-					}}
-				/>
-				<TutorCard
-					tutor={{
-						id: '123',
-						image: 'https://picsum.photos/200/300',
-						name: 'Jane Doe',
-						categories: ['Math', 'Science'],
-						rating: '4.5',
-						numberOfReviews: '25',
-					}}
-				/>
-				<TutorCard
-					tutor={{
-						id: '123',
-						image: 'https://picsum.photos/200/300',
-						name: 'Jane Doe',
-						categories: ['Math', 'Science'],
-						rating: '4.5',
-						numberOfReviews: '25',
-					}}
-				/>
-			</TutorsGrid>
+			<SearchBar onSearch={handleSearch} />
+			{filteredTutors.length > 0 ? (
+				<TutorsGrid>
+					{filteredTutors.map(tutor => (
+						<TutorCard key={tutor.id} tutor={tutor} />
+					))}
+				</TutorsGrid>
+			) : (
+				<NoResultsMessage>
+					<img src={noTutorFound} alt={'No Tutor Found'} />
+					<h3>No Tutor match search criteria</h3>
+					<p>Try using different keywords</p>
+				</NoResultsMessage>
+			)}
 		</Wrapper>
 	);
 };

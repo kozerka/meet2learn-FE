@@ -8,6 +8,7 @@ export const StyledInput = styled.input`
 	border: none;
 	display: block;
 	background-color: ${({ theme }) => theme.body};
+	color: ${({ theme }) => theme.text};
 	border-radius: 0.5rem;
 	margin: 0.5rem auto 1rem auto;
 	border: ${({ $hasError, theme }) => ($hasError ? `2px solid ${theme.primary}` : 'none')};

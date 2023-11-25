@@ -1,5 +1,5 @@
 import { StyledButton } from './Button.styled';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const Button = ({
 	children,
@@ -27,12 +27,12 @@ const Button = ({
 };
 
 Button.propTypes = {
-	children: Proptypes.node,
-	onClick: Proptypes.func,
-	$disabled: Proptypes.bool,
-	$primary: Proptypes.bool,
-	$secondary: Proptypes.bool,
-	$fullWidth: Proptypes.bool,
-	type: Proptypes.string,
+	children: PropTypes.node,
+	$disabled: PropTypes.bool,
+	$primary: PropTypes.bool,
+	$secondary: PropTypes.bool,
+	$fullWidth: PropTypes.bool,
+	type: PropTypes.string,
+	onClick: PropTypes.func,
 };
 export default Button;

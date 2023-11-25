@@ -66,7 +66,7 @@ const Categories = styled.div`
 `;
 
 const CategoryLabel = styled.span`
-	background-color: ${({ theme }) => theme.secondary};
+	background-color: ${({ theme }) => theme.primary};
 	color: #fff;
 	padding: 0.25rem 0.5rem;
 	border-radius: 0.25rem;
