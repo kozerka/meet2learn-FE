@@ -29,3 +29,16 @@
 - Dashboard with media
 - Sidebar 
 - Pages for dashboard
+
+
+## [0.3.0] - 2023-11-25
+
+### Added
+
+- Tutor card and Tabs - reusable
+- Tutors page with filtering by name or subject
+- Tutor profile with reviews 
+
+### Fixed
+
+- Small styles corrections
