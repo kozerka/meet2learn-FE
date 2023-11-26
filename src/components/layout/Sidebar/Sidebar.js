@@ -10,7 +10,7 @@ const Sidebar = () => {
 			<ToggleIcon expanded={expanded} onClick={() => setExpanded(!expanded)}>
 				{expanded ? <LuArrowLeftSquare size={'2.5rem'} /> : <LuArrowRightSquare size={'2.5rem'} />}
 			</ToggleIcon>
-			<SidebarStyled expanded={expanded.toString()}>
+			<SidebarStyled expanded={expanded}>
 				<DashboardMenu>
 					<Nav>
 						{dashboardLinks.map((link, index) => (

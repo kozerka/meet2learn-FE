@@ -1,6 +1,6 @@
 export const dummyUser = {
 	id: '1',
-	role: 'student',
+	role: 'tutor',
 	email: 'firsttutor@example.com',
 	firstName: 'Franek',
 	lastName: 'Tutor',
