@@ -31,7 +31,7 @@
 - Pages for dashboard
 
 
-## [0.3.0] - 2023-11-25
+## [0.4.0] - 2023-11-25
 
 ### Added
 
@@ -42,3 +42,17 @@
 ### Fixed
 
 - Small styles corrections
+
+## [0.5.0] - 2023-11-26
+
+### Added
+
+- Profile cards
+- Settings page with delete account (modal confirmation)
+- Password change options
+- Edit form for users with validation
+- Small buttons
+
+### Fixed
+
+- Sidebar issues with labels viabilities 
