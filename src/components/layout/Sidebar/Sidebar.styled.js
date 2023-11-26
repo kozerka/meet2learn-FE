@@ -22,8 +22,8 @@ const slideOut = keyframes`
   }
 `;
 const SidebarStyled = styled.div`
-	height: 100vh;
 	transition: all 0.3s ease-in-out;
+
 	@media screen and (max-width: 768px) {
 		position: fixed;
 		z-index: 998;
@@ -65,7 +65,8 @@ const DashboardMenu = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	height: 80%;
+	height: 100%;
+	padding-bottom: 2rem;
 `;
 const NavLink = styled(Link)`
 	height: 2.5rem;

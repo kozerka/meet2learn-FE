@@ -10,7 +10,7 @@ const Sidebar = () => {
 			<ToggleIcon expanded={expanded} onClick={() => setExpanded(!expanded)}>
 				{expanded ? <LuArrowLeftSquare size={'2.5rem'} /> : <LuArrowRightSquare size={'2.5rem'} />}
 			</ToggleIcon>
-			<SidebarStyled expanded={expanded}>
+			<SidebarStyled expanded={expanded.toString()}>
 				<DashboardMenu>
 					<Nav>
 						{dashboardLinks.map((link, index) => (
@@ -18,19 +18,21 @@ const Sidebar = () => {
 								key={index}
 								to={link.path}
 								className={({ isActive }) => (isActive ? 'active' : '')}
-								end
+								end={index === 0}
 							>
 								<div style={{ marginLeft: '2rem' }}>{link.icon}</div>
 								<span>{link.name}</span>
 							</NavLink>
 						))}
 					</Nav>
-					<NavLink to={'/'}>
-						<div style={{ marginLeft: '2rem' }}>
-							<RiLogoutCircleRLine size={'1.5rem'} />
-						</div>
-						<span>Logout</span>
-					</NavLink>
+					<div>
+						<NavLink to={'/'}>
+							<div style={{ marginLeft: '2rem' }}>
+								<RiLogoutCircleRLine size={'1.5rem'} />
+							</div>
+							<span>Logout</span>
+						</NavLink>
+					</div>
 				</DashboardMenu>
 			</SidebarStyled>
 		</>

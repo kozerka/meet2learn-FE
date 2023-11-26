@@ -2,14 +2,14 @@ import { useParams } from 'react-router-dom';
 import Tabs from '../../../components/layout/Tabs/Tabs';
 import Wrapper from '../../../components/layout/Wrapper';
 import { tutorsData } from '../../../data/tutorsData';
-import PersonalCard from '../../../components/features/UserCV/PersonalCard';
-import AboutCard from '../../../components/features/UserCV/About';
+import PersonalCard from '../../../components/features/TutorPublicProfile/PersonalCard';
+import AboutCard from '../../../components/features/TutorPublicProfile/About';
 import { LinkStyled } from '../../../components/ui/Link.styled';
 import Button from '../../../components/ui/Button';
 import { reviewsData } from '../../../data/reviewsData';
 import Reviews from '../../../components/features/Reviews/Reviews';
 import FeedbackForm from '../../../components/features/FeedbackForm/FeedbackForm';
-const TutorProfile = () => {
+const TutorPublicProfile = () => {
 	const { id } = useParams();
 	const tutor = tutorsData.find(t => t.id === id);
 	const handleAddReview = reviewData => {
@@ -49,4 +49,4 @@ const TutorProfile = () => {
 	);
 };
 
-export default TutorProfile;
+export default TutorPublicProfile;

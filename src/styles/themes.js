@@ -3,6 +3,7 @@ export const lightTheme = {
 	primary: '#E03268',
 	secondary: '#179AD3',
 	text: '#181921',
+	textInverted: '#f9f7f9',
 	background: 'white',
 	primaryButton: '#287AA7',
 	secondaryButton: '#FCB247',
@@ -13,6 +14,7 @@ export const lightTheme = {
 export const darkTheme = {
 	body: '#262935',
 	text: '#f9f7f9',
+	textInverted: '#181921',
 	background: '#181921',
 	primary: '#FFD700',
 	secondary: '#179AD3',

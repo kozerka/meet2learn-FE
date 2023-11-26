@@ -4,3 +4,6 @@ export * from './featuresData';
 export * from './navLinks';
 export * from './timelineData';
 export * from './dashboardLinks';
+export * from './tutorsData';
+export * from './dummyUser';
+export * from './reviewsData';

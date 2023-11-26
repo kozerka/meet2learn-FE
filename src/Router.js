@@ -14,7 +14,10 @@ import {
 	MyNotes,
 	Tutoring,
 	Profile,
-	TutorProfile,
+	TutorPublicProfile,
+	Settings,
+	EditProfile,
+	MyProfile,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -31,7 +34,7 @@ const router = createBrowserRouter([
 				path: 'tutors',
 				element: <Tutors />,
 			},
-			{ path: 'tutors/:id', element: <TutorProfile /> },
+			{ path: 'tutors/:id', element: <TutorPublicProfile /> },
 			{ path: 'contact', element: <Contact /> },
 			{
 				path: 'dashboard',
@@ -44,7 +47,15 @@ const router = createBrowserRouter([
 					{ path: 'forum', element: <Forum /> },
 					{ path: 'my-notes', element: <MyNotes /> },
 					{ path: 'my-tutoring', element: <Tutoring /> },
-					{ path: 'profile', element: <Profile /> },
+					{
+						path: 'profile',
+						element: <Profile />,
+						children: [
+							{ index: true, element: <MyProfile /> },
+							{ path: 'edit', element: <EditProfile /> },
+							{ path: 'settings', element: <Settings /> },
+						],
+					},
 				],
 			},
 		],
