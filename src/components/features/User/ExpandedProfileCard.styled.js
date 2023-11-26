@@ -10,7 +10,15 @@ const InfoContainer = styled.div`
 	margin: 2rem auto;
 	padding: 2rem;
 `;
-
+const SubjectLabel = styled.span`
+	background-color: ${({ theme }) => theme.secondary};
+	color: #fff;
+	margin-right: 1rem;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+	font-size: 0.7rem;
+	text-transform: uppercase;
+`;
 const Info = styled.p`
 	font-size: 1rem;
 `;
@@ -23,10 +31,20 @@ const SectionLabel = styled.div`
 const SectionLabelSpan = styled.span`
 	font-weight: bold;
 	font-size: 1.2rem;
+	color: ${({ theme }) => theme.primary};
 `;
 
 const About = styled.p`
 	font-size: 0.9rem;
+`;
+const ExperiencesContainer = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 `;
 
 const ExperienceItem = styled.div`
@@ -34,11 +52,16 @@ const ExperienceItem = styled.div`
 	padding: 10px;
 	border-radius: 5px;
 	margin-bottom: 10px;
+	flex-basis: calc(50% - 1rem);
+
+	@media (max-width: 768px) {
+		flex-basis: 100%;
+	}
 `;
 
 const ExperienceTitle = styled.h3`
 	font-size: 1.1rem;
-	color: #444;
+	color: ${({ theme }) => theme.text};
 `;
 
 const ExperiencePeriod = styled.span`
@@ -58,4 +81,6 @@ export {
 	ExperienceTitle,
 	ExperiencePeriod,
 	ExperienceDescription,
+	ExperiencesContainer,
+	SubjectLabel,
 };

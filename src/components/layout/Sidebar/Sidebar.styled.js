@@ -6,14 +6,14 @@ const slideIn = keyframes`
     opacity: 0;
   }
   to {
-    width: 55%; 
+    width: 16rem; 
     opacity: 1;
   }
 `;
 
 const slideOut = keyframes`
   from {
-    width: 55%; 
+    width: 16rem; 
     opacity: 1;
   }
   to {
@@ -35,7 +35,7 @@ const SidebarStyled = styled.div`
 		border-top-left-radius: 0.5rem;
 		overflow: hidden;
 		transition: all 0.3s ease-in-out;
-		animation: ${({ expanded }) => (expanded ? slideIn : slideOut)} 0.5s ease-out forwards;
+		animation: ${({ $isExpanded }) => ($isExpanded ? slideIn : slideOut)} 0.5s ease-out forwards;
 	}
 `;
 const ToggleIcon = styled.div`
@@ -109,7 +109,7 @@ const NavLink = styled(Link)`
 	@media screen and (max-width: 768px) {
 		margin-left: 2rem;
 		span {
-			display: ${({ expanded }) => (expanded ? 'block' : 'none')};
+			display: ${({ $isExpanded }) => ($isExpanded ? 'block' : 'none')};
 		}
 	}
 `;

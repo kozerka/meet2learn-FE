@@ -7,10 +7,10 @@ const Sidebar = () => {
 	const [expanded, setExpanded] = useState(false);
 	return (
 		<>
-			<ToggleIcon expanded={expanded} onClick={() => setExpanded(!expanded)}>
+			<ToggleIcon $isExpanded={expanded} onClick={() => setExpanded(!expanded)}>
 				{expanded ? <LuArrowLeftSquare size={'2.5rem'} /> : <LuArrowRightSquare size={'2.5rem'} />}
 			</ToggleIcon>
-			<SidebarStyled expanded={expanded}>
+			<SidebarStyled $isExpanded={expanded}>
 				<DashboardMenu>
 					<Nav>
 						{dashboardLinks.map((link, index) => (
@@ -19,7 +19,7 @@ const Sidebar = () => {
 								to={link.path}
 								className={({ isActive }) => (isActive ? 'active' : '')}
 								end={index === 0}
-								expanded={expanded}
+								$isExpanded={expanded}
 							>
 								<div style={{ marginLeft: '2rem' }}>{link.icon}</div>
 								<span>{link.name}</span>
@@ -27,7 +27,7 @@ const Sidebar = () => {
 						))}
 					</Nav>
 					<div>
-						<NavLink expanded={expanded} to={'/'}>
+						<NavLink $isExpanded={expanded} to={'/'}>
 							<div style={{ marginLeft: '2rem' }}>
 								<RiLogoutCircleRLine size={'1.5rem'} />
 							</div>

@@ -9,6 +9,8 @@ import {
 	ExperienceTitle,
 	ExperiencePeriod,
 	ExperienceDescription,
+	ExperiencesContainer,
+	SubjectLabel,
 } from './ExpandedProfileCard.styled';
 const ExtendedProfileCard = ({ user }) => {
 	return (
@@ -23,6 +25,14 @@ const ExtendedProfileCard = ({ user }) => {
 					<About>{user.about}</About>
 				</div>
 			)}
+			{user.bio && (
+				<div>
+					<SectionLabel>
+						<SectionLabelSpan>Bio</SectionLabelSpan>
+					</SectionLabel>
+					<About>{user.bio}</About>
+				</div>
+			)}
 
 			{user.role === 'tutor' && (
 				<div>
@@ -32,7 +42,9 @@ const ExtendedProfileCard = ({ user }) => {
 								<SectionLabelSpan>Subjects</SectionLabelSpan>
 							</SectionLabel>
 							{user.subjects.map((subject, index) => (
-								<Info key={index}>{subject.name}</Info>
+								<SubjectLabel key={index}>
+									{typeof subject === 'string' ? subject : subject.name}
+								</SubjectLabel>
 							))}
 						</div>
 					)}
@@ -41,13 +53,15 @@ const ExtendedProfileCard = ({ user }) => {
 							<SectionLabel>
 								<SectionLabelSpan>Experience</SectionLabelSpan>
 							</SectionLabel>
-							{user.experiences.map((exp, index) => (
-								<ExperienceItem key={index}>
-									<ExperienceTitle>{exp.name}</ExperienceTitle>
-									<ExperiencePeriod>{exp.period}</ExperiencePeriod>
-									<ExperienceDescription>{exp.description}</ExperienceDescription>
-								</ExperienceItem>
-							))}
+							<ExperiencesContainer>
+								{user.experiences.map((exp, index) => (
+									<ExperienceItem key={index}>
+										<ExperienceTitle>{exp.name}</ExperienceTitle>
+										<ExperiencePeriod>{exp.period}</ExperiencePeriod>
+										<ExperienceDescription>{exp.description}</ExperienceDescription>
+									</ExperienceItem>
+								))}
+							</ExperiencesContainer>
 						</div>
 					)}
 				</div>
@@ -62,10 +76,14 @@ ExtendedProfileCard.propTypes = {
 		country: PropTypes.string,
 		about: PropTypes.string,
 		role: PropTypes.string.isRequired,
+		bio: PropTypes.string,
 		subjects: PropTypes.arrayOf(
-			PropTypes.shape({
-				name: PropTypes.string.isRequired,
-			})
+			PropTypes.oneOfType([
+				PropTypes.string,
+				PropTypes.shape({
+					name: PropTypes.string.isRequired,
+				}),
+			])
 		),
 		experiences: PropTypes.arrayOf(
 			PropTypes.shape({
