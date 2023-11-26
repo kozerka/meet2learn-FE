@@ -13,7 +13,7 @@ import { PageContainer, ContentContainer, FormContainer } from '../../../compone
 
 const Contact = () => {
 	const dispatch = useDispatch();
-	const { formData, consent } = useSelector(state => state.contactForm);
+	const { formData } = useSelector(state => state.contactForm);
 
 	const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } =
 		useFormik({
@@ -22,7 +22,7 @@ const Contact = () => {
 				email: formData.email || '',
 				messageTitle: formData.messageTitle || '',
 				messageBody: formData.messageBody || '',
-				agreeTerms: consent,
+				agreeTerms: false,
 			},
 			validationSchema: contactFormSchema,
 			onSubmit: (values, { resetForm }) => {
