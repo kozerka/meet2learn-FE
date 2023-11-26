@@ -8,3 +8,4 @@ export * from './tutorsData';
 export * from './dummyUser';
 export * from './reviewsData';
 export * from './passwordChangeFields';
+export * from './editFormFieldsData';

@@ -74,6 +74,28 @@ const StyledButton = styled.button`
 				color: ${theme.secondaryActiveColor};
 			}
 		`}
+  ${({ $small, theme }) =>
+		$small &&
+		css`
+			padding: 0.3rem 1rem;
+			border-radius: 0.25rem;
+			font-size: 0.8rem;
+			margin: 1rem;
+			background-color: transparent;
+			border: 2px solid ${theme.secondaryButtonHover};
+			color: ${theme.text};
+
+			&:hover {
+				background-color: ${theme.secondaryButtonHover};
+				border: 2px solid ${theme.secondaryButtonHover};
+				color: ${theme.secondaryHoverColor};
+			}
+
+			&:active {
+				background-color: ${theme.secondaryActiveBackground};
+				color: ${theme.secondaryActiveColor};
+			}
+		`}
 `;
 
 export { StyledButton };

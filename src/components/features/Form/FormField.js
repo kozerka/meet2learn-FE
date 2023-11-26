@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { StyledLabel, StyledInput } from './FormField.styled';
+import { StyledLabel, StyledInput, StyledTextArea } from './FormField.styled';
 import { ErrorText } from '../../ui/ErrorText.styled';
 import { StyledIcon, StyledIconForPasswordVisibility } from '../../ui/Icon.styled';
 import { FiEyeOff, FiEye } from 'react-icons/fi';
@@ -24,15 +24,26 @@ const FormField = ({
 	return (
 		<div style={{ position: 'relative' }}>
 			<StyledLabel htmlFor={name}>{label}</StyledLabel>
-			<StyledInput
-				id={name}
-				type={inputType}
-				name={name}
-				onChange={handleChange}
-				onBlur={handleBlur}
-				value={values[name]}
-				$hasError={hasError}
-			/>
+			{type === 'textarea' ? (
+				<StyledTextArea
+					id={name}
+					name={name}
+					onChange={handleChange}
+					onBlur={handleBlur}
+					value={values[name]}
+					$hasError={hasError}
+				/>
+			) : (
+				<StyledInput
+					id={name}
+					type={inputType}
+					name={name}
+					onChange={handleChange}
+					onBlur={handleBlur}
+					value={values[name]}
+					$hasError={hasError}
+				/>
+			)}
 			{props.type === 'password' && <StyledInput />}
 			<StyledIcon>{icon}</StyledIcon>
 			{isPasswordField && (

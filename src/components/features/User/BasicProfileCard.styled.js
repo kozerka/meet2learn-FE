@@ -31,12 +31,13 @@ const ContentContainer = styled.div`
 
 const Name = styled.h2`
 	margin: 0;
-	color: #333;
+	color: ${({ theme }) => theme.text};
 	font-size: 1.2rem;
 `;
 
 const Info = styled.p`
-	color: #666;
+	color: ${({ theme }) => theme.text};
 	font-size: 1rem;
+	padding: 0.3rem;
 `;
 export { CardContainer, ImageContainer, ContentContainer, Name, Info };
