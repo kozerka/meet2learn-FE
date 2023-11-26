@@ -109,7 +109,7 @@ const NavLink = styled(Link)`
 	@media screen and (max-width: 768px) {
 		margin-left: 2rem;
 		span {
-			display: block;
+			display: ${({ expanded }) => (expanded ? 'block' : 'none')};
 		}
 	}
 `;

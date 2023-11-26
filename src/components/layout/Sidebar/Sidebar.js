@@ -19,6 +19,7 @@ const Sidebar = () => {
 								to={link.path}
 								className={({ isActive }) => (isActive ? 'active' : '')}
 								end={index === 0}
+								expanded={expanded}
 							>
 								<div style={{ marginLeft: '2rem' }}>{link.icon}</div>
 								<span>{link.name}</span>
@@ -26,7 +27,7 @@ const Sidebar = () => {
 						))}
 					</Nav>
 					<div>
-						<NavLink to={'/'}>
+						<NavLink expanded={expanded} to={'/'}>
 							<div style={{ marginLeft: '2rem' }}>
 								<RiLogoutCircleRLine size={'1.5rem'} />
 							</div>
