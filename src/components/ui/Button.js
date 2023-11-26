@@ -7,6 +7,7 @@ const Button = ({
 	$disabled,
 	$primary,
 	$secondary,
+	$small,
 	$fullWidth,
 	type = 'button',
 	...rest
@@ -17,6 +18,7 @@ const Button = ({
 			disabled={$disabled}
 			$primary={$primary}
 			$secondary={$secondary}
+			$small={$small}
 			$fullWidth={$fullWidth}
 			type={type}
 			{...rest}
@@ -31,6 +33,7 @@ Button.propTypes = {
 	$disabled: PropTypes.bool,
 	$primary: PropTypes.bool,
 	$secondary: PropTypes.bool,
+	$small: PropTypes.bool,
 	$fullWidth: PropTypes.bool,
 	type: PropTypes.string,
 	onClick: PropTypes.func,

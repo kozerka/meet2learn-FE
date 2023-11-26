@@ -13,7 +13,7 @@ const Nav = styled.nav`
 	position: sticky;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 	top: 0;
-	z-index: 100;
+	z-index: 99999999999;
 	@media screen and (max-width: 960px) {
 		transition: 0.8s all ease;
 	}

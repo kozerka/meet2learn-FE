@@ -83,7 +83,7 @@ const PersonalCard = ({ user }) => (
 			</LinkStyled>
 		</ContentContainer>
 		<RatingLabel>
-			<FaStar className="star-icon" /> {user.averageRating}
+			<FaStar className={'star-icon'} /> {user.averageRating}
 		</RatingLabel>
 	</CardContainer>
 );
