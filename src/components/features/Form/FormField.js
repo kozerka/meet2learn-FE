@@ -13,6 +13,7 @@ const FormField = ({
 	touched,
 	handleChange,
 	handleBlur,
+	rows,
 	icon,
 	...props
 }) => {
@@ -22,7 +23,7 @@ const FormField = ({
 	const inputType = isPasswordField && showPassword ? 'text' : type;
 
 	return (
-		<div style={{ position: 'relative' }}>
+		<div style={{ position: 'relative', width: '100%' }}>
 			<StyledLabel htmlFor={name}>{label}</StyledLabel>
 			{type === 'textarea' ? (
 				<StyledTextArea
@@ -32,6 +33,7 @@ const FormField = ({
 					onBlur={handleBlur}
 					value={values[name]}
 					$hasError={hasError}
+					rows={rows}
 				/>
 			) : (
 				<StyledInput
@@ -65,6 +67,7 @@ FormField.propTypes = {
 	touched: PropTypes.objectOf(PropTypes.bool),
 	handleChange: PropTypes.func.isRequired,
 	handleBlur: PropTypes.func.isRequired,
+	rows: PropTypes.number,
 	icon: PropTypes.node,
 };
 

@@ -21,6 +21,7 @@ import {
 	EditNote,
 	AllNotes,
 	AddNote,
+	ViewNote,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -54,7 +55,11 @@ const router = createBrowserRouter([
 						children: [
 							{ index: true, element: <AllNotes /> },
 							{ path: 'add', element: <AddNote /> },
-							{ path: 'edit/:id', element: <EditNote /> },
+							{
+								path: ':id',
+								element: <ViewNote />,
+								children: [{ path: 'edit', element: <EditNote /> }],
+							},
 						],
 					},
 					{ path: 'my-tutoring', element: <Tutoring /> },
