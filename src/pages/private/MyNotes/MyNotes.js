@@ -1,8 +1,13 @@
 import { DashboardContainer } from '../../../components/ui/Containers';
+import { Outlet, Link } from 'react-router-dom';
 const MyNotes = () => {
 	return (
 		<DashboardContainer>
-			<h2>note</h2>
+			<nav>
+				<Link to={''}>All Notes</Link>
+				<Link to={'add'}>Add Note</Link>
+			</nav>
+			<Outlet />
 		</DashboardContainer>
 	);
 };
