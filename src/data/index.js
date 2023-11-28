@@ -11,3 +11,4 @@ export * from './passwordChangeFields';
 export * from './editFormFieldsData';
 export * from './profileNavLinks';
 export * from './myNotesNavLinks';
+export * from './tutoringNavLinks';

@@ -22,6 +22,8 @@ import {
 	AllNotes,
 	AddNote,
 	ViewNote,
+	SingleTutorConnection,
+	AllTutorConnections,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -62,7 +64,14 @@ const router = createBrowserRouter([
 							},
 						],
 					},
-					{ path: 'my-tutoring', element: <Tutoring /> },
+					{
+						path: 'tutoring',
+						element: <Tutoring />,
+						children: [
+							{ index: true, element: <AllTutorConnections /> },
+							{ path: ':id', element: <SingleTutorConnection /> },
+						],
+					},
 					{
 						path: 'profile',
 						element: <Profile />,
