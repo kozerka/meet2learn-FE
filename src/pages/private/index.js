@@ -10,3 +10,4 @@ export { default as Dashboard } from './Dashboard/Dashboard';
 export { default as Stats } from './Stats/Stats';
 export { default as Forum } from './Forum/Forum';
 export { default as AllNotes } from './AllNotes/AllNotes';
+export { default as ViewNote } from './ViewNote/ViewNote';

@@ -10,8 +10,8 @@ export const FormContainer = styled.div`
 	padding: 2rem 3rem;
 	margin: 0 3rem 3rem;
 	gap: 3rem;
-	width: 90%;
-	max-width: 800px;
+	width: 100%;
+	max-width: 1200px;
 	button {
 		margin-top: 1rem;
 	}
