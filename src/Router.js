@@ -18,6 +18,10 @@ import {
 	Settings,
 	EditProfile,
 	MyProfile,
+	EditNote,
+	AllNotes,
+	AddNote,
+	ViewNote,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -45,7 +49,19 @@ const router = createBrowserRouter([
 						element: <Stats />,
 					},
 					{ path: 'forum', element: <Forum /> },
-					{ path: 'my-notes', element: <MyNotes /> },
+					{
+						path: 'my-notes',
+						element: <MyNotes />,
+						children: [
+							{ index: true, element: <AllNotes /> },
+							{ path: 'add', element: <AddNote /> },
+							{
+								path: ':id',
+								element: <ViewNote />,
+								children: [{ path: 'edit', element: <EditNote /> }],
+							},
+						],
+					},
 					{ path: 'my-tutoring', element: <Tutoring /> },
 					{
 						path: 'profile',

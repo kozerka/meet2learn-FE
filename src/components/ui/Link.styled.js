@@ -7,3 +7,18 @@ export const LinkStyled = styled(Link)`
 	font-weight: bold;
 	color: ${({ theme }) => theme.primary};
 `;
+
+export const NavLinkStyled = styled(Link)`
+	padding: 0.9rem;
+	border-radius: 6px;
+	transition: all 0.3s ease;
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: ${({ theme }) => theme.text};
+
+	&:hover {
+		background-color: ${({ theme }) => theme.primary};
+		color: ${({ theme }) => theme.textInverted};
+	}
+`;

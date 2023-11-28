@@ -9,3 +9,5 @@ export * from './dummyUser';
 export * from './reviewsData';
 export * from './passwordChangeFields';
 export * from './editFormFieldsData';
+export * from './profileNavLinks';
+export * from './myNotesNavLinks';
