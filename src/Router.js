@@ -25,6 +25,7 @@ import {
 	SingleTutorConnection,
 	AllTutorConnections,
 } from './pages';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const router = createBrowserRouter([
 	{
@@ -44,7 +45,11 @@ const router = createBrowserRouter([
 			{ path: 'contact', element: <Contact /> },
 			{
 				path: 'dashboard',
-				element: <Dashboard />,
+				element: (
+					<ProtectedRoute>
+						<Dashboard />
+					</ProtectedRoute>
+				),
 				children: [
 					{
 						index: true,

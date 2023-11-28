@@ -14,10 +14,14 @@ import {
 import { Image, ImageContainer } from '../../../components/ui/Image.styled';
 import { LinkStyled } from '../../../components/ui/Link.styled';
 import { registerFormFields } from '../../../data';
-// import { toast } from 'react-toastify';
-// import axios from 'axios';
+import { toast } from 'react-toastify';
+import { registerUser } from '../../../store/slices/userSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const { values, errors, touched, handleBlur, handleChange, isSubmitting, handleSubmit } =
 		useFormik({
 			initialValues: {
@@ -29,23 +33,21 @@ const Register = () => {
 				agreeTerms: false,
 			},
 			validationSchema: registerFormSchema,
-			onSubmit: async values => {
-				console.log(values);
-
-				// TODO try {
-				// 	const response = await axios.post('/api/auth/login', values);
-				// 	// Handle success response
-				// 	toast.success('Logged in successfully');
-				// 	// stany Redux
-				// } catch (error) {
-				// 	if (error.response) {
-				// 		// Wyświetl błędy z backendu
-				// 		toast.error(error.response.data.message);
-				// 	} else {
-				// 		// Wyświetl inny błąd
-				// 		toast.error('An error occurred');
-				// 	}
-				// }
+			onSubmit: async (values, { setSubmitting }) => {
+				try {
+					const actionResponse = await dispatch(registerUser(values));
+					if (registerUser.fulfilled.match(actionResponse)) {
+						toast.success('Registration successful!');
+						navigate('/login');
+					} else {
+						throw actionResponse;
+					}
+				} catch (error) {
+					const errorMessage = error?.payload?.message || 'Error occurred during registration';
+					toast.error(errorMessage);
+				} finally {
+					setSubmitting(false);
+				}
 			},
 		});
 

@@ -1,10 +1,18 @@
 import { dashboardLinks } from '../../../data';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { logoutUser } from '../../../store/slices/userSlice';
 import { LuArrowLeftSquare, LuArrowRightSquare } from 'react-icons/lu';
 import { ToggleIcon, SidebarStyled, Nav, NavLink, DashboardMenu } from './Sidebar.styled';
 const Sidebar = () => {
+	const dispatch = useDispatch();
 	const [expanded, setExpanded] = useState(false);
+	const handleLogout = () => {
+		dispatch(logoutUser());
+		toast.success('Successfully logged out');
+	};
 	return (
 		<>
 			<ToggleIcon $isExpanded={expanded} onClick={() => setExpanded(!expanded)}>
@@ -26,8 +34,8 @@ const Sidebar = () => {
 							</NavLink>
 						))}
 					</Nav>
-					<div>
-						<NavLink $isExpanded={expanded} to={'/'}>
+					<div onClick={handleLogout}>
+						<NavLink $isExpanded={expanded}>
 							<div style={{ marginLeft: '2rem' }}>
 								<RiLogoutCircleRLine size={'1.5rem'} />
 							</div>

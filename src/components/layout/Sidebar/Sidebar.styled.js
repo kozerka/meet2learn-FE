@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 const slideIn = keyframes`
   from {
     width: 0;
-    opacity: 0;
+    opacity: 0.4;
   }
   to {
     width: 16rem; 
@@ -18,7 +18,7 @@ const slideOut = keyframes`
   }
   to {
     width: 0;
-    opacity: 0;
+    opacity: 0.4;
   }
 `;
 const SidebarStyled = styled.div`
