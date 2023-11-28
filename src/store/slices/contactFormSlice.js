@@ -23,7 +23,7 @@ export const contactFormSlice = createSlice({
 			messageTitle: '',
 			messageBody: '',
 		},
-		consent: false,
+		agreeTerms: false,
 		status: 'idle',
 		error: null,
 	},
@@ -32,7 +32,7 @@ export const contactFormSlice = createSlice({
 			state.formData = { ...state.formData, ...action.payload };
 		},
 		updateConsent: (state, action) => {
-			state.consent = action.payload;
+			state.agreeTerms = action.payload;
 		},
 		setStatus: (state, action) => {
 			state.status = action.payload;
@@ -47,7 +47,7 @@ export const contactFormSlice = createSlice({
 				messageTitle: '',
 				messageBody: '',
 			};
-			state.consent = false;
+			state.agreeTerms = false;
 		},
 	},
 	extraReducers: builder => {
