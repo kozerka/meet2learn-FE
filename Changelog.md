@@ -56,3 +56,16 @@
 ### Fixed
 
 - Sidebar issues with labels viabilities 
+
+## [0.6.0] - 2023-11-28
+
+### Added
+
+- View and routes for notes section
+- Reusable navigation for different dashboard sections 
+- Custom noteForm tor adding and editing notes
+- Connect with local state using redux/toolkit to check notes functionalities 
+- implement react-select
+
+
+
