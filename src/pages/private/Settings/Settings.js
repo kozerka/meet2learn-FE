@@ -3,9 +3,11 @@ import ChangePasswordForm from '../../../components/features/ChangePasswordForm/
 import DeleteAccount from '../../../components/features/DeleteAccount/DeleteAccount';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { changePassword } from '../../../store/slices/userSlice';
+import { changePassword, deleteUser } from '../../../store/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
 const Settings = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handlePasswordChange = async values => {
 		try {
@@ -22,8 +24,14 @@ const Settings = () => {
 		}
 	};
 
-	const handleDeleteAccount = () => {
-		console.log('zamiast połączenia a api, tu też muszę pamieta o dodaniu logout user'); // TODO
+	const handleDeleteAccount = async () => {
+		try {
+			await dispatch(deleteUser());
+			toast.success('Account deleted successfully');
+			navigate('/');
+		} catch (error) {
+			toast.error(error.message || 'Error deleting account');
+		}
 	};
 	return (
 		<SettingsContainer>
