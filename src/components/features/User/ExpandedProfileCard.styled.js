@@ -41,10 +41,7 @@ const ExperiencesContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem;
-
-	@media (max-width: 768px) {
-		flex-direction: column;
-	}
+	flex-direction: column;
 `;
 
 const ExperienceItem = styled.div`
@@ -58,16 +55,6 @@ const ExperienceItem = styled.div`
 		flex-basis: 100%;
 	}
 `;
-
-const ExperienceTitle = styled.h3`
-	font-size: 1.1rem;
-	color: ${({ theme }) => theme.text};
-`;
-
-const ExperiencePeriod = styled.span`
-	font-size: 0.9rem;
-`;
-
 const ExperienceDescription = styled.p`
 	font-size: 0.9rem;
 `;
@@ -78,8 +65,6 @@ export {
 	SectionLabelSpan,
 	About,
 	ExperienceItem,
-	ExperienceTitle,
-	ExperiencePeriod,
 	ExperienceDescription,
 	ExperiencesContainer,
 	SubjectLabel,

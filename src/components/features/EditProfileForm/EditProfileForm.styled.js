@@ -35,11 +35,6 @@ const StyledLabel = styled.label`
 	margin-right: 2rem;
 `;
 
-const ErrorText = styled.div`
-	${({ theme }) => theme.primary};
-	font-size: 0.8rem;
-	margin-top: 0.5rem;
-`;
 const RemoveBtn = styled.button`
 	border: none;
 	background-color: transparent;
@@ -57,4 +52,4 @@ const SmallInput = styled(StyledInput)`
 	align-self: flex-start;
 `;
 
-export { StyledInput, StyledLabel, StyledTextArea, ErrorText, RemoveBtn, Form, SmallInput };
+export { StyledInput, StyledLabel, StyledTextArea, RemoveBtn, Form, SmallInput };

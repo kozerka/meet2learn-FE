@@ -6,8 +6,6 @@ import {
 	SectionLabelSpan,
 	About,
 	ExperienceItem,
-	ExperienceTitle,
-	ExperiencePeriod,
 	ExperienceDescription,
 	ExperiencesContainer,
 	SubjectLabel,
@@ -15,54 +13,74 @@ import {
 const ExtendedProfileCard = ({ user }) => {
 	return (
 		<InfoContainer>
-			<Info>City: {user.city}</Info>
-			<Info>Country: {user.country}</Info>
-			{user.about && (
+			<SectionLabel>
+				<SectionLabelSpan>Age</SectionLabelSpan>
+			</SectionLabel>
+			{user.age ? (
 				<div>
-					<SectionLabel>
-						<SectionLabelSpan>About</SectionLabelSpan>
-					</SectionLabel>
+					<About>{user.age}</About>
+				</div>
+			) : (
+				<About>User did not add info about age yet...</About>
+			)}
+
+			<SectionLabel>
+				<SectionLabelSpan>City</SectionLabelSpan>
+			</SectionLabel>
+			<Info> {user.city}</Info>
+			<SectionLabel>
+				<SectionLabelSpan>Country</SectionLabelSpan>
+			</SectionLabel>
+			<Info> {user.country}</Info>
+			<SectionLabel>
+				<SectionLabelSpan>About</SectionLabelSpan>
+			</SectionLabel>
+			{user.about ? (
+				<div>
 					<About>{user.about}</About>
 				</div>
-			)}
-			{user.bio && (
-				<div>
-					<SectionLabel>
-						<SectionLabelSpan>Bio</SectionLabelSpan>
-					</SectionLabel>
-					<About>{user.bio}</About>
-				</div>
+			) : (
+				<About>User did not add any info yet...</About>
 			)}
 
 			{user.role === 'tutor' && (
 				<div>
-					{user.subjects && (
-						<div>
-							<SectionLabel>
-								<SectionLabelSpan>Subjects</SectionLabelSpan>
-							</SectionLabel>
-							{user.subjects.map((subject, index) => (
-								<SubjectLabel key={index}>
-									{typeof subject === 'string' ? subject : subject.name}
-								</SubjectLabel>
-							))}
-						</div>
+					<SectionLabel>
+						<SectionLabelSpan>Subjects</SectionLabelSpan>
+					</SectionLabel>
+					{user.subjects && user.subjects.length > 0 ? (
+						user.subjects.map((subject, index) => (
+							<SubjectLabel key={index}>
+								{typeof subject === 'string' ? subject : subject.name}
+							</SubjectLabel>
+						))
+					) : (
+						<About>Empty</About>
 					)}
-					{user.experiences && user.experiences.length > 0 && (
+					<SectionLabel>
+						<SectionLabelSpan>Bio</SectionLabelSpan>
+					</SectionLabel>
+					{user.bio ? (
 						<div>
-							<SectionLabel>
-								<SectionLabelSpan>Experience</SectionLabelSpan>
-							</SectionLabel>
-							<ExperiencesContainer>
-								{user.experiences.map((exp, index) => (
-									<ExperienceItem key={index}>
-										<ExperienceTitle>{exp.name}</ExperienceTitle>
-										<ExperiencePeriod>{exp.period}</ExperiencePeriod>
-										<ExperienceDescription>{exp.description}</ExperienceDescription>
-									</ExperienceItem>
-								))}
-							</ExperiencesContainer>
+							<About>{user.bio}</About>
 						</div>
+					) : (
+						<About>Empty</About>
+					)}
+
+					<SectionLabel>
+						<SectionLabelSpan>Experience</SectionLabelSpan>
+					</SectionLabel>
+					{user.experiences && user.experiences.length > 0 ? (
+						<ExperiencesContainer>
+							{user.experiences.map((exp, index) => (
+								<ExperienceItem key={index}>
+									<ExperienceDescription>{exp.description}</ExperienceDescription>
+								</ExperienceItem>
+							))}
+						</ExperiencesContainer>
+					) : (
+						<About>Empty</About>
 					)}
 				</div>
 			)}
@@ -73,6 +91,7 @@ const ExtendedProfileCard = ({ user }) => {
 ExtendedProfileCard.propTypes = {
 	user: PropTypes.shape({
 		city: PropTypes.string,
+		age: PropTypes.number,
 		country: PropTypes.string,
 		about: PropTypes.string,
 		role: PropTypes.string.isRequired,
@@ -81,7 +100,7 @@ ExtendedProfileCard.propTypes = {
 			PropTypes.oneOfType([
 				PropTypes.string,
 				PropTypes.shape({
-					name: PropTypes.string.isRequired,
+					name: PropTypes.string,
 				}),
 			])
 		),

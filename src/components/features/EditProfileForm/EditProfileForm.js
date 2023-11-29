@@ -7,15 +7,16 @@ import {
 	StyledLabel,
 	Form,
 	RemoveBtn,
-	ErrorText,
 	SmallInput,
 } from './EditProfileForm.styled';
 import Button from '../../ui/Button';
 import { FaTrashAlt } from 'react-icons/fa';
 import { editProfileFormSchema } from '../../../schemas/editProfileForm';
-
-// TODO refactor
-// FIXME walidacja do testow po połączeniu z api
+import { ErrorText } from '../../ui/ErrorText.styled';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../../store/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const FileInput = ({ field, form }) => {
 	const handleChange = e => {
@@ -27,6 +28,8 @@ const FileInput = ({ field, form }) => {
 };
 
 const EditProfileForm = ({ user }) => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const isTutor = user.role === 'tutor';
 
 	const initialValues = {
@@ -41,15 +44,20 @@ const EditProfileForm = ({ user }) => {
 		country: user.country || 'Earth',
 		about: user.about || '',
 		...(isTutor && {
-			subjects: user.subjects.map(subject => ({ name: subject })),
+			subjects: user.subjects || [],
 			experiences: user.experiences || [],
 			bio: user.bio || '',
 		}),
 	};
-
-	const handleSubmit = values => {
-		console.log(values);
-		// TODO API
+	const handleSubmit = async (values, { setSubmitting, errors }) => {
+		setSubmitting(true);
+		try {
+			await dispatch(updateUser(values)).unwrap();
+			toast.success('Profile updated successfully');
+			navigate('..');
+		} catch (error) {
+			toast.error('Error updating profile: ' + error.message);
+		}
 	};
 
 	return (
@@ -58,7 +66,7 @@ const EditProfileForm = ({ user }) => {
 			validationSchema={editProfileFormSchema(user)}
 			onSubmit={handleSubmit}
 		>
-			{({ values, errors, touched }) => (
+			{({ values, errors, touched, isSubmitting }) => (
 				<Form>
 					<div style={{ margin: '2rem 0' }}>
 						<StyledLabel htmlFor={'avatar'}>Avatar:</StyledLabel>
@@ -116,31 +124,24 @@ const EditProfileForm = ({ user }) => {
 							<FieldArray
 								name={'experiences'}
 								render={arrayHelpers => (
-									<div style={{ marginBottom: '2rem' }}>
-										<StyledLabel htmlFor={'experiences'}>Teaching experience:</StyledLabel>
+									<div>
+										<StyledLabel htmlFor={'experiences'}>Teaching Experience:</StyledLabel>
 										{values.experiences.map((experience, index) => (
 											<div key={index}>
-												<div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-													<Field name={`experiences[${index}].type`} as={SmallInput} />
-													<ErrorMessage name={`experiences[${index}].type`} component={ErrorText} />
-													<Field name={`experiences[${index}].name`} as={SmallInput} />
-													<ErrorMessage name={`experiences[${index}].type`} component={ErrorText} />
-													<Field name={`experiences[${index}].period`} as={SmallInput} />
-													<ErrorMessage name={`experiences[${index}].type`} component={ErrorText} />
-													<Field name={`experiences[${index}].description`} as={SmallInput} />
-													<ErrorMessage name={`experiences[${index}].type`} component={ErrorText} />
-												</div>
+												<Field as={StyledTextArea} name={`experiences[${index}].description`} />
+												<ErrorMessage
+													name={`experiences[${index}].description`}
+													component={ErrorText}
+												/>
 												<RemoveBtn type={'button'} onClick={() => arrayHelpers.remove(index)}>
-													<FaTrashAlt size={'1rem'} /> Remove this position
+													<FaTrashAlt size={'1rem'} /> Remove this experience
 												</RemoveBtn>
 											</div>
 										))}
 										<Button
 											$small
 											type={'button'}
-											onClick={() =>
-												arrayHelpers.push({ type: '', name: '', period: '', description: '' })
-											}
+											onClick={() => arrayHelpers.push({ description: '' })}
 										>
 											+ Add Experience
 										</Button>
@@ -150,8 +151,8 @@ const EditProfileForm = ({ user }) => {
 						</>
 					)}
 
-					<Button $primary type={'submit'}>
-						Submit
+					<Button $disabled={isSubmitting} $primary type={'submit'}>
+						{isSubmitting ? 'Submitting...' : 'Submit'}
 					</Button>
 				</Form>
 			)}
@@ -171,17 +172,11 @@ EditProfileForm.propTypes = {
 		country: PropTypes.string,
 		about: PropTypes.string,
 		subjects: PropTypes.arrayOf(PropTypes.string),
-		experiences: PropTypes.arrayOf(
-			PropTypes.shape({
-				type: PropTypes.string.isRequired,
-				name: PropTypes.string.isRequired,
-				period: PropTypes.string.isRequired,
-				description: PropTypes.string.isRequired,
-			})
-		),
+		experiences: PropTypes.arrayOf(PropTypes.string),
 		bio: PropTypes.string,
 		role: PropTypes.string.isRequired,
 	}).isRequired,
+	handleSubmit: PropTypes.func,
 };
 
 FileInput.propTypes = {

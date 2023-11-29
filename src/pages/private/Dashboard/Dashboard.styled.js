@@ -21,10 +21,5 @@ const DashContainer = styled.div`
 	border-radius: 0.5rem;
 	overflow: hidden;
 	grid-template-columns: 12rem auto;
-	@media screen and (max-width: 992px) {
-		span {
-			display: none;
-		}
-	}
 `;
 export { Container, DashContainer };

@@ -1,14 +1,37 @@
 import { Container, Heading, SettingsContainer, Text, IconStyled } from './Settings.styled';
 import ChangePasswordForm from '../../../components/features/ChangePasswordForm/ChangePasswordForm';
 import DeleteAccount from '../../../components/features/DeleteAccount/DeleteAccount';
-
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { changePassword, deleteUser } from '../../../store/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
 const Settings = () => {
-	const handlePasswordChange = values => {
-		console.log('Change password', values);
-		// Logika zmiany hasła
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const handlePasswordChange = async values => {
+		try {
+			await dispatch(
+				changePassword({
+					currentPassword: values.currentPassword,
+					newPassword: values.newPassword,
+					confirmPassword: values.confirmPassword,
+				})
+			);
+			toast.success('Password changed successfully');
+		} catch (error) {
+			toast.error(error.message || 'Error changing password');
+		}
 	};
-	const handleDeleteAccount = () => {
-		console.log('zamiast połączenia a api, tu też muszę pamieta o dodaniu logout user'); // TODO
+
+	const handleDeleteAccount = async () => {
+		try {
+			await dispatch(deleteUser());
+			toast.success('Account deleted successfully');
+			navigate('/');
+		} catch (error) {
+			toast.error(error.message || 'Error deleting account');
+		}
 	};
 	return (
 		<SettingsContainer>

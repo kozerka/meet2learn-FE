@@ -15,7 +15,6 @@ const BasicProfileCard = ({ user }) => (
 			<Name>
 				{user.firstName} {user.lastName}
 			</Name>
-			<Info>Age: {user.age}</Info>
 			<Info>Email: {user.email}</Info>
 		</ContentContainer>
 	</CardContainer>
@@ -24,10 +23,9 @@ const BasicProfileCard = ({ user }) => (
 BasicProfileCard.propTypes = {
 	user: PropTypes.shape({
 		email: PropTypes.string.isRequired,
-		firstName: PropTypes.string.isRequired,
-		lastName: PropTypes.string.isRequired,
+		firstName: PropTypes.string,
+		lastName: PropTypes.string,
 		avatar: PropTypes.string.isRequired,
-		age: PropTypes.number.isRequired,
 	}).isRequired,
 };
 
