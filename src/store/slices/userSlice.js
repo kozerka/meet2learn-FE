@@ -55,7 +55,7 @@ export const updateUser = createAsyncThunk(
 			const response = await axios.patch(`${BASE_URL}/api/users/update`, userData);
 			return response.data;
 		} catch (error) {
-			return rejectWithValue(error.response.data);
+			return rejectWithValue(error.response?.data || {});
 		}
 	}
 );

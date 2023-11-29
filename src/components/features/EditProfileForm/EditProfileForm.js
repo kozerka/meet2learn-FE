@@ -51,19 +51,12 @@ const EditProfileForm = ({ user }) => {
 	};
 	const handleSubmit = async (values, { setSubmitting, errors }) => {
 		setSubmitting(true);
-
 		try {
-			const actionResponse = await dispatch(updateUser(values));
-			if (updateUser.fulfilled.match(actionResponse)) {
-				toast.success('Profile updated successfully');
-				navigate('..');
-			} else {
-				throw new Error('Update failed');
-			}
+			await dispatch(updateUser(values)).unwrap();
+			toast.success('Profile updated successfully');
+			navigate('..');
 		} catch (error) {
 			toast.error('Error updating profile: ' + error.message);
-		} finally {
-			setSubmitting(false);
 		}
 	};
 
