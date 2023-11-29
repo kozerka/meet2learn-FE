@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from '../../utils/axios';
 import BASE_URL from '../../utils/baseUrl';
 import { clearUserInfo } from './authSlice';
 
@@ -31,6 +31,18 @@ export const logoutUser = createAsyncThunk(
 			dispatch(clearUserInfo());
 			localStorage.removeItem('userInfo');
 			return true;
+		} catch (error) {
+			return rejectWithValue(error.response.data);
+		}
+	}
+);
+
+export const fetchUser = createAsyncThunk(
+	'users/fetchUser',
+	async (_, { getState, rejectWithValue }) => {
+		try {
+			const response = await axios.get(`${BASE_URL}/api/users/me`);
+			return response.data;
 		} catch (error) {
 			return rejectWithValue(error.response.data);
 		}
@@ -71,6 +83,17 @@ const userSlice = createSlice({
 				state.userData = action.payload;
 			})
 			.addCase(registerUser.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(fetchUser.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(fetchUser.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.userData = action.payload;
+			})
+			.addCase(fetchUser.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			});
