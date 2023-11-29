@@ -21,6 +21,7 @@ import styled from 'styled-components';
 import { logoutUser } from '../../../store/slices/userSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import useUserData from '../../hooks/useUserData';
 
 const Dropdown = styled.div`
 	background: ${({ theme }) => theme.body};
@@ -40,7 +41,6 @@ const Navbar = () => {
 	const navigate = useNavigate();
 	const currentTheme = useSelector(state => state.theme.theme);
 	const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-	const { userData } = useSelector(state => state.user);
 	const handleToggleTheme = () => dispatch(toggleTheme());
 	const toggleMobileNav = () => setIsMobileNavOpen(prevState => !prevState);
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -50,6 +50,12 @@ const Navbar = () => {
 		toast.success('Successfully logged out');
 		navigate('/login');
 	};
+
+	const { userData, isLoading } = useUserData();
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
 
 	return (
 		<Nav>

@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import { loginUser } from '../../../store/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setUserInfo } from '../../../store/slices/authSlice';
+// import { setUserInfo } from '../../../store/slices/authSlice';
 
 const Login = () => {
 	const dispatch = useDispatch();
@@ -26,7 +26,6 @@ const Login = () => {
 				try {
 					const actionResponse = await dispatch(loginUser(values));
 					if (loginUser.fulfilled.match(actionResponse)) {
-						dispatch(setUserInfo(actionResponse.payload));
 						toast.success('Login successful!');
 						navigate('/dashboard');
 					} else {

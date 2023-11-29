@@ -24,10 +24,10 @@ const BasicProfileCard = ({ user }) => (
 BasicProfileCard.propTypes = {
 	user: PropTypes.shape({
 		email: PropTypes.string.isRequired,
-		firstName: PropTypes.string.isRequired,
-		lastName: PropTypes.string.isRequired,
+		firstName: PropTypes.string,
+		lastName: PropTypes.string,
 		avatar: PropTypes.string.isRequired,
-		age: PropTypes.number.isRequired,
+		age: PropTypes.number,
 	}).isRequired,
 };
 

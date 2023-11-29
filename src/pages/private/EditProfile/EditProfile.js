@@ -1,6 +1,6 @@
 import EditProfileForm from '../../../components/features/EditProfileForm/EditProfileForm';
 import styled from 'styled-components';
-import { dummyUser } from '../../../data';
+import useUserData from '../../../components/hooks/useUserData';
 
 const Wrapper = styled.div`
 	max-width: 1200px;
@@ -16,6 +16,11 @@ const Wrapper = styled.div`
 `;
 
 const EditProfile = () => {
+	const { userData, isLoading } = useUserData();
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
 	const handleSubmit = values => {
 		// TODO  Logika dla wysłania formularza
 		console.log(values);
@@ -23,7 +28,7 @@ const EditProfile = () => {
 	return (
 		<Wrapper>
 			<h1>Edit profile</h1>
-			<EditProfileForm user={dummyUser} handleSubmit={handleSubmit} />
+			<EditProfileForm user={userData} handleSubmit={handleSubmit} />
 		</Wrapper>
 	);
 };
