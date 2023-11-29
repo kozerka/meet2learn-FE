@@ -6,8 +6,6 @@ import {
 	SectionLabelSpan,
 	About,
 	ExperienceItem,
-	ExperienceTitle,
-	ExperiencePeriod,
 	ExperienceDescription,
 	ExperiencesContainer,
 	SubjectLabel,
@@ -15,6 +13,17 @@ import {
 const ExtendedProfileCard = ({ user }) => {
 	return (
 		<InfoContainer>
+			<SectionLabel>
+				<SectionLabelSpan>Age</SectionLabelSpan>
+			</SectionLabel>
+			{user.age ? (
+				<div>
+					<About>{user.age}</About>
+				</div>
+			) : (
+				<About>User did not add info about age yet...</About>
+			)}
+
 			<SectionLabel>
 				<SectionLabelSpan>City</SectionLabelSpan>
 			</SectionLabel>
@@ -66,8 +75,6 @@ const ExtendedProfileCard = ({ user }) => {
 						<ExperiencesContainer>
 							{user.experiences.map((exp, index) => (
 								<ExperienceItem key={index}>
-									<ExperienceTitle>{exp.name}</ExperienceTitle>
-									<ExperiencePeriod>{exp.period}</ExperiencePeriod>
 									<ExperienceDescription>{exp.description}</ExperienceDescription>
 								</ExperienceItem>
 							))}
@@ -84,6 +91,7 @@ const ExtendedProfileCard = ({ user }) => {
 ExtendedProfileCard.propTypes = {
 	user: PropTypes.shape({
 		city: PropTypes.string,
+		age: PropTypes.number,
 		country: PropTypes.string,
 		about: PropTypes.string,
 		role: PropTypes.string.isRequired,

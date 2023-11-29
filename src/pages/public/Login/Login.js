@@ -12,7 +12,6 @@ import { toast } from 'react-toastify';
 import { loginUser } from '../../../store/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// import { setUserInfo } from '../../../store/slices/authSlice';
 
 const Login = () => {
 	const dispatch = useDispatch();

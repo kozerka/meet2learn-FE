@@ -15,7 +15,6 @@ const BasicProfileCard = ({ user }) => (
 			<Name>
 				{user.firstName} {user.lastName}
 			</Name>
-			<Info>Age: {user.age}</Info>
 			<Info>Email: {user.email}</Info>
 		</ContentContainer>
 	</CardContainer>
@@ -27,7 +26,6 @@ BasicProfileCard.propTypes = {
 		firstName: PropTypes.string,
 		lastName: PropTypes.string,
 		avatar: PropTypes.string.isRequired,
-		age: PropTypes.number,
 	}).isRequired,
 };
 

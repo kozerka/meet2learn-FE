@@ -48,6 +48,38 @@ export const fetchUser = createAsyncThunk(
 	}
 );
 
+export const updateUser = createAsyncThunk(
+	'users/update',
+	async (userData, { rejectWithValue }) => {
+		try {
+			const response = await axios.patch(`${BASE_URL}/api/users/update`, userData);
+			return response.data;
+		} catch (error) {
+			return rejectWithValue(error.response.data);
+		}
+	}
+);
+export const changePassword = createAsyncThunk(
+	'users/changePassword',
+	async (passwordData, { rejectWithValue }) => {
+		try {
+			const response = await axios.post(`${BASE_URL}/api/users/change-password`, passwordData);
+			return response.data;
+		} catch (error) {
+			return rejectWithValue(error.response.data);
+		}
+	}
+);
+export const deleteUser = createAsyncThunk('users/delete', async (_, { rejectWithValue }) => {
+	try {
+		await axios.delete(`${BASE_URL}/api/users/delete`);
+		localStorage.removeItem('userInfo');
+		return true;
+	} catch (error) {
+		return rejectWithValue(error.response.data);
+	}
+});
+
 const userSlice = createSlice({
 	name: 'user',
 	initialState: {
@@ -102,6 +134,39 @@ const userSlice = createSlice({
 				state.userAuth.userInfo = null;
 				state.userData = null;
 				localStorage.removeItem('userInfo');
+			})
+			.addCase(deleteUser.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(deleteUser.fulfilled, state => {
+				state.userAuth.userInfo = null;
+				state.userData = null;
+				state.isLoading = false;
+			})
+			.addCase(deleteUser.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(changePassword.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(changePassword.fulfilled, state => {
+				state.isLoading = false;
+			})
+			.addCase(changePassword.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(updateUser.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(updateUser.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.userData = action.payload;
+			})
+			.addCase(updateUser.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
 			});
 	},
 });

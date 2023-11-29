@@ -38,7 +38,7 @@ const Sidebar = () => {
 						))}
 					</Nav>
 					<div onClick={handleLogout}>
-						<NavLink $isExpanded={expanded}>
+						<NavLink $isExpanded={expanded} className={'navLink'}>
 							<div style={{ marginLeft: '2rem' }}>
 								<RiLogoutCircleRLine size={'1.5rem'} />
 							</div>

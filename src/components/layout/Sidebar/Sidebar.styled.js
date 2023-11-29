@@ -102,14 +102,15 @@ const NavLink = styled(Link)`
 	}
 	@media screen and (max-width: 992px) {
 		margin-left: 1rem;
+
 		span {
-			display: none;
+			visibility: hidden;
 		}
 	}
 	@media screen and (max-width: 768px) {
 		margin-left: 2rem;
 		span {
-			display: ${({ $isExpanded }) => ($isExpanded ? 'block' : 'none')};
+			visibility: ${({ $isExpanded }) => ($isExpanded ? 'visible' : 'hidden')};
 		}
 	}
 `;

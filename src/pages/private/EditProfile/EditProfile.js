@@ -21,14 +21,11 @@ const EditProfile = () => {
 	if (isLoading) {
 		return <div>Loading...</div>;
 	}
-	const handleSubmit = values => {
-		// TODO  Logika dla wysłania formularza
-		console.log(values);
-	};
+
 	return (
 		<Wrapper>
 			<h1>Edit profile</h1>
-			<EditProfileForm user={userData} handleSubmit={handleSubmit} />
+			<EditProfileForm user={userData} />
 		</Wrapper>
 	);
 };
