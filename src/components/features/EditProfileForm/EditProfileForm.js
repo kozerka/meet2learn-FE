@@ -13,23 +13,15 @@ import Button from '../../ui/Button';
 import { FaTrashAlt } from 'react-icons/fa';
 import { editProfileFormSchema } from '../../../schemas/editProfileForm';
 import { ErrorText } from '../../ui/ErrorText.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../../../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const FileInput = ({ field, form }) => {
-	const handleChange = e => {
-		const file = e.target.files[0];
-		form.setFieldValue(field.name, file);
-	};
-
-	return <input type={'file'} name={field.name} onChange={handleChange} />;
-};
-
 const EditProfileForm = ({ user }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const isLoading = useSelector(state => state.user.isLoading);
 	const isTutor = user.role === 'tutor';
 
 	const initialValues = {
@@ -49,8 +41,7 @@ const EditProfileForm = ({ user }) => {
 			bio: user.bio || '',
 		}),
 	};
-	const handleSubmit = async (values, { setSubmitting, errors }) => {
-		setSubmitting(true);
+	const handleSubmit = async values => {
 		try {
 			await dispatch(updateUser(values)).unwrap();
 			toast.success('Profile updated successfully');
@@ -66,12 +57,8 @@ const EditProfileForm = ({ user }) => {
 			validationSchema={editProfileFormSchema(user)}
 			onSubmit={handleSubmit}
 		>
-			{({ values, errors, touched, isSubmitting }) => (
+			{({ values, errors, touched }) => (
 				<Form>
-					<div style={{ margin: '2rem 0' }}>
-						<StyledLabel htmlFor={'avatar'}>Avatar:</StyledLabel>
-						<Field name={'avatar'} component={FileInput} />
-					</div>
 					{editFormFieldsData.map(field => (
 						<div key={field.name}>
 							<StyledLabel htmlFor={field.name}>{field.label}</StyledLabel>
@@ -151,8 +138,8 @@ const EditProfileForm = ({ user }) => {
 						</>
 					)}
 
-					<Button $disabled={isSubmitting} $primary type={'submit'}>
-						{isSubmitting ? 'Submitting...' : 'Submit'}
+					<Button $disabled={isLoading} $primary type={'submit'}>
+						{isLoading ? 'Submitting...' : 'Submit'}
 					</Button>
 				</Form>
 			)}
@@ -177,15 +164,6 @@ EditProfileForm.propTypes = {
 		role: PropTypes.string.isRequired,
 	}).isRequired,
 	handleSubmit: PropTypes.func,
-};
-
-FileInput.propTypes = {
-	field: PropTypes.shape({
-		name: PropTypes.string.isRequired,
-	}).isRequired,
-	form: PropTypes.shape({
-		setFieldValue: PropTypes.func.isRequired,
-	}).isRequired,
 };
 
 export default EditProfileForm;
