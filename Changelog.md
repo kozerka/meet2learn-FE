@@ -76,5 +76,13 @@
  - Changing user password
  - Editing user data using a form with error handling
 
+## [0.8.0] - 2023-11-30
+
+### Added
+
+ - Adding the functionality of adding user avatar using cloudinary
+ - Preview of the added image
+ - Validation for file
+
 
 
