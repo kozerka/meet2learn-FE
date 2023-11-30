@@ -14,6 +14,7 @@ export const NavLinkStyled = styled(Link)`
 	transition: all 0.3s ease;
 	display: flex;
 	align-items: center;
+	text-align: center;
 	text-decoration: none;
 	color: ${({ theme }) => theme.text};
 

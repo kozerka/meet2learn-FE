@@ -59,6 +59,23 @@ export const updateUser = createAsyncThunk(
 		}
 	}
 );
+export const uploadAvatar = createAsyncThunk(
+	'users/uploadAvatar',
+	async (formData, { rejectWithValue }) => {
+		try {
+			const config = {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			};
+			const response = await axios.put(`${BASE_URL}/api/users/upload-avatar`, formData, config);
+			return response.data;
+		} catch (error) {
+			return rejectWithValue(error.response?.data || {});
+		}
+	}
+);
+
 export const changePassword = createAsyncThunk(
 	'users/changePassword',
 	async (passwordData, { rejectWithValue }) => {
@@ -165,6 +182,17 @@ const userSlice = createSlice({
 				state.userData = action.payload;
 			})
 			.addCase(updateUser.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(uploadAvatar.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(uploadAvatar.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.userData.avatar = action.payload.avatar;
+			})
+			.addCase(uploadAvatar.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			});

@@ -21,7 +21,7 @@ import styled from 'styled-components';
 import { logoutUser } from '../../../store/slices/userSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import useUserData from '../../hooks/useUserData';
+import useUserData from '../../../hooks/useUserData';
 
 const Dropdown = styled.div`
 	background: ${({ theme }) => theme.body};

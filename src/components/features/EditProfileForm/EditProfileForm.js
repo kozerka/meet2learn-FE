@@ -18,15 +18,6 @@ import { updateUser } from '../../../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const FileInput = ({ field, form }) => {
-	const handleChange = e => {
-		const file = e.target.files[0];
-		form.setFieldValue(field.name, file);
-	};
-
-	return <input type={'file'} name={field.name} onChange={handleChange} />;
-};
-
 const EditProfileForm = ({ user }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -68,10 +59,6 @@ const EditProfileForm = ({ user }) => {
 		>
 			{({ values, errors, touched, isSubmitting }) => (
 				<Form>
-					<div style={{ margin: '2rem 0' }}>
-						<StyledLabel htmlFor={'avatar'}>Avatar:</StyledLabel>
-						<Field name={'avatar'} component={FileInput} />
-					</div>
 					{editFormFieldsData.map(field => (
 						<div key={field.name}>
 							<StyledLabel htmlFor={field.name}>{field.label}</StyledLabel>
@@ -177,15 +164,6 @@ EditProfileForm.propTypes = {
 		role: PropTypes.string.isRequired,
 	}).isRequired,
 	handleSubmit: PropTypes.func,
-};
-
-FileInput.propTypes = {
-	field: PropTypes.shape({
-		name: PropTypes.string.isRequired,
-	}).isRequired,
-	form: PropTypes.shape({
-		setFieldValue: PropTypes.func.isRequired,
-	}).isRequired,
 };
 
 export default EditProfileForm;

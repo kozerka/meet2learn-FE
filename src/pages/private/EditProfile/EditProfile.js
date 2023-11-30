@@ -1,6 +1,7 @@
 import EditProfileForm from '../../../components/features/EditProfileForm/EditProfileForm';
 import styled from 'styled-components';
-import useUserData from '../../../components/hooks/useUserData';
+import useUserData from '../../../hooks/useUserData';
+import { SectionTitle } from '../../../components';
 
 const Wrapper = styled.div`
 	max-width: 1200px;
@@ -24,7 +25,7 @@ const EditProfile = () => {
 
 	return (
 		<Wrapper>
-			<h1>Edit profile</h1>
+			<SectionTitle title={'Edit Profile'} />
 			<EditProfileForm user={userData} />
 		</Wrapper>
 	);
