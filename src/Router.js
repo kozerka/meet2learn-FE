@@ -24,6 +24,7 @@ import {
 	ViewNote,
 	SingleTutorConnection,
 	AllTutorConnections,
+	UploadAvatar,
 } from './pages';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -84,6 +85,7 @@ const router = createBrowserRouter([
 							{ index: true, element: <MyProfile /> },
 							{ path: 'edit', element: <EditProfile /> },
 							{ path: 'settings', element: <Settings /> },
+							{ path: 'upload-avatar', element: <UploadAvatar /> },
 						],
 					},
 				],
