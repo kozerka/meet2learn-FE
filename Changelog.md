@@ -67,5 +67,14 @@
 - Connect with local state using redux/toolkit to check notes functionalities 
 - implement react-select
 
+## [0.7.0] - 2023-11-29
+
+### Added
+
+ - Connection to API for user authorization, logging in with error handling, registration with error handling,
+ - Deleting accounts
+ - Changing user password
+ - Editing user data using a form with error handling
+
 
 
