@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { ImgContainer } from '../components/ui/Containers';
 const ImgPreview = ({ file }) => {
 	const [preview, setPreview] = useState({});
 	if (file) {
@@ -11,9 +12,9 @@ const ImgPreview = ({ file }) => {
 	}
 
 	return (
-		<div>
-			<img style={{ width: '240px' }} src={preview} alt={'preview'} />
-		</div>
+		<ImgContainer>
+			<img src={preview} alt={'preview'} />
+		</ImgContainer>
 	);
 };
 

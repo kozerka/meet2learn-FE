@@ -13,7 +13,7 @@ import Button from '../../ui/Button';
 import { FaTrashAlt } from 'react-icons/fa';
 import { editProfileFormSchema } from '../../../schemas/editProfileForm';
 import { ErrorText } from '../../ui/ErrorText.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../../../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -21,6 +21,7 @@ import { toast } from 'react-toastify';
 const EditProfileForm = ({ user }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const isLoading = useSelector(state => state.user.isLoading);
 	const isTutor = user.role === 'tutor';
 
 	const initialValues = {
@@ -40,8 +41,7 @@ const EditProfileForm = ({ user }) => {
 			bio: user.bio || '',
 		}),
 	};
-	const handleSubmit = async (values, { setSubmitting, errors }) => {
-		setSubmitting(true);
+	const handleSubmit = async values => {
 		try {
 			await dispatch(updateUser(values)).unwrap();
 			toast.success('Profile updated successfully');
@@ -57,7 +57,7 @@ const EditProfileForm = ({ user }) => {
 			validationSchema={editProfileFormSchema(user)}
 			onSubmit={handleSubmit}
 		>
-			{({ values, errors, touched, isSubmitting }) => (
+			{({ values, errors, touched }) => (
 				<Form>
 					{editFormFieldsData.map(field => (
 						<div key={field.name}>
@@ -138,8 +138,8 @@ const EditProfileForm = ({ user }) => {
 						</>
 					)}
 
-					<Button $disabled={isSubmitting} $primary type={'submit'}>
-						{isSubmitting ? 'Submitting...' : 'Submit'}
+					<Button $disabled={isLoading} $primary type={'submit'}>
+						{isLoading ? 'Submitting...' : 'Submit'}
 					</Button>
 				</Form>
 			)}

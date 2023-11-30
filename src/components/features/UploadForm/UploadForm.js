@@ -1,10 +1,14 @@
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { ErrorText } from '../../ui/ErrorText.styled';
 import ImgPreview from '../../ImgPreview';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { uploadAvatar, fetchUser } from '../../../store/slices/userSlice';
+import { uploadAvatarSchema } from '../../../schemas';
+import Button from '../../ui/Button';
+import { FormStyled } from './UploadForm.styled';
+import { LuFileImage } from 'react-icons/lu';
+import { FormContainer } from '../../ui/Containers';
 
 const UploadForm = () => {
 	const dispatch = useDispatch();
@@ -26,16 +30,7 @@ const UploadForm = () => {
 		initialValues: {
 			avatar: null,
 		},
-		validationSchema: Yup.object({
-			avatar: Yup.mixed()
-				.required('File is required')
-				.test('FILE_SIZE', 'File is too large', value => value && value.size <= 1 * 1024 * 1024)
-				.test(
-					'FILE_FORMAT',
-					'Unsupported Format',
-					value => value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type)
-				),
-		}),
+		validationSchema: uploadAvatarSchema,
 		onSubmit: async values => {
 			if (values.avatar) {
 				await handleAvatarUpload(values.avatar);
@@ -43,20 +38,27 @@ const UploadForm = () => {
 		},
 	});
 	return (
-		<div>
-			<form onSubmit={handleSubmit}>
+		<FormContainer>
+			<FormStyled onSubmit={handleSubmit}>
+				<label htmlFor={'avatar'}>
+					Upload avatar <LuFileImage size={'1.5rem'} />
+				</label>
 				<input
-					style={{ marginBottom: '1rem' }}
+					id={'avatar'}
 					type={'file'}
 					name={'avatar'}
 					onChange={e => setFieldValue('avatar', e.target.files[0])}
 				/>
 				{errors.avatar && <ErrorText>{errors.avatar}</ErrorText>}
-				<button type={'submit'}>Upload</button>
-			</form>
+				<Button $secondary type={'submit'}>
+					Upload
+				</Button>
+			</FormStyled>
 
-			{isLoading ? <p>Loading img...</p> : values.avatar && <ImgPreview file={values.avatar} />}
-		</div>
+			{!errors.avatar &&
+				values.avatar &&
+				(isLoading ? <p>Loading img...</p> : <ImgPreview file={values.avatar} />)}
+		</FormContainer>
 	);
 };
 
