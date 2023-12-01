@@ -12,7 +12,6 @@ const EditNote = () => {
 		return <div>Note not found</div>;
 	}
 
-	// Przekształcanie tagów na format akceptowany przez CreatableReactSelect
 	const transformedTags = noteToEdit.tags.map(tag => ({ value: tag, label: tag }));
 
 	return <NoteForm initialNote={{ ...noteToEdit, tags: transformedTags }} isEditing={true} />;

@@ -5,7 +5,7 @@ const NotesGrid = styled.div`
 	align-items: center;
 	justify-content: center;
 	gap: 3rem;
-	margin: 0 auto;
+	margin: 2rem auto;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 `;
 
@@ -15,8 +15,9 @@ const NoteContainer = styled.div`
 	gap: 1rem;
 	width: 250px;
 	height: 250px;
-	background-color: ${({ theme }) => theme.background};
+	background-color: ${({ theme }) => theme.body};
 	padding: 1.2rem;
+	margin: 1rem 0;
 	border-radius: 10px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	position: relative;

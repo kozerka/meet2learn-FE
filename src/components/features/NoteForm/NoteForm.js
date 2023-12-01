@@ -9,30 +9,37 @@ import { createNote, updateNote } from '../../../store/slices/noteSlice';
 import PropTypes from 'prop-types';
 import { useNavigate, Link } from 'react-router-dom';
 import { noteSchema } from '../../../schemas';
+import { toast } from 'react-toastify';
 
 const NoteForm = ({ initialNote, isEditing }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const onSubmit = values => {
-		const formattedTags = values.tags.map(tag => (typeof tag === 'string' ? tag : tag.value));
+	const onSubmit = async values => {
+		try {
+			const formattedTags = values.tags.map(tag => (typeof tag === 'string' ? tag : tag.value));
 
-		const noteData = {
-			...values,
-			tags: formattedTags,
-		};
+			const noteData = {
+				...values,
+				tags: formattedTags,
+			};
 
-		if (isEditing) {
-			dispatch(
-				updateNote({
-					id: initialNote._id,
-					updateData: noteData,
-				})
-			);
-		} else {
-			dispatch(createNote(noteData));
+			if (isEditing) {
+				await dispatch(
+					updateNote({
+						id: initialNote._id,
+						updateData: noteData,
+					})
+				).unwrap();
+				toast.success('Note updated successfully');
+			} else {
+				await dispatch(createNote(noteData)).unwrap();
+				toast.success('Note created successfully');
+			}
+
+			navigate('..');
+		} catch (error) {
+			toast.error('Error: ' + error.message);
 		}
-
-		navigate('..');
 	};
 	const { handleSubmit, handleChange, handleBlur, setFieldValue, values, errors, touched } =
 		useFormik({

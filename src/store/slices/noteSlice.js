@@ -5,6 +5,7 @@ import BASE_URL from '../../utils/baseUrl';
 const initialState = {
 	notes: [],
 	note: null,
+	uniqueTags: [],
 	isLoading: false,
 	error: null,
 };
@@ -29,6 +30,17 @@ export const getAllNotes = createAsyncThunk('notes/getAllNotes', async (_, { rej
 		return rejectWithValue(error.response.data);
 	}
 });
+export const getUniqueTags = createAsyncThunk(
+	'notes/getUniqueTags',
+	async (_, { rejectWithValue }) => {
+		try {
+			const response = await axios.get(`${BASE_URL}/api/notes/tags`);
+			return response.data;
+		} catch (error) {
+			return rejectWithValue(error.response.data);
+		}
+	}
+);
 
 export const getNoteById = createAsyncThunk(
 	'notes/getNoteById',
@@ -88,6 +100,17 @@ const notesSlice = createSlice({
 				state.notes = action.payload;
 			})
 			.addCase(getAllNotes.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(getUniqueTags.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(getUniqueTags.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.uniqueTags = action.payload;
+			})
+			.addCase(getUniqueTags.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			})
