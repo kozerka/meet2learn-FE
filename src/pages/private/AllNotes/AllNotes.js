@@ -1,100 +1,162 @@
-import { SectionContainer } from '../../../components/ui/Containers';
+import { CustomContainer, SectionContainer } from '../../../components/ui/Containers';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { deleteNote } from '../../../store/slices/noteSlice';
+import { useNavigate, Link, useParams } from 'react-router-dom';
+import { deleteNote, getUniqueTags, getAllNotes } from '../../../store/slices/noteSlice';
 import { cutText } from '../../../utils/cutText';
-
-const NotesGrid = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	gap: 3rem;
-	margin: 0 auto;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-`;
-
-const NoteContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	width: 250px;
-	height: 250px;
-	background-color: ${({ theme }) => theme.background};
-	padding: 1.2rem;
-	border-radius: 10px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	position: relative;
-	overflow: hidden;
-`;
-
-const Title = styled.h3`
-	margin-top: 0;
-`;
-
-const Tag = styled.span`
-	background-color: ${({ theme }) => theme.primary};
-	color: ${({ theme }) => theme.textInverted};
-	border-radius: 5px;
-	padding: 4px;
-	font-size: 0.8rem;
-	margin-right: 5px;
-`;
-
-const Content = styled.p`
-	margin-top: 20px;
-`;
-
-const IconContainer = styled.div`
-	position: absolute;
-	bottom: 20px;
-	right: 20px;
-	display: flex;
-	gap: 10px;
-`;
-
-const DateContainer = styled.div`
-	font-size: 0.8rem;
-`;
+import Modal from '../../../components/ui/Modal/Modal';
+import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
+import {
+	Content,
+	DateContainer,
+	IconContainer,
+	NotesGrid,
+	NoteContainer,
+	Tag,
+	Title,
+	TagsContainer,
+} from './AllNotes.styled';
+import { SectionTitle, CustomPagination } from '../../../components';
+import Button from '../../../components/ui/Button';
 
 const AllNotes = () => {
-	const notes = useSelector(state => state.notes.notes);
+	const { notes, isLoading, uniqueTags, currentPage, totalPages, error } = useSelector(
+		state => state.notes
+	);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [noteToDelete, setNoteToDelete] = useState(null);
+
+	useEffect(() => {
+		dispatch(getUniqueTags());
+	}, [dispatch]);
+
+	const { pageNumber, tag } = useParams();
+	const page = pageNumber ? parseInt(pageNumber, 10) : 1;
+
+	useEffect(() => {
+		dispatch(getAllNotes({ page, limit: 6, tag }));
+	}, [dispatch, page, tag]);
+
 	const handleEdit = noteId => {
-		navigate(`/my-notes/${noteId}/edit`);
-		// TODO bedzie dzialac dopiero po polaczeniu a API - pobieranie dynamiczne z id
+		navigate(`/dashboard/my-notes/${noteId}/edit`);
+	};
+	const handleDeleteClick = noteId => {
+		setNoteToDelete(noteId);
+		setIsModalOpen(true);
+	};
+	const handlePageClick = event => {
+		const newPage = event.selected + 1;
+		navigate(`/dashboard/my-notes/page/${newPage}${tag ? '?tag=' + tag : ''}`);
 	};
 
-	const handleDelete = noteId => {
-		dispatch(deleteNote(noteId));
+	const confirmDelete = async () => {
+		if (noteToDelete) {
+			try {
+				await dispatch(deleteNote(noteToDelete)).unwrap();
+				toast.success('Note deleted successfully');
+				dispatch(getAllNotes({ page: currentPage, limit: 6 }));
+			} catch (error) {
+				toast.error('Error deleting note: ' + error.message);
+			}
+			setNoteToDelete(null);
+			setIsModalOpen(false);
+		}
 	};
+
+	const handleTagChange = selectedOption => {
+		const selectedTag = selectedOption ? selectedOption.value : '';
+		console.log(selectedTag);
+		dispatch(getAllNotes({ page, limit: 6, tag: selectedTag }));
+
+		navigate(`/dashboard/my-notes/page/1${selectedTag ? '?tag=' + selectedTag : ''}`);
+	};
+
+	const handleResetFilter = () => {
+		const selectedTag = null;
+		dispatch(getAllNotes({ page, limit: 6, tag: selectedTag }));
+		navigate(`/dashboard/my-notes/page/1`);
+	};
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
+	if (error) {
+		return <div>Error: {error.message}</div>;
+	}
+
+	if (notes.length === 0) {
+		return (
+			<CustomContainer>
+				<SectionTitle size={'big'} title={'All Notes'} />
+				You have no notes yet. Create one!
+			</CustomContainer>
+		);
+	}
 
 	return (
-		<SectionContainer>
-			<NotesGrid>
-				{notes.map((note, index) => (
-					<NoteContainer key={index}>
-						<Title>{note.title}</Title>
-						<div>
-							{note.tags && note.tags.map((tag, tagIndex) => <Tag key={tagIndex}>{tag.label}</Tag>)}
-						</div>
-						<Content>{cutText(note.content, 90)}</Content>
-						<DateContainer>
-							<p>created at</p>
-							<p>updated at</p>
-							{/* // TODO wyswietlenie daty z timestamps */}
-						</DateContainer>
-						<IconContainer>
-							<FiEdit size={20} onClick={() => handleEdit(note.id)} />
-							<FiTrash2 size={20} onClick={() => handleDelete(note.id)} />
-						</IconContainer>
-					</NoteContainer>
-				))}
-			</NotesGrid>
-		</SectionContainer>
+		<CustomContainer>
+			<SectionTitle size={'big'} title={'All Notes'} />
+			<Select
+				options={uniqueTags.map(tag => ({ value: tag, label: tag }))}
+				onChange={handleTagChange}
+				placeholder={'Filter by tag'}
+				isClearable
+			/>
+			<Button $small onClick={handleResetFilter}>
+				Reset Filter
+			</Button>
+
+			<SectionContainer>
+				<NotesGrid>
+					{notes.map(note => {
+						const createdAt = new Date(note.createdAt).toLocaleDateString();
+						const updatedAt = new Date(note.updatedAt).toLocaleDateString();
+						const showReadMore = note.content.length > 90;
+						const displayedText = cutText(note.content, 90);
+						return (
+							<NoteContainer key={note._id}>
+								<Title>{note.title}</Title>
+								<TagsContainer>
+									{note.tags && note.tags.map((tag, tagIndex) => <Tag key={tagIndex}>{tag}</Tag>)}
+								</TagsContainer>
+								<Content>
+									{displayedText}
+									{showReadMore && <Link to={`/dashboard/my-notes/${note._id}`}>Read More</Link>}
+								</Content>
+
+								<DateContainer>
+									<p>created at {createdAt}</p>
+									{createdAt !== updatedAt && <p>updated at {updatedAt}</p>}
+								</DateContainer>
+								<IconContainer>
+									<FiEdit size={'1.5rem'} onClick={() => handleEdit(note._id)} />
+									<FiTrash2 size={'1.5rem'} onClick={() => handleDeleteClick(note._id)} />
+								</IconContainer>
+							</NoteContainer>
+						);
+					})}
+				</NotesGrid>
+			</SectionContainer>
+			{isModalOpen && (
+				<Modal
+					isOpen={isModalOpen}
+					onClose={() => setIsModalOpen(false)}
+					onConfirm={confirmDelete}
+					message={'Are you sure you want to delete this note?'}
+				/>
+			)}
+			{totalPages > 1 && (
+				<CustomPagination
+					pageCount={totalPages}
+					onPageChange={handlePageClick}
+					currentPage={currentPage}
+				/>
+			)}
+		</CustomContainer>
 	);
 };
 

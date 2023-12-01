@@ -63,8 +63,10 @@ FormField.propTypes = {
 	type: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
 	errors: PropTypes.objectOf(PropTypes.string),
-	values: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.bool])).isRequired,
-	touched: PropTypes.objectOf(PropTypes.bool),
+	values: PropTypes.objectOf(
+		PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.array])
+	).isRequired,
+	touched: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.bool, PropTypes.array])),
 	handleChange: PropTypes.func.isRequired,
 	handleBlur: PropTypes.func.isRequired,
 	rows: PropTypes.number,

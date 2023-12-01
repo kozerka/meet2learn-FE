@@ -62,11 +62,15 @@ const router = createBrowserRouter([
 						element: <MyNotes />,
 						children: [
 							{ index: true, element: <AllNotes /> },
+							{ path: 'page/:pageNumber/:tag?', element: <AllNotes /> },
 							{ path: 'add', element: <AddNote /> },
+							{
+								path: ':id/edit',
+								element: <EditNote />,
+							},
 							{
 								path: ':id',
 								element: <ViewNote />,
-								children: [{ path: 'edit', element: <EditNote /> }],
 							},
 						],
 					},

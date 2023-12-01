@@ -3,6 +3,9 @@ import { Outlet } from 'react-router-dom';
 import { NavigationMenu, SectionTitle } from '../../../components';
 import { myNotesNavLinks } from '../../../data';
 import styled from 'styled-components';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getAllNotes } from '../../../store/slices/noteSlice';
 
 const NavContainer = styled.div`
 	max-width: 1200px;
@@ -17,6 +20,11 @@ const NavContainer = styled.div`
 `;
 
 const MyNotes = () => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getAllNotes({ page: 1, limit: 6 }));
+	}, [dispatch]);
 	return (
 		<DashboardContainer>
 			<NavContainer>
