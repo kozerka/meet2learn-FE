@@ -39,6 +39,9 @@ const Tag = styled.span`
 
 const Content = styled.p`
 	margin-top: 20px;
+	word-break: break-all;
+	overflow-wrap: break-word;
+	font-size: 0.9rem;
 `;
 
 const IconContainer = styled.div`
@@ -46,11 +49,31 @@ const IconContainer = styled.div`
 	bottom: 20px;
 	right: 20px;
 	display: flex;
-	gap: 10px;
+	gap: 5px;
+	svg {
+		transition: all 0.3s ease;
+		border-radius: 4px;
+		padding: 4px;
+
+		&:hover {
+			cursor: pointer;
+		}
+		&:first-child:hover {
+			background-color: ${({ theme }) => theme.edit};
+			color: ${({ theme }) => theme.textInverted};
+		}
+		&:last-child:hover {
+			background-color: ${({ theme }) => theme.delete};
+			color: ${({ theme }) => theme.textInverted};
+		}
+	}
 `;
 
 const DateContainer = styled.div`
 	font-size: 0.8rem;
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
 `;
 
 export { NotesGrid, NoteContainer, Title, Tag, Content, IconContainer, DateContainer };

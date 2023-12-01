@@ -9,6 +9,8 @@ export const lightTheme = {
 	secondaryButton: '#FCB247',
 	primaryButtonHover: '#179AD3',
 	secondaryButtonHover: '#FBB568',
+	edit: '#5cd879',
+	delete: '#ff5b5b',
 };
 
 export const darkTheme = {
@@ -22,4 +24,6 @@ export const darkTheme = {
 	primaryButton: '#FC74B3',
 	secondaryButtonHover: '#978AEB',
 	primaryButtonHover: '#FC91BF',
+	edit: '#5cd879',
+	delete: '#ff5b5b',
 };

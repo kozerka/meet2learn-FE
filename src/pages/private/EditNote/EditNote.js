@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import NoteForm from '../../../components/features/NoteForm/NoteForm';
+import { FormContainer } from '../../../components/ui/Containers';
 
 const EditNote = () => {
 	const { id } = useParams();
@@ -14,7 +15,12 @@ const EditNote = () => {
 
 	const transformedTags = noteToEdit.tags.map(tag => ({ value: tag, label: tag }));
 
-	return <NoteForm initialNote={{ ...noteToEdit, tags: transformedTags }} isEditing={true} />;
+	return (
+		<FormContainer>
+			<h2>Edit note</h2>
+			<NoteForm initialNote={{ ...noteToEdit, tags: transformedTags }} isEditing={true} />
+		</FormContainer>
+	);
 };
 
 export default EditNote;
