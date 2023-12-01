@@ -12,7 +12,7 @@ const NotesGrid = styled.div`
 const NoteContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: 0.6rem;
 	width: 250px;
 	height: 250px;
 	background-color: ${({ theme }) => theme.body};
@@ -28,13 +28,19 @@ const Title = styled.h3`
 	margin-top: 0;
 `;
 
+const TagsContainer = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: 5px;
+`;
+
 const Tag = styled.span`
 	background-color: ${({ theme }) => theme.primary};
 	color: ${({ theme }) => theme.textInverted};
 	border-radius: 5px;
 	padding: 4px;
 	font-size: 0.8rem;
-	margin-right: 5px;
 `;
 
 const Content = styled.p`
@@ -42,6 +48,15 @@ const Content = styled.p`
 	word-break: break-all;
 	overflow-wrap: break-word;
 	font-size: 0.9rem;
+
+	a {
+		font-size: 0.8rem;
+		color: ${({ theme }) => theme.secondary};
+		margin-left: 10px;
+		&:hover {
+			color: ${({ theme }) => theme.primary};
+		}
+	}
 `;
 
 const IconContainer = styled.div`
@@ -76,4 +91,13 @@ const DateContainer = styled.div`
 	left: 20px;
 `;
 
-export { NotesGrid, NoteContainer, Title, Tag, Content, IconContainer, DateContainer };
+export {
+	NotesGrid,
+	NoteContainer,
+	Title,
+	Tag,
+	Content,
+	IconContainer,
+	DateContainer,
+	TagsContainer,
+};

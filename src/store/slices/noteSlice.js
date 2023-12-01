@@ -78,7 +78,11 @@ export const updateNote = createAsyncThunk(
 const notesSlice = createSlice({
 	name: 'notes',
 	initialState,
-	reducers: {},
+	reducers: {
+		clearNote: state => {
+			state.note = null;
+		},
+	},
 	extraReducers: builder => {
 		builder
 			.addCase(createNote.pending, state => {
@@ -151,5 +155,7 @@ const notesSlice = createSlice({
 			});
 	},
 });
+export const { clearNote } = notesSlice.actions;
 export const notesActions = notesSlice.actions;
+
 export default notesSlice.reducer;

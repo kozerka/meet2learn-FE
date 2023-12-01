@@ -1,7 +1,7 @@
 import { CustomContainer, SectionContainer } from '../../../components/ui/Containers';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { deleteNote, getUniqueTags } from '../../../store/slices/noteSlice';
 import { cutText } from '../../../utils/cutText';
 import Modal from '../../../components/ui/Modal/Modal';
@@ -16,7 +16,9 @@ import {
 	NoteContainer,
 	Tag,
 	Title,
+	TagsContainer,
 } from './AllNotes.styled';
+import { SectionTitle } from '../../../components';
 
 const AllNotes = () => {
 	const { notes, isLoading, uniqueTags } = useSelector(state => state.notes);
@@ -61,8 +63,18 @@ const AllNotes = () => {
 		return <div>Loading...</div>;
 	}
 
+	if (notes.length === 0) {
+		return (
+			<CustomContainer>
+				<SectionTitle size={'big'} title={'All Notes'} />
+				You have no notes yet. Create one!
+			</CustomContainer>
+		);
+	}
+
 	return (
 		<CustomContainer>
+			<SectionTitle size={'big'} title={'All Notes'} />
 			<Select
 				options={uniqueTags.map(tag => ({ value: tag, label: tag }))}
 				onChange={handleTagChange}
@@ -74,13 +86,19 @@ const AllNotes = () => {
 					{filteredNotes.map(note => {
 						const createdAt = new Date(note.createdAt).toLocaleDateString();
 						const updatedAt = new Date(note.updatedAt).toLocaleDateString();
+						const showReadMore = note.content.length > 90;
+						const displayedText = cutText(note.content, 90);
 						return (
 							<NoteContainer key={note._id}>
 								<Title>{note.title}</Title>
-								<div>
+								<TagsContainer>
 									{note.tags && note.tags.map((tag, tagIndex) => <Tag key={tagIndex}>{tag}</Tag>)}
-								</div>
-								<Content>{cutText(note.content, 90)}</Content>
+								</TagsContainer>
+								<Content>
+									{displayedText}
+									{showReadMore && <Link to={`/dashboard/my-notes/${note._id}`}>Read More</Link>}
+								</Content>
+
 								<DateContainer>
 									<p>created at {createdAt}</p>
 									{createdAt !== updatedAt && <p>updated at {updatedAt}</p>}

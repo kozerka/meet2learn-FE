@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import NoteForm from '../../../components/features/NoteForm/NoteForm';
 import { FormContainer } from '../../../components/ui/Containers';
+import { SectionTitle } from '../../../components';
 
 const EditNote = () => {
 	const { id } = useParams();
@@ -17,7 +18,7 @@ const EditNote = () => {
 
 	return (
 		<FormContainer>
-			<h2>Edit note</h2>
+			<SectionTitle size={'big'} title={'Edit note'} />
 			<NoteForm initialNote={{ ...noteToEdit, tags: transformedTags }} isEditing={true} />
 		</FormContainer>
 	);
