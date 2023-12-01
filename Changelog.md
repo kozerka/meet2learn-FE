@@ -84,5 +84,16 @@
  - Preview of the added image
  - Validation for file
 
+## [0.9.0] - 2023-12-01
+
+### Added
+
+ - Add, edit and delete notes with tags to BE
+ - Filtering notes by its tags
+ - Confirm delete note using modal
+ - View single note
+ - Pagination and filter for notes
+
+
 
 
