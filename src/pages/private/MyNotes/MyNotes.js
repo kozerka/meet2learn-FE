@@ -23,7 +23,7 @@ const MyNotes = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getAllNotes());
+		dispatch(getAllNotes({ page: 1, limit: 6 }));
 	}, [dispatch]);
 	return (
 		<DashboardContainer>

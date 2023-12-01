@@ -1,12 +1,13 @@
 import { CustomContainer, SectionContainer } from '../../../components/ui/Containers';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { deleteNote, getUniqueTags } from '../../../store/slices/noteSlice';
+import { useNavigate, Link, useParams } from 'react-router-dom';
+import { deleteNote, getUniqueTags, getAllNotes } from '../../../store/slices/noteSlice';
 import { cutText } from '../../../utils/cutText';
 import Modal from '../../../components/ui/Modal/Modal';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 import {
 	Content,
@@ -19,18 +20,27 @@ import {
 	TagsContainer,
 } from './AllNotes.styled';
 import { SectionTitle } from '../../../components';
+import Button from '../../../components/ui/Button';
 
 const AllNotes = () => {
-	const { notes, isLoading, uniqueTags } = useSelector(state => state.notes);
+	const { notes, isLoading, uniqueTags, currentPage, totalPages, error } = useSelector(
+		state => state.notes
+	);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const [selectedTag, setSelectedTag] = useState('');
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [noteToDelete, setNoteToDelete] = useState(null);
 
 	useEffect(() => {
 		dispatch(getUniqueTags());
 	}, [dispatch]);
+
+	const { pageNumber, tag } = useParams();
+	const page = pageNumber ? parseInt(pageNumber, 10) : 1;
+
+	useEffect(() => {
+		dispatch(getAllNotes({ page, limit: 6, tag }));
+	}, [dispatch, page, tag]);
 
 	const handleEdit = noteId => {
 		navigate(`/dashboard/my-notes/${noteId}/edit`);
@@ -39,12 +49,17 @@ const AllNotes = () => {
 		setNoteToDelete(noteId);
 		setIsModalOpen(true);
 	};
+	const handlePageClick = event => {
+		const newPage = event.selected + 1;
+		navigate(`/dashboard/my-notes/page/${newPage}${tag ? '?tag=' + tag : ''}`);
+	};
 
 	const confirmDelete = async () => {
 		if (noteToDelete) {
 			try {
 				await dispatch(deleteNote(noteToDelete)).unwrap();
 				toast.success('Note deleted successfully');
+				dispatch(getAllNotes({ page: currentPage, limit: 6 }));
 			} catch (error) {
 				toast.error('Error deleting note: ' + error.message);
 			}
@@ -54,13 +69,24 @@ const AllNotes = () => {
 	};
 
 	const handleTagChange = selectedOption => {
-		setSelectedTag(selectedOption ? selectedOption.value : '');
+		const selectedTag = selectedOption ? selectedOption.value : '';
+		console.log(selectedTag);
+		dispatch(getAllNotes({ page, limit: 6, tag: selectedTag }));
+
+		navigate(`/dashboard/my-notes/page/1${selectedTag ? '?tag=' + selectedTag : ''}`);
 	};
 
-	const filteredNotes = selectedTag ? notes.filter(note => note.tags.includes(selectedTag)) : notes;
+	const handleResetFilter = () => {
+		const selectedTag = null;
+		dispatch(getAllNotes({ page, limit: 6, tag: selectedTag }));
+		navigate(`/dashboard/my-notes/page/1`);
+	};
 
 	if (isLoading) {
 		return <div>Loading...</div>;
+	}
+	if (error) {
+		return <div>Error: {error.message}</div>;
 	}
 
 	if (notes.length === 0) {
@@ -81,9 +107,13 @@ const AllNotes = () => {
 				placeholder={'Filter by tag'}
 				isClearable
 			/>
+			<Button $small onClick={handleResetFilter}>
+				Reset Filter
+			</Button>
+
 			<SectionContainer>
 				<NotesGrid>
-					{filteredNotes.map(note => {
+					{notes.map(note => {
 						const createdAt = new Date(note.createdAt).toLocaleDateString();
 						const updatedAt = new Date(note.updatedAt).toLocaleDateString();
 						const showReadMore = note.content.length > 90;
@@ -117,9 +147,19 @@ const AllNotes = () => {
 					isOpen={isModalOpen}
 					onClose={() => setIsModalOpen(false)}
 					onConfirm={confirmDelete}
-					message="Are you sure you want to delete this note?"
+					message={'Are you sure you want to delete this note?'}
 				/>
 			)}
+			<ReactPaginate
+				previousLabel={'← Poprzednia'}
+				nextLabel={'Następna →'}
+				breakLabel={'...'}
+				pageCount={totalPages}
+				onPageChange={handlePageClick}
+				containerClassName={'pagination'}
+				activeClassName={'active'}
+				forcePage={currentPage - 1}
+			/>
 		</CustomContainer>
 	);
 };

@@ -8,6 +8,9 @@ const initialState = {
 	uniqueTags: [],
 	isLoading: false,
 	error: null,
+	currentPage: 1,
+	totalPages: 0,
+	totalNotes: 0,
 };
 
 export const createNote = createAsyncThunk(
@@ -22,14 +25,20 @@ export const createNote = createAsyncThunk(
 	}
 );
 
-export const getAllNotes = createAsyncThunk('notes/getAllNotes', async (_, { rejectWithValue }) => {
-	try {
-		const response = await axios.get(`${BASE_URL}/api/notes`);
-		return response.data;
-	} catch (error) {
-		return rejectWithValue(error.response.data);
+export const getAllNotes = createAsyncThunk(
+	'notes/getAllNotes',
+	async ({ page = 1, limit = 6, tag }, { rejectWithValue }) => {
+		try {
+			const response = await axios.get(
+				`${BASE_URL}/api/notes?page=${page}&limit=${limit}${tag ? '&tag=' + tag : ''}`
+			);
+			return response.data;
+		} catch (error) {
+			return rejectWithValue(error.response.data);
+		}
 	}
-});
+);
+
 export const getUniqueTags = createAsyncThunk(
 	'notes/getUniqueTags',
 	async (_, { rejectWithValue }) => {
@@ -101,8 +110,12 @@ const notesSlice = createSlice({
 			})
 			.addCase(getAllNotes.fulfilled, (state, action) => {
 				state.isLoading = false;
-				state.notes = action.payload;
+				state.notes = action.payload.notes;
+				state.currentPage = parseInt(action.payload.currentPage);
+				state.totalPages = parseInt(action.payload.pages);
+				state.totalNotes = parseInt(action.payload.total);
 			})
+
 			.addCase(getAllNotes.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
