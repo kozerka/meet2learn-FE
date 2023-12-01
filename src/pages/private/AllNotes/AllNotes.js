@@ -7,7 +7,6 @@ import { cutText } from '../../../utils/cutText';
 import Modal from '../../../components/ui/Modal/Modal';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 import {
 	Content,
@@ -19,7 +18,7 @@ import {
 	Title,
 	TagsContainer,
 } from './AllNotes.styled';
-import { SectionTitle } from '../../../components';
+import { SectionTitle, CustomPagination } from '../../../components';
 import Button from '../../../components/ui/Button';
 
 const AllNotes = () => {
@@ -150,16 +149,13 @@ const AllNotes = () => {
 					message={'Are you sure you want to delete this note?'}
 				/>
 			)}
-			<ReactPaginate
-				previousLabel={'← Poprzednia'}
-				nextLabel={'Następna →'}
-				breakLabel={'...'}
-				pageCount={totalPages}
-				onPageChange={handlePageClick}
-				containerClassName={'pagination'}
-				activeClassName={'active'}
-				forcePage={currentPage - 1}
-			/>
+			{totalPages > 1 && (
+				<CustomPagination
+					pageCount={totalPages}
+					onPageChange={handlePageClick}
+					currentPage={currentPage}
+				/>
+			)}
 		</CustomContainer>
 	);
 };

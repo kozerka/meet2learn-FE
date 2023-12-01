@@ -41,14 +41,23 @@ const NoteForm = ({ initialNote, isEditing }) => {
 			toast.error('Error: ' + error.message);
 		}
 	};
-	const { handleSubmit, handleChange, handleBlur, setFieldValue, values, errors, touched } =
-		useFormik({
-			initialValues: isEditing ? initialNote : { title: '', content: '', tags: [] },
-			validationSchema: noteSchema,
-			onSubmit,
-		});
+	const {
+		handleSubmit,
+		handleChange,
+		handleBlur,
+		setFieldValue,
+		setFieldTouched,
+		values,
+		errors,
+		touched,
+	} = useFormik({
+		initialValues: isEditing ? initialNote : { title: '', content: '', tags: [] },
+		validationSchema: noteSchema,
+		onSubmit,
+	});
 	const handleTagChange = selectedOptions => {
 		setFieldValue('tags', selectedOptions || []);
+		setFieldTouched('tags', true);
 	};
 	return (
 		<form onSubmit={handleSubmit} style={{ width: '100%' }}>
@@ -69,7 +78,7 @@ const NoteForm = ({ initialNote, isEditing }) => {
 				options={values.tags}
 				id={'tags'}
 				value={values.tags}
-				touched={touched}
+				touched={!!touched.tags}
 			/>
 			{touched?.tags && errors?.tags && <ErrorMessage>{errors.tags}</ErrorMessage>}
 
