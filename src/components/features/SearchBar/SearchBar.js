@@ -21,6 +21,7 @@ const SearchBar = ({ onSearch }) => {
 		}
 	};
 	const handleReset = () => {
+		setError('');
 		setSearchTerm('');
 		onSearch('');
 	};

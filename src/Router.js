@@ -42,6 +42,7 @@ const router = createBrowserRouter([
 				path: 'tutors',
 				element: <Tutors />,
 			},
+			{ path: 'page/:pageNumber/:search?', element: <Tutors /> },
 			{ path: 'tutors/:id', element: <TutorPublicProfile /> },
 			{ path: 'contact', element: <Contact /> },
 			{

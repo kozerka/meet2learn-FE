@@ -4,10 +4,10 @@ import BASE_URL from '../../utils/baseUrl';
 
 export const getAllTutors = createAsyncThunk(
 	'tutors/fetchTutors',
-	async ({ page, limit, firstName, lastName, subject }, { rejectWithValue }) => {
+	async ({ page, limit, search }, { rejectWithValue }) => {
 		try {
 			const response = await axios.get(`${BASE_URL}/api/tutors`, {
-				params: { page, limit, firstName, lastName, subject },
+				params: { page, limit, search },
 			});
 			return response.data;
 		} catch (error) {

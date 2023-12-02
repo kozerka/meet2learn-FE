@@ -37,7 +37,7 @@ const TutorCard = ({ tutor }) => {
 				</TopSection>
 				<Categories>
 					{tutor.subjects.map((subject, index) => (
-						<CategoryLabel key={index}>{subject}</CategoryLabel>
+						<CategoryLabel key={index}>{subject.name}</CategoryLabel>
 					))}
 				</Categories>
 				<Divider />
