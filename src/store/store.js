@@ -4,6 +4,7 @@ import contactFormReducer from './slices/contactFormSlice';
 import notesReducer from './slices/noteSlice';
 import userReducer from './slices/userSlice';
 import tutorReducer from './slices/tutorSlice';
+import reviewReducer from './slices/reviewSlice';
 
 export const store = configureStore({
 	reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
 		user: userReducer,
 		notes: notesReducer,
 		tutors: tutorReducer,
+		reviews: reviewReducer,
 	},
 	devTools: true,
 });
