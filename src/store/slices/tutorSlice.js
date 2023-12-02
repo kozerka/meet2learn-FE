@@ -3,7 +3,7 @@ import axios from '../../utils/axios';
 import BASE_URL from '../../utils/baseUrl';
 
 export const getAllTutors = createAsyncThunk(
-	'tutors/fetchTutors',
+	'tutors/getAllTutors',
 	async ({ page, limit, search }, { rejectWithValue }) => {
 		try {
 			const response = await axios.get(`${BASE_URL}/api/tutors`, {
@@ -17,7 +17,7 @@ export const getAllTutors = createAsyncThunk(
 );
 
 export const getTutorById = createAsyncThunk(
-	'tutors/fetchTutorById',
+	'tutors/getTutorById',
 	async (tutorId, { rejectWithValue }) => {
 		try {
 			const response = await axios.get(`${BASE_URL}/api/tutors/${tutorId}`);

@@ -18,7 +18,7 @@ const TutorCard = ({ tutor }) => {
 	const navigate = useNavigate();
 
 	const viewProfile = () => {
-		navigate(`/tutors/${tutor.id}`);
+		navigate(`/tutors/${tutor._id}`);
 	};
 
 	return (
@@ -50,7 +50,7 @@ const TutorCard = ({ tutor }) => {
 
 TutorCard.propTypes = {
 	tutor: PropTypes.shape({
-		id: PropTypes.string.isRequired,
+		_id: PropTypes.string.isRequired,
 		avatar: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
 		firstName: PropTypes.string.isRequired,
