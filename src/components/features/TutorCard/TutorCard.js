@@ -53,9 +53,13 @@ TutorCard.propTypes = {
 		_id: PropTypes.string.isRequired,
 		avatar: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
-		firstName: PropTypes.string.isRequired,
-		lastName: PropTypes.string.isRequired,
-		subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+		firstName: PropTypes.string,
+		lastName: PropTypes.string,
+		subjects: PropTypes.arrayOf(
+			PropTypes.shape({
+				name: PropTypes.string,
+			})
+		).isRequired,
 		averageRating: PropTypes.number.isRequired,
 		totalRating: PropTypes.number.isRequired,
 	}).isRequired,

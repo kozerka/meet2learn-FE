@@ -5,14 +5,28 @@ import Button from '../../ui/Button';
 import { ErrorText } from '../../ui/ErrorText.styled';
 import StarRating from '../../ui/StarRating';
 import { feedbackFormSchema } from '../../../schemas';
+import { useDispatch, useSelector } from 'react-redux';
 import {
 	FeedbackContainer,
 	TextArea,
 	ErrorContainer,
 	ButtonContainer,
 } from './FeedbackForm.styled';
-const FeedbackForm = ({ onSubmitFeedback }) => {
+import { addReview } from '../../../store/slices/reviewSlice';
+import { toast } from 'react-toastify';
+const FeedbackForm = ({ tutorId }) => {
+	const userAuth = useSelector(state => state.user.userAuth);
 	const [showForm, setShowForm] = useState(false);
+	const dispatch = useDispatch();
+	const onSubmitFeedback = async values => {
+		try {
+			await dispatch(addReview({ tutorId, reviewData: values })).unwrap();
+			// setShowForm(false);
+			toast.success('Review added successfully');
+		} catch (error) {
+			toast.error('Error: ' + error.message || 'Failed to add review');
+		}
+	};
 
 	const formik = useFormik({
 		initialValues: {
@@ -26,6 +40,9 @@ const FeedbackForm = ({ onSubmitFeedback }) => {
 			setShowForm(false);
 		},
 	});
+	if (!userAuth.userInfo) {
+		return null;
+	}
 
 	return (
 		<FeedbackContainer>
@@ -75,7 +92,7 @@ const FeedbackForm = ({ onSubmitFeedback }) => {
 };
 
 FeedbackForm.propTypes = {
-	onSubmitFeedback: PropTypes.func.isRequired,
+	tutorId: PropTypes.string.isRequired,
 };
 
 export default FeedbackForm;

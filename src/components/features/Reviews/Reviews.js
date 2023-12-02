@@ -34,11 +34,11 @@ const Reviews = ({ reviews }) => (
 	<ReviewsContainer>
 		<h2>All Reviews ({reviews.length})</h2>
 		{reviews.map(review => (
-			<ReviewItem key={review.id}>
+			<ReviewItem key={review._id}>
 				<ReviewHeader>
-					<Avatar src={review.student.avatar} alt={review.student.name} />
+					<Avatar src={review.student?.avatar} alt={review.student?.name} />
 					<div>
-						<p>{review.student.name}</p>
+						<p>{review.student?.name}</p>
 						<p>{new Date(review.createdAt).toLocaleDateString()}</p>
 					</div>
 					<Rating>{'⭐'.repeat(review.rating)}</Rating>
@@ -52,7 +52,7 @@ const Reviews = ({ reviews }) => (
 Reviews.propTypes = {
 	reviews: PropTypes.arrayOf(
 		PropTypes.shape({
-			id: PropTypes.string.isRequired,
+			_id: PropTypes.string.isRequired,
 			student: PropTypes.shape({
 				id: PropTypes.string.isRequired,
 				name: PropTypes.string.isRequired,

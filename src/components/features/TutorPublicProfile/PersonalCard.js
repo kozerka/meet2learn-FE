@@ -105,12 +105,16 @@ const PersonalCard = ({ user }) => (
 PersonalCard.propTypes = {
 	user: PropTypes.shape({
 		email: PropTypes.string.isRequired,
-		firstName: PropTypes.string.isRequired,
-		lastName: PropTypes.string.isRequired,
-		age: PropTypes.number.isRequired,
+		firstName: PropTypes.string,
+		lastName: PropTypes.string,
+		age: PropTypes.number,
 		city: PropTypes.string.isRequired,
 		country: PropTypes.string.isRequired,
-		subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+		subjects: PropTypes.arrayOf(
+			PropTypes.shape({
+				name: PropTypes.string.isRequired,
+			})
+		).isRequired,
 		averageRating: PropTypes.number.isRequired,
 		avatar: PropTypes.string.isRequired,
 	}).isRequired,
