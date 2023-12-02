@@ -94,6 +94,13 @@
  - View single note
  - Pagination and filter for notes
 
+## [0.10.0] - 2023-12-12
+
+### Added
+
+ - Fetching all tutors from BE, 
+ - Fetching single tutor from BE
 
 
-
+### Fixed  
+ - Avatar styles problem solved
