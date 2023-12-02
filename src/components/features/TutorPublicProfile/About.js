@@ -30,15 +30,6 @@ const ExperienceItem = styled.div`
 	margin: 1.4rem 0;
 `;
 
-const ExperienceTitle = styled.h3`
-	font-size: 1.1rem;
-	margin: 0;
-`;
-
-const ExperiencePeriod = styled.span`
-	font-style: italic;
-`;
-
 const ExperienceDescription = styled.p`
 	font-size: 0.9rem;
 `;
@@ -60,10 +51,6 @@ const AboutCard = ({ about, bio, experiences }) => (
 		</SectionLabel>
 		{experiences.map((exp, index) => (
 			<ExperienceItem key={index}>
-				<ExperienceTitle>
-					{exp.type} - {exp.name}
-				</ExperienceTitle>
-				<ExperiencePeriod>{exp.period}</ExperiencePeriod>
 				<ExperienceDescription>{exp.description}</ExperienceDescription>
 			</ExperienceItem>
 		))}

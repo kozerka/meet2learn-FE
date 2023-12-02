@@ -10,6 +10,8 @@ import {
 	ThemeToggler,
 	StyledLink,
 	NavBtn,
+	ImageContainer,
+	Dropdown,
 } from './Navbar.styled';
 import { NavigationLink } from './NavigationLink.styled';
 import Button from '../../ui/Button';
@@ -17,24 +19,10 @@ import MobileNavbar from './MobileNavbar';
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
 import Logo from '../../ui/Logo/Logo';
 import { navLinks } from '../../../data';
-import styled from 'styled-components';
 import { logoutUser } from '../../../store/slices/userSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import useUserData from '../../../hooks/useUserData';
-
-const Dropdown = styled.div`
-	background: ${({ theme }) => theme.body};
-	position: absolute;
-	top: 50px;
-	right: 0;
-	padding: 1rem;
-	border-radius: 5px;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-`;
 
 const Navbar = () => {
 	const dispatch = useDispatch();
@@ -73,12 +61,9 @@ const Navbar = () => {
 				<NavBtn key={userData ? 'user-logged-in' : 'no-user'}>
 					{userData ? (
 						<div style={{ position: 'relative' }}>
-							<img
-								src={userData?.avatar}
-								alt={'Avatar użytkownika'}
-								onClick={toggleDropdown}
-								style={{ width: '40px', height: '40px', borderRadius: '50%', cursor: 'pointer' }}
-							/>
+							<ImageContainer>
+								<img src={userData?.avatar} alt={'Avatar użytkownika'} onClick={toggleDropdown} />
+							</ImageContainer>
 							{isDropdownOpen && (
 								<Dropdown>
 									<StyledLink to={'/dashboard'}>Dashboard</StyledLink>

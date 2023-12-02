@@ -60,6 +60,15 @@ const RatingLabel = styled.div`
 		color: #ffd700;
 	}
 `;
+const SubjectLabel = styled.span`
+	background-color: ${({ theme }) => theme.primary};
+	color: ${({ theme }) => theme.textInverted};
+	text-transform: uppercase;
+	padding: 5px 10px;
+	border-radius: 5px;
+	margin: 0 3px;
+	font-size: 0.9rem;
+`;
 
 const PersonalCard = ({ user }) => (
 	<CardContainer>
@@ -76,7 +85,12 @@ const PersonalCard = ({ user }) => (
 				<Info>
 					Location: {user.city}, {user.country}
 				</Info>
-				<Info>Subjects: {user.subjects.join(', ')}</Info>
+				<Info>
+					Subjects:
+					{user.subjects.map((subject, index) => (
+						<SubjectLabel key={index}>{subject.name}</SubjectLabel>
+					))}
+				</Info>
 			</div>
 			<LinkStyled to={'/'}>
 				<Button $primary={true}>Connect</Button>
