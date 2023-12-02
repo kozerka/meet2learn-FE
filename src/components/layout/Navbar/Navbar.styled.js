@@ -100,7 +100,42 @@ const ThemeToggler = styled.button`
 	color: ${({ theme }) => theme.primary};
 `;
 
+const Dropdown = styled.div`
+	background: ${({ theme }) => theme.body};
+	position: absolute;
+	top: 50px;
+	right: 0;
+	padding: 1rem;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+`;
+const ImageContainer = styled.div`
+	position: relative;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	img {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		cursor: pointer;
+		object-fit: cover;
+		object-position: center;
+	}
+`;
+
 export {
+	Dropdown,
+	ImageContainer,
 	Nav,
 	NavbarContainer,
 	NavMenu,
