@@ -41,7 +41,6 @@ const Navbar = () => {
 	};
 
 	const { userData, isLoading } = useUserData();
-	console.log(userData);
 
 	if (isLoading) {
 		return <div>Loading...</div>;

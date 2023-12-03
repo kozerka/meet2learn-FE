@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import Button from '../../ui/Button';
@@ -12,44 +12,64 @@ import {
 	ErrorContainer,
 	ButtonContainer,
 } from './FeedbackForm.styled';
-import { addReview, getTutorReviews } from '../../../store/slices/reviewSlice';
+import { addReview, getTutorReviews, updateReview } from '../../../store/slices/reviewSlice';
 import { getTutorById } from '../../../store/slices/tutorSlice';
 import { toast } from 'react-toastify';
 
-const FeedbackForm = ({ tutorId }) => {
+const FeedbackForm = ({ tutorId, reviewData }) => {
 	const userAuth = useSelector(state => state.user.userAuth);
 	const [showForm, setShowForm] = useState(false);
+	const [isEditMode, setIsEditMode] = useState(false);
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		setIsEditMode(!!reviewData);
+		setShowForm(!!reviewData);
+	}, [reviewData]);
 	const handleFeedbackButtonClick = () => {
 		if (!userAuth.userInfo) {
 			toast.error('You must be logged in to give feedback');
 			return;
 		}
 		setShowForm(!showForm);
+		setIsEditMode(false);
 	};
-	const onSubmitFeedback = async values => {
+	const onSubmitFeedback = async (values, resetForm) => {
 		try {
-			await dispatch(addReview({ tutorId, reviewData: values })).unwrap();
+			if (isEditMode) {
+				await dispatch(
+					updateReview({
+						reviewId: reviewData._id,
+						reviewData: values,
+					})
+				).unwrap();
+				toast.success('Review updated successfully');
+			} else {
+				await dispatch(
+					addReview({
+						tutorId,
+						reviewData: values,
+					})
+				).unwrap();
+				toast.success('Review added successfully');
+			}
+			resetForm();
 			setShowForm(false);
-			toast.success('Review added successfully');
-			dispatch(getTutorById(tutorId));
+			setIsEditMode(false);
 			dispatch(getTutorReviews(tutorId));
+			dispatch(getTutorById(tutorId));
 		} catch (error) {
-			toast.error('Error: ' + error.message || 'Failed to add review');
+			toast.error('Error: ' + error.message || 'Failed to process review');
 		}
 	};
 
 	const formik = useFormik({
 		initialValues: {
-			rating: null,
-			reviewText: '',
+			rating: isEditMode ? (reviewData ? reviewData.rating : 0) : 0,
+			reviewText: isEditMode ? (reviewData ? reviewData.reviewText : '') : '',
 		},
 		validationSchema: feedbackFormSchema,
-		onSubmit: (values, { resetForm }) => {
-			onSubmitFeedback(values);
-			resetForm();
-			setShowForm(false);
-		},
+		onSubmit: (values, { resetForm }) => onSubmitFeedback(values, resetForm),
 	});
 
 	return (
@@ -101,6 +121,7 @@ const FeedbackForm = ({ tutorId }) => {
 
 FeedbackForm.propTypes = {
 	tutorId: PropTypes.string.isRequired,
+	reviewData: PropTypes.object,
 };
 
 export default FeedbackForm;

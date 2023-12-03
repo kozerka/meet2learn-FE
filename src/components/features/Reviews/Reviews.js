@@ -1,48 +1,24 @@
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
 import { deleteReview, getTutorReviews } from '../../../store/slices/reviewSlice';
 import { getTutorById } from '../../../store/slices/tutorSlice';
 import { toast } from 'react-toastify';
-const ReviewsContainer = styled.div`
-	margin-top: 20px;
-`;
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
+import { FaStar } from 'react-icons/fa';
 
-const ReviewItem = styled.div`
-	padding: 15px;
-	border-bottom: 1px solid #ccc;
-`;
+import {
+	ReviewsContainer,
+	ReviewItem,
+	ReviewHeader,
+	Avatar,
+	Rating,
+	IconContainer,
+	ReviewContent,
+} from './Reviews.styled';
 
-const ReviewHeader = styled.div`
-	display: flex;
-	align-items: center;
-`;
-
-const Avatar = styled.img`
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	margin-right: 10px;
-`;
-
-const ReviewContent = styled.div`
-	margin-top: 10px;
-`;
-
-const Rating = styled.div`
-	margin-left: auto;
-`;
-
-const Reviews = ({ reviews, tutorId }) => {
+const Reviews = ({ reviews, tutorId, onEditReview }) => {
 	const dispatch = useDispatch();
 	const userId = useSelector(state => state.user.userAuth?.userInfo?._id);
-	const [setEditingReview] = useState(null);
-
-	const handleEdit = review => {
-		setEditingReview({ id: review._id, rating: review.rating, reviewText: review.reviewText });
-		// Logika do otwarcia formularza edycji, np. setShowForm(true) w kontekście wyższego komponentu
-	};
 
 	const handleDelete = async reviewId => {
 		try {
@@ -59,28 +35,26 @@ const Reviews = ({ reviews, tutorId }) => {
 		<ReviewsContainer>
 			<h2>All Reviews ({reviews.length})</h2>
 			{reviews.map(review => {
-				// Tutaj umieszczamy console.log
-				console.log(
-					`Review ID: ${review._id}, Student ID: ${review.student._id}, User ID: ${userId}`
-				);
-
 				return (
 					<ReviewItem key={review._id}>
 						<ReviewHeader>
-							<Avatar src={review.student.avatar} alt={review.student.name} />
+							<Avatar src={review.student?.avatar} alt={review.student?.name} />
 							<div>
-								<p>{review.student.name}</p>
+								<p>{review.student?.name}</p>
 								<p>{new Date(review.createdAt).toLocaleDateString()}</p>
 							</div>
-							<Rating>{'⭐'.repeat(review.rating)}</Rating>
+							<Rating>
+								{Array.from({ length: review.rating }, (_, i) => (
+									<FaStar key={i} color={'gold'} />
+								))}
+							</Rating>
 						</ReviewHeader>
 						<ReviewContent>{review.reviewText}</ReviewContent>
-						{/* Wyświetlanie przycisków edycji/usuwania tylko dla autora recenzji */}
-						{userId === review.student._id && (
-							<div>
-								<button onClick={() => handleEdit(review)}>Edit</button>
-								<button onClick={() => handleDelete(review._id)}>Delete</button>
-							</div>
+						{userId === review.student?._id && (
+							<IconContainer>
+								<FiEdit size={'1.5rem'} onClick={() => onEditReview(review)} />
+								<FiTrash2 size={'1.5rem'} onClick={() => handleDelete(review._id)} />
+							</IconContainer>
 						)}
 					</ReviewItem>
 				);
@@ -93,17 +67,22 @@ Reviews.propTypes = {
 	reviews: PropTypes.arrayOf(
 		PropTypes.shape({
 			_id: PropTypes.string.isRequired,
-			student: PropTypes.shape({
-				id: PropTypes.string.isRequired,
-				name: PropTypes.string.isRequired,
-				avatar: PropTypes.string.isRequired,
-			}).isRequired,
+			student: PropTypes.oneOfType([
+				PropTypes.shape({
+					id: PropTypes.string,
+					name: PropTypes.string,
+					avatar: PropTypes.string,
+				}),
+				PropTypes.string,
+				PropTypes.oneOf([null, undefined]),
+			]),
 			reviewText: PropTypes.string.isRequired,
 			rating: PropTypes.number.isRequired,
 			createdAt: PropTypes.string.isRequired,
 		})
 	).isRequired,
 	tutorId: PropTypes.string.isRequired,
+	onEditReview: PropTypes.func.isRequired,
 };
 
 export default Reviews;

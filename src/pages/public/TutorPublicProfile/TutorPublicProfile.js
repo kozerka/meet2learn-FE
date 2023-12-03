@@ -7,7 +7,7 @@ import { LinkStyled } from '../../../components/ui/Link.styled';
 import Button from '../../../components/ui/Button';
 import Reviews from '../../../components/features/Reviews/Reviews';
 import FeedbackForm from '../../../components/features/FeedbackForm/FeedbackForm';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTutorById } from '../../../store/slices/tutorSlice';
 import { getTutorReviews } from '../../../store/slices/reviewSlice';
@@ -17,6 +17,8 @@ const TutorPublicProfile = () => {
 	const dispatch = useDispatch();
 	const { tutor, isLoading: isTutorLoading } = useSelector(state => state.tutors);
 	const { reviews, isLoading: isReviewsLoading } = useSelector(state => state.reviews);
+	const [editingReview, setEditingReview] = useState(null);
+
 	useEffect(() => {
 		if (id) {
 			dispatch(getTutorById(id));
@@ -25,13 +27,16 @@ const TutorPublicProfile = () => {
 		}
 	}, [dispatch, id]);
 
+	const handleEditReview = review => {
+		setEditingReview(review);
+	};
+
 	if (isTutorLoading || isReviewsLoading) {
 		return <div>Loading...</div>;
 	}
 	if (!tutor) {
 		return <div>Tutor not found</div>;
 	}
-	console.log(tutor.reviews);
 	return (
 		<Wrapper>
 			<PersonalCard user={tutor} />
@@ -48,8 +53,10 @@ const TutorPublicProfile = () => {
 						label: 'Reviews',
 						content: (
 							<>
-								{tutor && tutor.reviews && <Reviews reviews={reviews} tutorId={id} />}
-								<FeedbackForm tutorId={id} />
+								{tutor && tutor.reviews && (
+									<Reviews reviews={reviews} tutorId={id} onEditReview={handleEditReview} />
+								)}
+								<FeedbackForm tutorId={id} reviewData={editingReview} />
 							</>
 						),
 					},
