@@ -94,7 +94,7 @@
  - View single note
  - Pagination and filter for notes
 
-## [0.10.0] - 2023-12-12
+## [0.10.0] - 2023-12-02
 
 ### Added
 
@@ -104,3 +104,12 @@
 
 ### Fixed  
  - Avatar styles problem solved
+
+ ## [0.11.0] - 2023-12-03
+
+### Added
+
+ - Fetching reviews from BE
+ - Add and delete review 
+ - Editing reviews
+ - Protecting tutors from giving feedback
