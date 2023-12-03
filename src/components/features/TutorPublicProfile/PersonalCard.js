@@ -12,7 +12,7 @@ import {
 	SubjectLabel,
 } from './PersonalCard.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { createMeeting } from '../../../store/slices/meetingSlice';
+import { createMeeting, getAllMeetings } from '../../../store/slices/meetingSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,13 +22,20 @@ const PersonalCard = ({ user }) => {
 	const navigate = useNavigate();
 	const userInfo = userAuth?.userInfo;
 
-	const handleConnectClick = () => {
+	const handleConnectClick = async () => {
 		if (!userAuth?.userInfo) {
 			toast.error('You must be logged in to make a connection with this tutor');
 			return;
 		}
 		if (userInfo.role === 'tutor') {
 			toast.error('Tutors cannot connect with each other');
+			return;
+		}
+		const allMeetings = await dispatch(getAllMeetings()).unwrap();
+		const hasMeetingWithTutor = allMeetings.some(meeting => meeting.tutor._id === user._id);
+
+		if (hasMeetingWithTutor) {
+			toast.error('You already have a meeting with this tutor');
 			return;
 		}
 

@@ -38,18 +38,6 @@ export const getMeetingById = createAsyncThunk(
 	}
 );
 
-export const updateMeeting = createAsyncThunk(
-	'meetings/updateMeeting',
-	async ({ meetingId, updateData }, { rejectWithValue }) => {
-		try {
-			const response = await axios.put(`${BASE_URL}/api/meetings/update/${meetingId}`, updateData);
-			return response.data;
-		} catch (error) {
-			return rejectWithValue(error.response.data);
-		}
-	}
-);
-
 export const deleteMeeting = createAsyncThunk(
 	'meetings/deleteMeeting',
 	async (meetingId, { rejectWithValue }) => {
@@ -109,20 +97,6 @@ const meetingsSlice = createSlice({
 				}
 			})
 			.addCase(getMeetingById.rejected, (state, action) => {
-				state.isLoading = false;
-				state.error = action.payload;
-			})
-			.addCase(updateMeeting.pending, state => {
-				state.isLoading = true;
-			})
-			.addCase(updateMeeting.fulfilled, (state, action) => {
-				state.isLoading = false;
-				const index = state.meetings.findIndex(meeting => meeting._id === action.payload._id);
-				if (index !== -1) {
-					state.meetings[index] = action.payload;
-				}
-			})
-			.addCase(updateMeeting.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			})
