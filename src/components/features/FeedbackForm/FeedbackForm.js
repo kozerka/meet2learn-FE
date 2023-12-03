@@ -18,6 +18,7 @@ import { toast } from 'react-toastify';
 
 const FeedbackForm = ({ tutorId, reviewData }) => {
 	const userAuth = useSelector(state => state.user.userAuth);
+	const userData = useSelector(state => state.user.userData);
 	const [showForm, setShowForm] = useState(false);
 	const [isEditMode, setIsEditMode] = useState(false);
 	const dispatch = useDispatch();
@@ -29,6 +30,10 @@ const FeedbackForm = ({ tutorId, reviewData }) => {
 	const handleFeedbackButtonClick = () => {
 		if (!userAuth.userInfo) {
 			toast.error('You must be logged in to give feedback');
+			return;
+		}
+		if (userData.role === 'tutor') {
+			toast.error('Tutors cannot give feedback to each other');
 			return;
 		}
 		setShowForm(!showForm);
@@ -75,7 +80,7 @@ const FeedbackForm = ({ tutorId, reviewData }) => {
 	return (
 		<FeedbackContainer>
 			<Button $secondary onClick={handleFeedbackButtonClick}>
-				{showForm ? 'Hide Feedback Form' : 'Give Feedback Form'}
+				{showForm ? 'Hide Feedback Form' : 'Give Feedback'}
 			</Button>
 
 			{showForm && userAuth.userInfo && (
