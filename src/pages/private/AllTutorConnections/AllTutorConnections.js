@@ -5,11 +5,15 @@ import SingleTutorConnection from '../SingleTutorConnection/SingleTutorConnectio
 
 const AllTutorConnections = () => {
 	const dispatch = useDispatch();
-	const meetings = useSelector(state => state.meetings.meetings);
+	const { meetings, isLoading } = useSelector(state => state.meetings);
 
 	useEffect(() => {
 		dispatch(getAllMeetings());
 	}, [dispatch]);
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
 
 	return (
 		<div style={{ width: '100%' }}>
