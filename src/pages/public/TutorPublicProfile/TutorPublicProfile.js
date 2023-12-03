@@ -15,23 +15,23 @@ import { fetchUser } from '../../../store/slices/userSlice';
 const TutorPublicProfile = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const tutor = useSelector(state => state.tutors.tutor);
-	const tutorStatus = useSelector(state => state.tutors.tutorStatus);
-	const reviews = useSelector(state => state.reviews.reviews);
-	const reviewsStatus = useSelector(state => state.reviews.status);
+	const { tutor, isLoading: isTutorLoading } = useSelector(state => state.tutors);
+	const { reviews, isLoading: isReviewsLoading } = useSelector(state => state.reviews);
 	useEffect(() => {
-		dispatch(getTutorById(id));
-		dispatch(getTutorReviews(id));
-		dispatch(fetchUser());
+		if (id) {
+			dispatch(getTutorById(id));
+			dispatch(getTutorReviews(id));
+			dispatch(fetchUser());
+		}
 	}, [dispatch, id]);
 
-	if (tutorStatus === 'loading' || reviewsStatus === 'loading') {
+	if (isTutorLoading || isReviewsLoading) {
 		return <div>Loading...</div>;
 	}
 	if (!tutor) {
 		return <div>Tutor not found</div>;
 	}
-
+	console.log(tutor.reviews);
 	return (
 		<Wrapper>
 			<PersonalCard user={tutor} />
@@ -48,7 +48,7 @@ const TutorPublicProfile = () => {
 						label: 'Reviews',
 						content: (
 							<>
-								{tutor && tutor.reviews && <Reviews reviews={reviews} />}
+								{tutor && tutor.reviews && <Reviews reviews={reviews} tutorId={id} />}
 								<FeedbackForm tutorId={id} />
 							</>
 						),

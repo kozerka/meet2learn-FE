@@ -12,17 +12,28 @@ import {
 	ErrorContainer,
 	ButtonContainer,
 } from './FeedbackForm.styled';
-import { addReview } from '../../../store/slices/reviewSlice';
+import { addReview, getTutorReviews } from '../../../store/slices/reviewSlice';
+import { getTutorById } from '../../../store/slices/tutorSlice';
 import { toast } from 'react-toastify';
+
 const FeedbackForm = ({ tutorId }) => {
 	const userAuth = useSelector(state => state.user.userAuth);
 	const [showForm, setShowForm] = useState(false);
 	const dispatch = useDispatch();
+	const handleFeedbackButtonClick = () => {
+		if (!userAuth.userInfo) {
+			toast.error('You must be logged in to give feedback');
+			return;
+		}
+		setShowForm(!showForm);
+	};
 	const onSubmitFeedback = async values => {
 		try {
 			await dispatch(addReview({ tutorId, reviewData: values })).unwrap();
-			// setShowForm(false);
+			setShowForm(false);
 			toast.success('Review added successfully');
+			dispatch(getTutorById(tutorId));
+			dispatch(getTutorReviews(tutorId));
 		} catch (error) {
 			toast.error('Error: ' + error.message || 'Failed to add review');
 		}
@@ -40,17 +51,14 @@ const FeedbackForm = ({ tutorId }) => {
 			setShowForm(false);
 		},
 	});
-	if (!userAuth.userInfo) {
-		return null;
-	}
 
 	return (
 		<FeedbackContainer>
-			<Button $secondary onClick={() => setShowForm(!showForm)}>
+			<Button $secondary onClick={handleFeedbackButtonClick}>
 				{showForm ? 'Hide Feedback Form' : 'Give Feedback Form'}
 			</Button>
 
-			{showForm && (
+			{showForm && userAuth.userInfo && (
 				<form onSubmit={formik.handleSubmit}>
 					<StarRating onChangeRating={rating => formik.setFieldValue('rating', rating)} />
 
