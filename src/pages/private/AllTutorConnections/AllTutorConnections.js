@@ -1,6 +1,23 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllMeetings } from '../../../store/slices/meetingSlice';
+import SingleTutorConnection from '../SingleTutorConnection/SingleTutorConnection';
+
 const AllTutorConnections = () => {
-	return <div>AllTutorConnections</div>;
+	const dispatch = useDispatch();
+	const meetings = useSelector(state => state.meetings.meetings);
+
+	useEffect(() => {
+		dispatch(getAllMeetings());
+	}, [dispatch]);
+
+	return (
+		<div style={{ width: '100%' }}>
+			{meetings.map(meeting => (
+				<SingleTutorConnection key={meeting._id} meeting={meeting} />
+			))}
+		</div>
+	);
 };
-// TODO dopiero po polaczeniu a API-  pobieranie przez map tablicy spotkan renderowanie w komponencie karty
 
 export default AllTutorConnections;
