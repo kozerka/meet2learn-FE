@@ -1,106 +1,86 @@
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
 import Button from '../../ui/Button';
 import { LinkStyled } from '../../ui/Link.styled';
+import {
+	CardContainer,
+	ImageContainer,
+	ContentContainer,
+	Name,
+	Info,
+	RatingLabel,
+	SubjectLabel,
+} from './PersonalCard.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { createMeeting } from '../../../store/slices/meetingSlice';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-const CardContainer = styled.div`
-	margin-top: 10rem;
-	display: flex;
-	align-self: start;
-	background: ${({ theme }) => theme.background};
-	padding: 20px;
-	border-radius: 8px;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-	position: relative;
-`;
+const PersonalCard = ({ user }) => {
+	const dispatch = useDispatch();
+	const userAuth = useSelector(state => state.user.userAuth);
+	const navigate = useNavigate();
+	const userInfo = userAuth?.userInfo;
 
-const ImageContainer = styled.div`
-	flex: 1;
-	img {
-		width: 100%;
-		max-width: 400px;
-		height: auto;
-		border-radius: 8px;
-	}
-`;
+	const handleConnectClick = () => {
+		if (!userAuth?.userInfo) {
+			toast.error('You must be logged in to make a connection with this tutor');
+			return;
+		}
+		if (userInfo.role === 'tutor') {
+			toast.error('Tutors cannot connect with each other');
+			return;
+		}
 
-const ContentContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	flex: 2;
-	margin-left: 2rem;
-	padding-left: 1rem;
-	justify-content: space-between;
-`;
+		const meetingData = {
+			tutor: user._id,
+			student: userInfo._id,
+		};
 
-const Name = styled.h2`
-	font-size: 1.5rem;
-	margin: 0;
-`;
+		dispatch(createMeeting(meetingData))
+			.then(() => {
+				toast.success('Connection with tutor successful - go to TUTORING on your dashboard');
+				navigate('/dashboard');
+			})
+			.catch(error => {
+				console.error('Connection failed:', error);
+			});
+	};
 
-const Info = styled.p`
-	margin: 5px 0;
-	font-size: 1rem;
-`;
-
-const RatingLabel = styled.div`
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	background-color: ${({ theme }) => theme.secondary};
-	padding: 5px 10px;
-	border-radius: 5px;
-	display: flex;
-	align-items: center;
-	font-size: 1rem;
-
-	.star-icon {
-		margin-right: 5px;
-		color: #ffd700;
-	}
-`;
-const SubjectLabel = styled.span`
-	background-color: ${({ theme }) => theme.primary};
-	color: ${({ theme }) => theme.textInverted};
-	text-transform: uppercase;
-	padding: 5px 10px;
-	border-radius: 5px;
-	margin: 0 3px;
-	font-size: 0.9rem;
-`;
-
-const PersonalCard = ({ user }) => (
-	<CardContainer>
-		<ImageContainer>
-			<img src={user.avatar} alt={`${user.firstName} ${user.lastName}`} />
-		</ImageContainer>
-		<ContentContainer>
-			<Name>
-				{user.firstName} {user.lastName}
-			</Name>
-			<div>
-				<Info>Email: {user.email}</Info>
-				<Info>Age: {user.age}</Info>
-				<Info>
-					Location: {user.city}, {user.country}
-				</Info>
-				<Info>
-					Subjects:
-					{user.subjects.map((subject, index) => (
-						<SubjectLabel key={index}>{subject.name}</SubjectLabel>
-					))}
-				</Info>
-			</div>
-			<LinkStyled to={'/'}>
-				<Button $primary={true}>Connect</Button>
-			</LinkStyled>
-		</ContentContainer>
-		<RatingLabel>
-			<FaStar className={'star-icon'} /> {user.averageRating}
-		</RatingLabel>
-	</CardContainer>
-);
+	return (
+		<CardContainer>
+			<ImageContainer>
+				<img src={user.avatar} alt={`${user.firstName} ${user.lastName}`} />
+			</ImageContainer>
+			<ContentContainer>
+				<Name>
+					{user.firstName} {user.lastName}
+				</Name>
+				<div>
+					<Info>Email: {user.email}</Info>
+					<Info>Age: {user.age}</Info>
+					<Info>
+						Location: {user.city}, {user.country}
+					</Info>
+					<Info>
+						Subjects:
+						{user.subjects.map((subject, index) => (
+							<SubjectLabel key={index}>{subject.name}</SubjectLabel>
+						))}
+					</Info>
+				</div>
+				<LinkStyled to={'/'}>
+					<Button $primary={true} onClick={handleConnectClick}>
+						Connect
+					</Button>
+				</LinkStyled>
+			</ContentContainer>
+			<RatingLabel>
+				<FaStar className={'star-icon'} /> {user.averageRating}
+			</RatingLabel>
+		</CardContainer>
+	);
+};
 
 PersonalCard.propTypes = {
 	user: PropTypes.shape({
@@ -117,6 +97,8 @@ PersonalCard.propTypes = {
 		).isRequired,
 		averageRating: PropTypes.number.isRequired,
 		avatar: PropTypes.string.isRequired,
+		_id: PropTypes.string.isRequired,
+		role: PropTypes.string.isRequired,
 	}).isRequired,
 };
 
