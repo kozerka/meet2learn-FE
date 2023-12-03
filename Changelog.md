@@ -105,7 +105,7 @@
 ### Fixed  
  - Avatar styles problem solved
 
- ## [0.11.0] - 2023-12-03
+## [0.11.0] - 2023-12-03
 
 ### Added
 
@@ -113,3 +113,11 @@
  - Add and delete review 
  - Editing reviews
  - Protecting tutors from giving feedback
+
+## [0.12.0] - 2023-12-03
+
+### Added
+
+ - Learning connections in order to conduct correspondence and maintain contact between the tutor and the student
+ - Protection against tutors making appointments with each other
+ - Integrated view on the dashboard allowing you to manage your connections - deleting, starting discussions
