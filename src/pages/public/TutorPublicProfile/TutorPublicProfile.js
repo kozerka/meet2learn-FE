@@ -5,25 +5,33 @@ import PersonalCard from '../../../components/features/TutorPublicProfile/Person
 import AboutCard from '../../../components/features/TutorPublicProfile/About';
 import { LinkStyled } from '../../../components/ui/Link.styled';
 import Button from '../../../components/ui/Button';
-import { reviewsData } from '../../../data/reviewsData';
 import Reviews from '../../../components/features/Reviews/Reviews';
 import FeedbackForm from '../../../components/features/FeedbackForm/FeedbackForm';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTutorById } from '../../../store/slices/tutorSlice';
+import { getTutorReviews } from '../../../store/slices/reviewSlice';
+import { fetchUser } from '../../../store/slices/userSlice';
 const TutorPublicProfile = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const tutor = useSelector(state => state.tutors.tutor);
-	const tutorStatus = useSelector(state => state.tutors.tutorStatus);
+	const { tutor, isLoading: isTutorLoading } = useSelector(state => state.tutors);
+	const { reviews, isLoading: isReviewsLoading } = useSelector(state => state.reviews);
+	const [editingReview, setEditingReview] = useState(null);
+
 	useEffect(() => {
-		dispatch(getTutorById(id));
+		if (id) {
+			dispatch(getTutorById(id));
+			dispatch(getTutorReviews(id));
+			dispatch(fetchUser());
+		}
 	}, [dispatch, id]);
-	const handleAddReview = reviewData => {
-		console.log('New review data:', reviewData);
-		// Tutaj logika dodawania recenzji (np. wysyłanie do API)
+
+	const handleEditReview = review => {
+		setEditingReview(review);
 	};
-	if (tutorStatus === 'loading') {
+
+	if (isTutorLoading || isReviewsLoading) {
 		return <div>Loading...</div>;
 	}
 	if (!tutor) {
@@ -45,8 +53,10 @@ const TutorPublicProfile = () => {
 						label: 'Reviews',
 						content: (
 							<>
-								<Reviews reviews={reviewsData} />
-								<FeedbackForm onSubmitFeedback={handleAddReview} />
+								{tutor && tutor.reviews && (
+									<Reviews reviews={reviews} tutorId={id} onEditReview={handleEditReview} />
+								)}
+								<FeedbackForm tutorId={id} reviewData={editingReview} />
 							</>
 						),
 					},

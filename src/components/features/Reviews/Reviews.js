@@ -1,68 +1,88 @@
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteReview, getTutorReviews } from '../../../store/slices/reviewSlice';
+import { getTutorById } from '../../../store/slices/tutorSlice';
+import { toast } from 'react-toastify';
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
+import { FaStar } from 'react-icons/fa';
 
-const ReviewsContainer = styled.div`
-	margin-top: 20px;
-`;
+import {
+	ReviewsContainer,
+	ReviewItem,
+	ReviewHeader,
+	Avatar,
+	Rating,
+	IconContainer,
+	ReviewContent,
+} from './Reviews.styled';
 
-const ReviewItem = styled.div`
-	padding: 15px;
-	border-bottom: 1px solid #ccc;
-`;
+const Reviews = ({ reviews, tutorId, onEditReview }) => {
+	const dispatch = useDispatch();
+	const userId = useSelector(state => state.user.userAuth?.userInfo?._id);
 
-const ReviewHeader = styled.div`
-	display: flex;
-	align-items: center;
-`;
+	const handleDelete = async reviewId => {
+		try {
+			await dispatch(deleteReview(reviewId)).unwrap();
+			toast.success('Review deleted successfully');
+			dispatch(getTutorById(tutorId));
+			dispatch(getTutorReviews(tutorId));
+		} catch (error) {
+			toast.error('Error: ' + error.message || 'Failed to delete review');
+		}
+	};
 
-const Avatar = styled.img`
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	margin-right: 10px;
-`;
-
-const ReviewContent = styled.div`
-	margin-top: 10px;
-`;
-
-const Rating = styled.div`
-	margin-left: auto;
-`;
-
-const Reviews = ({ reviews }) => (
-	<ReviewsContainer>
-		<h2>All Reviews ({reviews.length})</h2>
-		{reviews.map(review => (
-			<ReviewItem key={review.id}>
-				<ReviewHeader>
-					<Avatar src={review.student.avatar} alt={review.student.name} />
-					<div>
-						<p>{review.student.name}</p>
-						<p>{new Date(review.createdAt).toLocaleDateString()}</p>
-					</div>
-					<Rating>{'⭐'.repeat(review.rating)}</Rating>
-				</ReviewHeader>
-				<ReviewContent>{review.reviewText}</ReviewContent>
-			</ReviewItem>
-		))}
-	</ReviewsContainer>
-);
+	return (
+		<ReviewsContainer>
+			<h2>All Reviews ({reviews.length})</h2>
+			{reviews.map(review => {
+				return (
+					<ReviewItem key={review._id}>
+						<ReviewHeader>
+							<Avatar src={review.student?.avatar} alt={review.student?.name} />
+							<div>
+								<p>{review.student?.name}</p>
+								<p>{new Date(review.createdAt).toLocaleDateString()}</p>
+							</div>
+							<Rating>
+								{Array.from({ length: review.rating }, (_, i) => (
+									<FaStar key={i} color={'gold'} />
+								))}
+							</Rating>
+						</ReviewHeader>
+						<ReviewContent>{review.reviewText}</ReviewContent>
+						{userId === review.student?._id && (
+							<IconContainer>
+								<FiEdit size={'1.5rem'} onClick={() => onEditReview(review)} />
+								<FiTrash2 size={'1.5rem'} onClick={() => handleDelete(review._id)} />
+							</IconContainer>
+						)}
+					</ReviewItem>
+				);
+			})}
+		</ReviewsContainer>
+	);
+};
 
 Reviews.propTypes = {
 	reviews: PropTypes.arrayOf(
 		PropTypes.shape({
-			id: PropTypes.string.isRequired,
-			student: PropTypes.shape({
-				id: PropTypes.string.isRequired,
-				name: PropTypes.string.isRequired,
-				avatar: PropTypes.string.isRequired,
-			}).isRequired,
+			_id: PropTypes.string.isRequired,
+			student: PropTypes.oneOfType([
+				PropTypes.shape({
+					id: PropTypes.string,
+					name: PropTypes.string,
+					avatar: PropTypes.string,
+				}),
+				PropTypes.string,
+				PropTypes.oneOf([null, undefined]),
+			]),
 			reviewText: PropTypes.string.isRequired,
 			rating: PropTypes.number.isRequired,
 			createdAt: PropTypes.string.isRequired,
 		})
 	).isRequired,
+	tutorId: PropTypes.string.isRequired,
+	onEditReview: PropTypes.func.isRequired,
 };
 
 export default Reviews;

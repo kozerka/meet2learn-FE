@@ -33,6 +33,7 @@ const Navbar = () => {
 	const toggleMobileNav = () => setIsMobileNavOpen(prevState => !prevState);
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 	const toggleDropdown = () => setIsDropdownOpen(prevState => !prevState);
+	const userAuth = useSelector(state => state.user.userAuth);
 	const handleLogout = () => {
 		dispatch(logoutUser());
 		toast.success('Successfully logged out');
@@ -59,7 +60,7 @@ const Navbar = () => {
 					))}
 				</NavMenu>
 				<NavBtn key={userData ? 'user-logged-in' : 'no-user'}>
-					{userData ? (
+					{userAuth?.userInfo && userData ? (
 						<div style={{ position: 'relative' }}>
 							<ImageContainer>
 								<img src={userData?.avatar} alt={'Avatar użytkownika'} onClick={toggleDropdown} />

@@ -31,8 +31,8 @@ export const getTutorById = createAsyncThunk(
 const initialState = {
 	tutors: [],
 	tutor: null,
-	status: 'idle',
-	tutorStatus: 'idle',
+	isLoading: false,
+	isTutorLoading: false,
 	error: null,
 	total: 0,
 	totalPages: 0,
@@ -46,28 +46,28 @@ export const tutorSlice = createSlice({
 	extraReducers: builder => {
 		builder
 			.addCase(getAllTutors.pending, state => {
-				state.status = 'loading';
+				state.isLoading = true;
 			})
 			.addCase(getAllTutors.fulfilled, (state, action) => {
-				state.status = 'succeeded';
+				state.isLoading = false;
 				state.tutors = action.payload.tutors;
 				state.total = action.payload.total;
 				state.totalPages = action.payload.totalPages;
 				state.currentPage = action.payload.currentPage;
 			})
 			.addCase(getAllTutors.rejected, (state, action) => {
-				state.status = 'failed';
+				state.isLoading = false;
 				state.error = action.payload;
 			})
 			.addCase(getTutorById.pending, state => {
-				state.tutorStatus = 'loading';
+				state.isTutorLoading = true;
 			})
 			.addCase(getTutorById.fulfilled, (state, action) => {
-				state.tutorStatus = 'succeeded';
+				state.isTutorLoading = false;
 				state.tutor = action.payload;
 			})
 			.addCase(getTutorById.rejected, (state, action) => {
-				state.tutorStatus = 'failed';
+				state.isTutorLoading = false;
 				state.error = action.payload;
 			});
 	},

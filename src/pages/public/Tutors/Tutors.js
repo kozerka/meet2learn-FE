@@ -31,7 +31,7 @@ const Tutors = () => {
 
 	const handlePageClick = event => {
 		const newPage = event.selected + 1;
-		navigate(`/tutors?page/${newPage}${search ? '?search=' + search : ''}`);
+		navigate(`/tutors?page=${newPage}${search ? '&search=' + search : ''}`);
 	};
 
 	return (
@@ -43,7 +43,7 @@ const Tutors = () => {
 				<>
 					<TutorsGrid>
 						{tutors.map(tutor => (
-							<TutorCard key={tutor.id} tutor={tutor} />
+							<TutorCard key={tutor._id} tutor={tutor} />
 						))}
 					</TutorsGrid>
 

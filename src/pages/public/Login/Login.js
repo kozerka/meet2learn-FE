@@ -9,7 +9,7 @@ import { Image, ImageContainer } from '../../../components/ui/Image.styled';
 import { LinkStyled } from '../../../components/ui/Link.styled';
 import { FiMail, FiLock } from 'react-icons/fi';
 import { toast } from 'react-toastify';
-import { loginUser } from '../../../store/slices/userSlice';
+import { fetchUser, loginUser } from '../../../store/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,6 +25,7 @@ const Login = () => {
 				try {
 					const actionResponse = await dispatch(loginUser(values));
 					if (loginUser.fulfilled.match(actionResponse)) {
+						fetchUser();
 						toast.success('Login successful!');
 						navigate('/dashboard');
 					} else {

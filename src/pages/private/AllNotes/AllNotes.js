@@ -69,7 +69,6 @@ const AllNotes = () => {
 
 	const handleTagChange = selectedOption => {
 		const selectedTag = selectedOption ? selectedOption.value : '';
-		console.log(selectedTag);
 		dispatch(getAllNotes({ page, limit: 6, tag: selectedTag }));
 
 		navigate(`/dashboard/my-notes/page/1${selectedTag ? '?tag=' + selectedTag : ''}`);

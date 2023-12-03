@@ -58,16 +58,13 @@ const AboutCard = ({ about, bio, experiences }) => (
 );
 
 AboutCard.propTypes = {
-	about: PropTypes.string.isRequired,
-	bio: PropTypes.string.isRequired,
+	about: PropTypes.string,
+	bio: PropTypes.string,
 	experiences: PropTypes.arrayOf(
 		PropTypes.shape({
-			type: PropTypes.string.isRequired,
-			name: PropTypes.string.isRequired,
-			period: PropTypes.string.isRequired,
 			description: PropTypes.string.isRequired,
 		})
-	).isRequired,
+	),
 };
 
 export default AboutCard;
