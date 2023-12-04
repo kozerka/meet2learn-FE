@@ -24,7 +24,7 @@ const AllTutorConnections = () => {
 	if (meetings.length === 0) {
 		return (
 			<CustomContainer>
-				<SectionTitle size={'big'} title={'All Notes'} />
+				<SectionTitle size={'big'} title={'All Connections'} />
 				{userAuth.userInfo.role === 'tutor' ? <TutorMessage /> : <StudentMessage />}
 			</CustomContainer>
 		);
