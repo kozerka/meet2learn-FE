@@ -22,6 +22,18 @@ export const getPosts = createAsyncThunk('post/getPosts', async (_, { rejectWith
 	}
 });
 
+export const getPostsCategories = createAsyncThunk(
+	'post/getPostsCategories',
+	async (_, { rejectWithValue }) => {
+		try {
+			const response = await axios.get(`${BASE_URL}/posts/categories`);
+			return response.data;
+		} catch (error) {
+			return rejectWithValue(error.response.data);
+		}
+	}
+);
+
 export const getPostById = createAsyncThunk(
 	'post/getPostById',
 	async (postId, { rejectWithValue }) => {
@@ -101,7 +113,9 @@ export const getPostsByUserId = createAsyncThunk(
 const initialState = {
 	posts: [],
 	currentPost: null,
+	categories: [],
 	isLoading: false,
+	userPosts: [],
 	error: null,
 };
 
@@ -130,6 +144,17 @@ export const postSlice = createSlice({
 				state.posts = action.payload;
 			})
 			.addCase(getPosts.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(getPostsCategories.pending, state => {
+				state.isLoading = true;
+			})
+			.addCase(getPostsCategories.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.categories = action.payload;
+			})
+			.addCase(getPostsCategories.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			})
