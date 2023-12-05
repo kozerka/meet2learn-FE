@@ -121,3 +121,9 @@
  - Learning connections in order to conduct correspondence and maintain contact between the tutor and the student
  - Protection against tutors making appointments with each other
  - Integrated view on the dashboard allowing you to manage your connections - deleting, starting discussions
+
+## [0.12.0] - 2023-12-05
+
+### Added
+
+- Conversations in the form of chats between the student and the tutor with the option of grouping by conversation date (collapsing grouped conversations) with the possibility of deleting individual conversations by the author of the entry
