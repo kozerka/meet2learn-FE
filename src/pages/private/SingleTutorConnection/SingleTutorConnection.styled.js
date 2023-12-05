@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { TbArrowBigDownFilled } from 'react-icons/tb';
+
 const ConnectionCard = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -32,6 +34,36 @@ const ConnectionInfo = styled.div`
 	margin: 1rem;
 `;
 
+const ArrowIcon = styled(TbArrowBigDownFilled)`
+	transition: transform 0.3s ease;
+
+	&.rotated {
+		transform: rotate(180deg);
+	}
+`;
+
+const ConversationContainer = styled.div`
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.11);
+	border-radius: 8px;
+	padding: 1.5rem;
+	button {
+		width: 100%;
+		border: none;
+		border-radius: 6px;
+		padding: 0.5rem;
+		margin: 1rem 0;
+		background-color: ${({ theme }) => theme.primary};
+		color: ${({ theme }) => theme.textInverted};
+		font-weight: 700;
+		text-transform: uppercase;
+		display: flex;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+	}
+`;
+
 const ParticipantContainer = styled.div`
 	display: flex;
 	justify-content: space-evenly;
@@ -42,4 +74,12 @@ const ParticipantContainer = styled.div`
 		flex-direction: column;
 	}
 `;
-export { ConnectionCard, StudentInfo, TutorInfo, ConnectionInfo, ParticipantContainer };
+export {
+	ConnectionCard,
+	StudentInfo,
+	TutorInfo,
+	ConnectionInfo,
+	ParticipantContainer,
+	ArrowIcon,
+	ConversationContainer,
+};

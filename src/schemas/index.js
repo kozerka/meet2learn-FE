@@ -6,3 +6,4 @@ export * from './passwordChange';
 export * from './notes';
 export * from './uploadAvatar';
 export * from './editProfileForm';
+export * from './conversation';

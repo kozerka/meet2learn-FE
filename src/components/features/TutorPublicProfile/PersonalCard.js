@@ -35,7 +35,7 @@ const PersonalCard = ({ user }) => {
 		const hasMeetingWithTutor = allMeetings.some(meeting => meeting.tutor._id === user._id);
 
 		if (hasMeetingWithTutor) {
-			toast.error('You already have a meeting with this tutor');
+			toast.error('You already have a connection with this tutor');
 			return;
 		}
 
