@@ -1,6 +1,6 @@
 import EditProfileForm from '../../../components/features/EditProfileForm/EditProfileForm';
 import styled from 'styled-components';
-import useUserData from '../../../hooks/useUserData';
+import { useUserData } from '../../../hooks';
 import { SectionTitle } from '../../../components';
 
 const Wrapper = styled.div`

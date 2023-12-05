@@ -6,6 +6,8 @@ import {
 	ConnectionInfo,
 	StudentInfo,
 	TutorInfo,
+	ConversationContainer,
+	ArrowIcon,
 } from './SingleTutorConnection.styled';
 import Button from '../../../components/ui/Button';
 import { ButtonContainer } from '../../../components/ui/Containers';
@@ -14,23 +16,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import Modal from '../../../components/ui/Modal/Modal';
-
-const calculateDaysOfConnection = connectionDate => {
-	const today = new Date();
-	const startDate = new Date(connectionDate);
-	const timeDiff = today - startDate;
-	const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-	return daysDiff;
-};
+import { useConversations, useModal } from '../../../hooks';
+import { calculateDaysOfConnection, groupConversationsByDate } from '../../../utils';
+import { ConversationForm } from '../../../components';
+import ConversationMessage from '../../../components/features/ConversationMessage/ConversationMessage';
 
 const SingleTutorConnection = ({ meeting, onDiscuss }) => {
+	const {
+		isConversationFormOpen,
+		handleToggleConversationForm,
+		handleConversationSubmit,
+		handleConversationCancel,
+		handleDeleteConversation,
+		conversations,
+		isConversationsLoading,
+	} = useConversations(meeting._id);
+	const { isModalOpen, openModal, closeModal } = useModal();
 	const dispatch = useDispatch();
-	const [isModalOpen, setIsModalOpen] = useState(false);
 	const isLoading = useSelector(state => state.meetings.isLoading);
-
-	const openModal = () => setIsModalOpen(true);
-	const closeModal = () => setIsModalOpen(false);
+	const userAuth = useSelector(state => state.user.userAuth);
+	const [visibleConversations, setVisibleConversations] = useState({});
 	const daysOfConnection = calculateDaysOfConnection(meeting.date);
+	const toggleVisibility = date => {
+		setVisibleConversations(prev => ({ ...prev, [date]: !prev[date] }));
+	};
+
 	const handleConfirmDelete = () => {
 		dispatch(deleteMeeting(meeting._id))
 			.unwrap()
@@ -42,9 +52,12 @@ const SingleTutorConnection = ({ meeting, onDiscuss }) => {
 				toast.error(`Error: ${error.message}`);
 			});
 	};
+
 	if (isLoading) {
 		return <div>Loading...</div>;
 	}
+
+	const groupedConversations = groupConversationsByDate(conversations);
 
 	return (
 		<>
@@ -67,10 +80,43 @@ const SingleTutorConnection = ({ meeting, onDiscuss }) => {
 						<Button $secondary onClick={openModal}>
 							Delete Connection
 						</Button>
-						<Button $secondary onClick={() => onDiscuss(meeting._id)}>
-							Discuss
+						<Button $secondary onClick={handleToggleConversationForm}>
+							Conversations
 						</Button>
 					</ButtonContainer>
+					{isConversationFormOpen && (
+						<>
+							<ConversationForm
+								onSubmit={handleConversationSubmit}
+								onCancel={handleConversationCancel}
+							/>
+							{isConversationsLoading ? (
+								<p>Loading conversations...</p>
+							) : (
+								Object.entries(groupedConversations).map(([date, conversationsForDate]) => (
+									<ConversationContainer key={date}>
+										<button onClick={() => toggleVisibility(date)}>
+											<p>Conversations from: {date} </p>
+											<ArrowIcon
+												size={'1.2rem'}
+												className={visibleConversations[date] ? 'rotated' : ''}
+											/>
+										</button>
+										{visibleConversations[date] &&
+											conversationsForDate.map(conversation => (
+												<ConversationMessage
+													key={conversation._id}
+													message={conversation}
+													isTutor={conversation.user._id === meeting.tutor._id}
+													onDelete={() => handleDeleteConversation(conversation._id)}
+													userAuth={userAuth}
+												/>
+											))}
+									</ConversationContainer>
+								))
+							)}
+						</>
+					)}
 				</ConnectionInfo>
 			</ConnectionCard>
 			<Modal
@@ -89,15 +135,17 @@ SingleTutorConnection.propTypes = {
 		tutor: PropTypes.shape({
 			name: PropTypes.string.isRequired,
 			avatar: PropTypes.string.isRequired,
+			_id: PropTypes.string.isRequired,
 		}),
 		student: PropTypes.shape({
 			name: PropTypes.string.isRequired,
 			avatar: PropTypes.string.isRequired,
+			_id: PropTypes.string.isRequired,
 		}),
 		date: PropTypes.string.isRequired,
-	}).isRequired,
-	onDiscuss: PropTypes.func.isRequired,
-	onDelete: PropTypes.func.isRequired,
+	}),
+	onDiscuss: PropTypes.func,
+	onDelete: PropTypes.func,
 };
 
 export default SingleTutorConnection;

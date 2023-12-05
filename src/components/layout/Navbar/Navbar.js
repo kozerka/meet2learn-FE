@@ -22,7 +22,7 @@ import { navLinks } from '../../../data';
 import { logoutUser } from '../../../store/slices/userSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import useUserData from '../../../hooks/useUserData';
+import { useUserData } from '../../../hooks';
 
 const Navbar = () => {
 	const dispatch = useDispatch();
@@ -41,6 +41,7 @@ const Navbar = () => {
 	};
 
 	const { userData, isLoading } = useUserData();
+	const closeDropDown = () => setIsDropdownOpen(false);
 
 	if (isLoading) {
 		return <div>Loading...</div>;
@@ -67,8 +68,16 @@ const Navbar = () => {
 							</ImageContainer>
 							{isDropdownOpen && (
 								<Dropdown>
-									<StyledLink to={'/dashboard'}>Dashboard</StyledLink>
-									<StyledLink to={'/login'} onClick={handleLogout}>
+									<StyledLink to={'/dashboard'} onClick={closeDropDown}>
+										Dashboard
+									</StyledLink>
+									<StyledLink
+										to={'/login'}
+										onClick={() => {
+											handleLogout();
+											closeDropDown();
+										}}
+									>
 										Logout
 									</StyledLink>
 								</Dropdown>

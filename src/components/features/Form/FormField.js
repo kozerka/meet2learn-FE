@@ -4,6 +4,7 @@ import { StyledLabel, StyledInput, StyledTextArea } from './FormField.styled';
 import { ErrorText } from '../../ui/ErrorText.styled';
 import { StyledIcon, StyledIconForPasswordVisibility } from '../../ui/Icon.styled';
 import { FiEyeOff, FiEye } from 'react-icons/fi';
+
 const FormField = ({
 	label,
 	type,

@@ -6,6 +6,7 @@ import userReducer from './slices/userSlice';
 import tutorReducer from './slices/tutorSlice';
 import reviewReducer from './slices/reviewSlice';
 import meetingReducer from './slices/meetingSlice';
+import conversationReducer from './slices/conversationSlice';
 
 export const store = configureStore({
 	reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
 		tutors: tutorReducer,
 		reviews: reviewReducer,
 		meetings: meetingReducer,
+		conversations: conversationReducer,
 	},
 	devTools: true,
 });
