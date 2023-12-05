@@ -62,7 +62,7 @@ const router = createBrowserRouter([
 						element: <Stats />,
 					},
 					{
-						path: 'my-notes',
+						path: 'forum',
 						element: <Forum />,
 						children: [
 							{ index: true, element: <AllPosts /> },

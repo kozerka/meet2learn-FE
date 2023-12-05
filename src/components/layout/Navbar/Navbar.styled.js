@@ -103,14 +103,18 @@ const ThemeToggler = styled.button`
 const Dropdown = styled.div`
 	background: ${({ theme }) => theme.body};
 	position: absolute;
-	top: 50px;
-	right: 0;
+	top: 80px;
+	right: -20px;
 	padding: 1rem;
 	border-radius: 5px;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
+	align-items: center;
+	gap: 0.8rem;
+	a:hover {
+		color: ${({ theme }) => theme.primary};
+	}
 `;
 const ImageContainer = styled.div`
 	position: relative;
