@@ -7,6 +7,8 @@ import tutorReducer from './slices/tutorSlice';
 import reviewReducer from './slices/reviewSlice';
 import meetingReducer from './slices/meetingSlice';
 import conversationReducer from './slices/conversationSlice';
+import commentReducer from './slices/commentSlice';
+import postReducer from './slices/postSlice';
 
 export const store = configureStore({
 	reducer: {
@@ -18,6 +20,8 @@ export const store = configureStore({
 		reviews: reviewReducer,
 		meetings: meetingReducer,
 		conversations: conversationReducer,
+		comments: commentReducer,
+		posts: postReducer,
 	},
 	devTools: true,
 });
