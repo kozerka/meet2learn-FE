@@ -4,7 +4,7 @@ import Message from './ConversationMessage.styled';
 const ConversationMessage = ({ message, isTutor, onDelete, userAuth }) => {
 	return (
 		<Message $isTutor={isTutor}>
-			<img src={message.avatar} alt={`${message.firstName} ${message.lastName}`} />
+			<img src={message.user.avatar} alt={`${message.firstName} ${message.lastName}`} />
 			<div className={'content'}>
 				<div>
 					<p>{message.text}</p>

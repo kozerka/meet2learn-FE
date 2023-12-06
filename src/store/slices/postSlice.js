@@ -5,7 +5,7 @@ export const createPost = createAsyncThunk(
 	'post/createPost',
 	async (postData, { rejectWithValue }) => {
 		try {
-			const response = await axios.post(`${BASE_URL}/posts/create`, postData);
+			const response = await axios.post(`${BASE_URL}/api/posts/create`, postData);
 			return response.data;
 		} catch (error) {
 			return rejectWithValue(error.response.data);
@@ -15,30 +15,18 @@ export const createPost = createAsyncThunk(
 
 export const getPosts = createAsyncThunk('post/getPosts', async (_, { rejectWithValue }) => {
 	try {
-		const response = await axios.get(`${BASE_URL}/posts`);
+		const response = await axios.get(`${BASE_URL}/api/posts`);
 		return response.data;
 	} catch (error) {
 		return rejectWithValue(error.response.data);
 	}
 });
 
-export const getPostsCategories = createAsyncThunk(
-	'post/getPostsCategories',
-	async (_, { rejectWithValue }) => {
-		try {
-			const response = await axios.get(`${BASE_URL}/posts/categories`);
-			return response.data;
-		} catch (error) {
-			return rejectWithValue(error.response.data);
-		}
-	}
-);
-
 export const getPostById = createAsyncThunk(
 	'post/getPostById',
 	async (postId, { rejectWithValue }) => {
 		try {
-			const response = await axios.get(`${BASE_URL}/posts/${postId}`);
+			const response = await axios.get(`${BASE_URL}/api/posts/${postId}`);
 			return response.data;
 		} catch (error) {
 			return rejectWithValue(error.response.data);
@@ -50,7 +38,7 @@ export const deletePost = createAsyncThunk(
 	'post/deletePost',
 	async (postId, { rejectWithValue }) => {
 		try {
-			await axios.delete(`${BASE_URL}/posts/${postId}`);
+			await axios.delete(`${BASE_URL}/api/posts/${postId}`);
 			return postId;
 		} catch (error) {
 			return rejectWithValue(error.response.data);
@@ -61,7 +49,7 @@ export const updatePost = createAsyncThunk(
 	'post/updatePost',
 	async ({ postId, updateData }, { rejectWithValue }) => {
 		try {
-			const response = await axios.put(`${BASE_URL}/posts/edit/${postId}`, updateData);
+			const response = await axios.put(`${BASE_URL}/api/posts/edit/${postId}`, updateData);
 			return response.data;
 		} catch (error) {
 			return rejectWithValue(error.response.data);
@@ -70,7 +58,7 @@ export const updatePost = createAsyncThunk(
 );
 export const likePost = createAsyncThunk('post/likePost', async (postId, { rejectWithValue }) => {
 	try {
-		const response = await axios.put(`${BASE_URL}/posts/like/${postId}`);
+		const response = await axios.put(`${BASE_URL}/api/posts/like/${postId}`);
 		return response.data;
 	} catch (error) {
 		return rejectWithValue(error.response.data);
@@ -80,7 +68,7 @@ export const dislikePost = createAsyncThunk(
 	'post/dislikePost',
 	async (postId, { rejectWithValue }) => {
 		try {
-			const response = await axios.put(`${BASE_URL}/posts/dislike/${postId}`);
+			const response = await axios.put(`${BASE_URL}/api/posts/dislike/${postId}`);
 			return response.data;
 		} catch (error) {
 			return rejectWithValue(error.response.data);
@@ -91,7 +79,7 @@ export const givePriority = createAsyncThunk(
 	'post/givePriority',
 	async (postId, { rejectWithValue }) => {
 		try {
-			const response = await axios.put(`${BASE_URL}/posts/priority/${postId}`);
+			const response = await axios.put(`${BASE_URL}/api/posts/priority/${postId}`);
 			return response.data;
 		} catch (error) {
 			return rejectWithValue(error.response.data);
@@ -102,7 +90,7 @@ export const getPostsByUserId = createAsyncThunk(
 	'post/getPostsByUserId',
 	async (userId, { rejectWithValue }) => {
 		try {
-			const response = await axios.get(`${BASE_URL}/posts/user/${userId}`);
+			const response = await axios.get(`${BASE_URL}/api/posts/user/${userId}`);
 			return response.data;
 		} catch (error) {
 			return rejectWithValue(error.response.data);
@@ -120,9 +108,13 @@ const initialState = {
 };
 
 export const postSlice = createSlice({
-	name: 'post',
+	name: 'posts',
 	initialState,
-	reducers: {},
+	reducers: {
+		setCategories: (state, action) => {
+			state.categories = action.payload;
+		},
+	},
 	extraReducers: builder => {
 		builder
 			.addCase(createPost.pending, state => {
@@ -144,17 +136,6 @@ export const postSlice = createSlice({
 				state.posts = action.payload;
 			})
 			.addCase(getPosts.rejected, (state, action) => {
-				state.isLoading = false;
-				state.error = action.payload;
-			})
-			.addCase(getPostsCategories.pending, state => {
-				state.isLoading = true;
-			})
-			.addCase(getPostsCategories.fulfilled, (state, action) => {
-				state.isLoading = false;
-				state.categories = action.payload;
-			})
-			.addCase(getPostsCategories.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			})
@@ -207,13 +188,11 @@ export const postSlice = createSlice({
 			})
 			.addCase(likePost.pending, state => {
 				state.isLoading = true;
-			})
+			});
+		builder
 			.addCase(likePost.fulfilled, (state, action) => {
+				state.post = action.payload;
 				state.isLoading = false;
-				const index = state.posts.findIndex(post => post._id === action.payload._id);
-				if (index !== -1) {
-					state.posts[index] = action.payload;
-				}
 			})
 			.addCase(likePost.rejected, (state, action) => {
 				state.isLoading = false;
@@ -223,11 +202,8 @@ export const postSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(dislikePost.fulfilled, (state, action) => {
+				state.post = action.payload;
 				state.isLoading = false;
-				const index = state.posts.findIndex(post => post._id === action.payload._id);
-				if (index !== -1) {
-					state.posts[index] = action.payload;
-				}
 			})
 			.addCase(dislikePost.rejected, (state, action) => {
 				state.isLoading = false;
@@ -237,17 +213,15 @@ export const postSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(givePriority.fulfilled, (state, action) => {
+				state.post = action.payload;
 				state.isLoading = false;
-				const index = state.posts.findIndex(post => post._id === action.payload._id);
-				if (index !== -1) {
-					state.posts[index] = action.payload;
-				}
 			})
+
 			.addCase(givePriority.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			});
 	},
 });
-
+export const { setCategories } = postSlice.actions;
 export default postSlice.reducer;

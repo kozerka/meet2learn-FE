@@ -11,4 +11,7 @@ export const CustomContainer = styled.div`
 	align-items: center;
 	justify-content: space-evenly;
 	background-color: ${({ theme }) => theme.background};
+	button {
+		margin-top: 1rem;
+	}
 `;

@@ -6,7 +6,7 @@ export const createComment = createAsyncThunk(
 	'comment/createComment',
 	async ({ postId, commentData }, { rejectWithValue }) => {
 		try {
-			const response = await axios.post(`${BASE_URL}/comments/${postId}`, commentData);
+			const response = await axios.post(`${BASE_URL}/api/posts/comments/${postId}`, commentData);
 			return response.data;
 		} catch (error) {
 			return rejectWithValue(error.response.data);
@@ -18,7 +18,7 @@ export const deleteComment = createAsyncThunk(
 	'comment/deleteComment',
 	async ({ postId, commentId }, { rejectWithValue }) => {
 		try {
-			await axios.delete(`${BASE_URL}/comments/${postId}/${commentId}`);
+			await axios.delete(`${BASE_URL}/api/posts/comments/${postId}/${commentId}`);
 			return commentId;
 		} catch (error) {
 			return rejectWithValue(error.response.data);
@@ -41,11 +41,7 @@ export const commentSlice = createSlice({
 			})
 			.addCase(createComment.fulfilled, (state, action) => {
 				state.isLoading = false;
-				const { postId, comment } = action.payload;
-				const post = state.posts.find(p => p._id === postId);
-				if (post) {
-					post.comments.unshift(comment);
-				}
+				state.comments = action.payload;
 			})
 			.addCase(createComment.rejected, (state, action) => {
 				state.isLoading = false;
@@ -56,11 +52,7 @@ export const commentSlice = createSlice({
 			})
 			.addCase(deleteComment.fulfilled, (state, action) => {
 				state.isLoading = false;
-				const { postId, commentId } = action.payload;
-				const post = state.posts.find(p => p._id === postId);
-				if (post) {
-					post.comments = post.comments.filter(c => c._id !== commentId);
-				}
+				state.comments = action.payload;
 			})
 			.addCase(deleteComment.rejected, (state, action) => {
 				state.isLoading = false;
