@@ -31,7 +31,7 @@ const SingleTutorConnection = ({ meeting, onDiscuss }) => {
 		conversations,
 		isConversationsLoading,
 	} = useConversations(meeting._id);
-	const { isModalOpen, openModal, closeModal } = useModal();
+	const { isOpen, openModal, closeModal } = useModal();
 	const dispatch = useDispatch();
 	const isLoading = useSelector(state => state.meetings.isLoading);
 	const userAuth = useSelector(state => state.user.userAuth);
@@ -120,7 +120,7 @@ const SingleTutorConnection = ({ meeting, onDiscuss }) => {
 				</ConnectionInfo>
 			</ConnectionCard>
 			<Modal
-				isOpen={isModalOpen}
+				isOpen={isOpen}
 				onClose={closeModal}
 				onConfirm={handleConfirmDelete}
 				message={'Are you sure you want to delete this connection?'}

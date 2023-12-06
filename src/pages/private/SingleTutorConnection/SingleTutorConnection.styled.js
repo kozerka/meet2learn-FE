@@ -43,9 +43,6 @@ const ArrowIcon = styled(TbArrowBigDownFilled)`
 `;
 
 const ConversationContainer = styled.div`
-	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.11);
-	border-radius: 8px;
-	padding: 1.5rem;
 	button {
 		width: 100%;
 		border: none;

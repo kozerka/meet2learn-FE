@@ -14,3 +14,7 @@ export { default as ViewNote } from './ViewNote/ViewNote';
 export { default as AllTutorConnections } from './AllTutorConnections/AllTutorConnections';
 export { default as SingleTutorConnection } from './SingleTutorConnection/SingleTutorConnection';
 export { default as UploadAvatar } from './UploadAvatar/UploadAvatar';
+export { default as AddPost } from './AddPost/AddPost';
+export { default as AllPosts } from './AllPosts/AllPosts';
+export { default as EditPost } from './EditPost/EditPost';
+export { default as MyPosts } from './MyPosts/MyPosts';

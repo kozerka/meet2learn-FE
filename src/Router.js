@@ -25,6 +25,10 @@ import {
 	SingleTutorConnection,
 	AllTutorConnections,
 	UploadAvatar,
+	AllPosts,
+	EditPost,
+	MyPosts,
+	AddPost,
 } from './pages';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -57,7 +61,22 @@ const router = createBrowserRouter([
 						index: true,
 						element: <Stats />,
 					},
-					{ path: 'forum', element: <Forum /> },
+					{
+						path: 'forum',
+						element: <Forum />,
+						children: [
+							{ index: true, element: <AllPosts /> },
+							{ path: 'add-post', element: <AddPost /> },
+							{
+								path: 'edit-post/:id',
+								element: <EditPost />,
+							},
+							{
+								path: 'my-posts',
+								element: <MyPosts />,
+							},
+						],
+					},
 					{
 						path: 'my-notes',
 						element: <MyNotes />,
