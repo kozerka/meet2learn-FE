@@ -1,12 +1,12 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import FormField from '../features/Form/FormField';
+import FormField from '../Form/FormField';
 import { useDispatch } from 'react-redux';
-import { createComment } from '../../store/slices/commentSlice';
-import { getPosts } from '../../store/slices/postSlice';
+import { createComment } from '../../../store/slices/commentSlice';
+import { getPosts } from '../../../store/slices/postSlice';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
-import Button from './Button';
+import Button from '../../ui/Button';
 
 const CommentForm = ({ postId }) => {
 	const dispatch = useDispatch();

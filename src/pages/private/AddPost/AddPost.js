@@ -73,15 +73,15 @@ const AddPost = ({ initialPost, isEditing }) => {
 			resetForm();
 		},
 	});
-	useEffect(() => {
-		if (isEditing && initialPost) {
-			formik.setValues({
-				title: initialPost.title,
-				text: initialPost.text,
-				category: initialPost.category,
-			});
-		}
-	}, [isEditing, initialPost, formik]);
+	// useEffect(() => {
+	// 	if (isEditing && initialPost) {
+	// 		formik.setValues({
+	// 			title: initialPost.title,
+	// 			text: initialPost.text,
+	// 			category: initialPost.category,
+	// 		});
+	// 	}
+	// }, [isEditing, initialPost, formik]);
 
 	const categoryOptions = categories.map(({ value, label }) => ({ value, label }));
 

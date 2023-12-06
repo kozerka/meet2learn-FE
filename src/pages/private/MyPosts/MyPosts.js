@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PostItem from '../../../components/ui/PostItem';
+import { PostItem } from '../../../components/features';
 import { getPostsByUserId } from '../../../store/slices/postSlice';
 
 const MyPosts = () => {

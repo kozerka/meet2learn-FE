@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
 	FaThumbsUp,
 	FaThumbsDown,
@@ -7,9 +7,9 @@ import {
 	FaEdit,
 	FaComment,
 } from 'react-icons/fa';
-import Modal from '../ui/Modal/Modal';
-import CommentForm from './CommentForm';
-import CommentItem from './CommentItem';
+import Modal from '../../ui/Modal/Modal';
+import CommentForm from '../CommentForm/CommentForm';
+import CommentItem from '../CommentItem/CommentItem';
 import {
 	PostCard,
 	PostContent,
@@ -27,28 +27,10 @@ import {
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-	deletePost,
-	givePriority,
-	likePost,
-	dislikePost,
-	getPosts,
-} from '../../store/slices/postSlice';
+import { deletePost } from '../../../store/slices/postSlice';
 import { toast } from 'react-toastify';
-import { useModal } from '../../hooks';
-
-function formatDate(dateString) {
-	const options = {
-		year: 'numeric',
-		month: 'numeric',
-		day: 'numeric',
-		hour: '2-digit',
-		minute: '2-digit',
-		second: '2-digit',
-	};
-	return new Intl.DateTimeFormat('default', options).format(new Date(dateString));
-}
-
+import { useModal, usePostInteractions } from '../../../hooks';
+import { formatDate } from '../../../utils';
 const PostItem = ({ post }) => {
 	const { _id, text, title, category, createdAt, updatedAt, comments, user } = post;
 	const [commentOpen, setCommentOpen] = useState(false);
@@ -58,6 +40,7 @@ const PostItem = ({ post }) => {
 	const loggedInUserId = userAuth?.userInfo?._id;
 	const dispatch = useDispatch();
 	const { isOpen, openModal, closeModal } = useModal();
+	const { handleLike, handleDislike, handlePriority } = usePostInteractions(_id);
 
 	useEffect(() => {
 		setComments(comments);
@@ -75,35 +58,7 @@ const PostItem = ({ post }) => {
 				toast.error(`Error: ${error.message}`);
 			});
 	};
-	const handleLike = useCallback(async () => {
-		try {
-			const response = await dispatch(likePost(_id)).unwrap();
-			toast.success(response.message || 'You give your like to this post.');
-			dispatch(getPosts());
-		} catch (error) {
-			toast.error(error.message || 'Failed to give like.');
-		}
-	}, [dispatch, _id]);
 
-	const handleDislike = useCallback(async () => {
-		try {
-			const response = await dispatch(dislikePost(_id)).unwrap();
-			toast.success(response.message || 'You give your dislike to this post.');
-			dispatch(getPosts());
-		} catch (error) {
-			toast.error(error.message || 'Failed to give dislike.');
-		}
-	}, [dispatch, _id]);
-
-	const handlePriority = useCallback(async () => {
-		try {
-			const response = await dispatch(givePriority(_id)).unwrap();
-			toast.success(response.message || 'Priority increased successfully.');
-			dispatch(getPosts());
-		} catch (error) {
-			toast.error(error.message || 'Failed to increase priority.');
-		}
-	}, [dispatch, _id]);
 	const totalPriority = useMemo(() => {
 		return post.priority.reduce((acc, p) => acc + p.count, 0);
 	}, [post.priority]);

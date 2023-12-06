@@ -11,8 +11,8 @@ import {
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaTrashAlt } from 'react-icons/fa';
-import { deleteComment } from '../../store/slices/commentSlice';
-import { getPosts } from '../../store/slices/postSlice';
+import { deleteComment } from '../../../store/slices/commentSlice';
+import { getPosts } from '../../../store/slices/postSlice';
 import { toast } from 'react-toastify';
 
 const CommentItem = ({ comment, postId }) => {
