@@ -122,8 +122,19 @@
  - Protection against tutors making appointments with each other
  - Integrated view on the dashboard allowing you to manage your connections - deleting, starting discussions
 
-## [0.12.0] - 2023-12-05
+## [0.13.0] - 2023-12-05
 
 ### Added
 
 - Conversations in the form of chats between the student and the tutor with the option of grouping by conversation date (collapsing grouped conversations) with the possibility of deleting individual conversations by the author of the entry
+
+## [0.14.0] - 2023-12-06
+
+### Added
+
+ - forum for portal users
+ - adding, editing, deleting posts
+ - filtering posts by categories
+ - adding a priority (maximum 5 priority from one user)
+ - adding likes, dislikes,
+ - adding comments under a specific post
