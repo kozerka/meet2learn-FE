@@ -138,3 +138,9 @@
  - adding a priority (maximum 5 priority from one user)
  - adding likes, dislikes,
  - adding comments under a specific post
+
+## [0.15.0] - 2023-12-07
+
+### Added
+
+ - User statistics on the main dashboard page
