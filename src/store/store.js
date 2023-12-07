@@ -9,6 +9,7 @@ import meetingReducer from './slices/meetingSlice';
 import conversationReducer from './slices/conversationSlice';
 import commentReducer from './slices/commentSlice';
 import postReducer from './slices/postSlice';
+import statsReducer from './slices/statsSlice';
 
 export const store = configureStore({
 	reducer: {
@@ -22,6 +23,7 @@ export const store = configureStore({
 		conversations: conversationReducer,
 		comments: commentReducer,
 		posts: postReducer,
+		stats: statsReducer,
 	},
 	devTools: true,
 });
