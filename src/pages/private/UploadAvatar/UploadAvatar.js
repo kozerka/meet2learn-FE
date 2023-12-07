@@ -1,5 +1,5 @@
 import { SectionTitle } from '../../../components';
-import { CustomContainer } from '../../../components/ui/Containers/CustomContainer';
+import { CustomContainer } from '../../../components/ui/Containers';
 import UploadForm from '../../../components/features/UploadForm/UploadForm';
 const UploadAvatar = () => {
 	return (

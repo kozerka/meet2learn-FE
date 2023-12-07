@@ -5,5 +5,6 @@ export * from './SelectContainer.styled';
 export * from './DashboardContainer.styled';
 export * from './ButtonContainer.styled';
 export * from './SectionContainer.styled';
-export * from './CustomContainer';
-export * from './ImgContainer';
+export * from './CustomContainer.styled';
+export * from './ImgContainer.styled';
+export * from './NavContainer.styled';
