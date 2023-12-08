@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { createPost, updatePost } from '../../../store/slices/postSlice';
 import fetchCategories from '../../../services/categoryServices';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import Select from 'react-select';
 import FormField from '../../../components/features/Form/FormField';
 import { StyledLabel } from '../../../components/features/Form/FormField.styled';
@@ -13,7 +12,10 @@ import Button from '../../../components/ui/Button';
 import SectionTitle from '../../../components/ui/SectionTitle/SectionTitle';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { ErrorText } from '../../../components/ui/ErrorText.styled';
+import { postFormSchema } from '../../../schemas';
 import PropTypes from 'prop-types';
+import JoditEditor from 'jodit-react';
 
 const StyledSelect = styled(Select)`
 	margin-top: 10px;
@@ -35,6 +37,9 @@ const AddPost = ({ initialPost, isEditing }) => {
 			setCategories(categoriesArray);
 		});
 	}, []);
+	const handleEditorChange = newContent => {
+		formik.setFieldValue('text', newContent);
+	};
 
 	const formik = useFormik({
 		initialValues: {
@@ -42,14 +47,7 @@ const AddPost = ({ initialPost, isEditing }) => {
 			text: isEditing && initialPost ? initialPost.text : '',
 			category: isEditing && initialPost ? initialPost.category : 'other',
 		},
-		validationSchema: Yup.object({
-			title: Yup.string()
-				.min(3, 'Title must be at least 3 characters')
-				.required('Title is required'),
-			text: Yup.string()
-				.min(15, 'Text must be at least 15 characters')
-				.required('Text is required'),
-		}),
+		validationSchema: postFormSchema,
 		onSubmit: (values, { resetForm }) => {
 			if (isEditing) {
 				dispatch(updatePost({ postId: initialPost._id, updateData: values }))
@@ -73,15 +71,6 @@ const AddPost = ({ initialPost, isEditing }) => {
 			resetForm();
 		},
 	});
-	// useEffect(() => {
-	// 	if (isEditing && initialPost) {
-	// 		formik.setValues({
-	// 			title: initialPost.title,
-	// 			text: initialPost.text,
-	// 			category: initialPost.category,
-	// 		});
-	// 	}
-	// }, [isEditing, initialPost, formik]);
 
 	const categoryOptions = categories.map(({ value, label }) => ({ value, label }));
 
@@ -99,18 +88,18 @@ const AddPost = ({ initialPost, isEditing }) => {
 					handleChange={formik.handleChange}
 					handleBlur={formik.handleBlur}
 				/>
-
-				<FormField
-					label={'Text'}
-					type={'textarea'}
-					name={'text'}
-					errors={formik.errors}
-					values={formik.values}
-					touched={formik.touched}
-					handleChange={formik.handleChange}
-					handleBlur={formik.handleBlur}
-					rows={8}
+				{formik.touched.text && formik.errors.text ? (
+					<ErrorText>{formik.errors.text}</ErrorText>
+				) : null}
+				<JoditEditor
+					value={formik.values.text}
+					onChange={newContent => {
+						handleEditorChange(newContent);
+						formik.validateField('text');
+					}}
+					onBlur={() => formik.handleBlur('text')}
 				/>
+
 				<div>
 					<StyledLabel>Category</StyledLabel>
 					<StyledSelect

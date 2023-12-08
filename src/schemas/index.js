@@ -7,3 +7,4 @@ export * from './notes';
 export * from './uploadAvatar';
 export * from './editProfileForm';
 export * from './conversation';
+export * from './postForm';

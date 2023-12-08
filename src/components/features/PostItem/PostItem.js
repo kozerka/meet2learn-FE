@@ -31,6 +31,7 @@ import { deletePost } from '../../../store/slices/postSlice';
 import { toast } from 'react-toastify';
 import { useModal, usePostInteractions } from '../../../hooks';
 import { formatDate } from '../../../utils';
+import DOMPurify from 'dompurify';
 const PostItem = ({ post }) => {
 	const { _id, text, title, category, createdAt, updatedAt, comments, user } = post;
 	const [commentOpen, setCommentOpen] = useState(false);
@@ -67,6 +68,9 @@ const PostItem = ({ post }) => {
 	const date2 = new Date(updatedAt);
 
 	const isUpdated = date1.getTime() !== date2.getTime();
+	const createMarkup = htmlContent => {
+		return { __html: DOMPurify.sanitize(htmlContent) };
+	};
 
 	return (
 		<PostCard>
@@ -84,7 +88,7 @@ const PostItem = ({ post }) => {
 				</PostName>
 			</PostTop>
 			<PostContent>
-				<p>{text}</p>
+				<PostContent dangerouslySetInnerHTML={createMarkup(text)} />
 			</PostContent>
 			<PostDateContainer>
 				<PostDate>Posted on {formatDate(createdAt)}</PostDate>
