@@ -144,3 +144,9 @@
 ### Added
 
  - User statistics on the main dashboard page
+
+## [0.16.0] - 2023-12-08
+
+### Added
+
+ - Add rich editor for adding posts
