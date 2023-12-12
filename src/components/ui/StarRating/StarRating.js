@@ -1,31 +1,7 @@
-import { FaStar } from 'react-icons/fa';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const StarInput = styled.input`
-	display: none;
-	cursor: pointer;
-	size: 30px;
-`;
-
-const StarRatingContainer = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	margin-top: 2rem;
-	margin-bottom: 1rem;
-`;
-
-const StyledStar = styled(FaStar)`
-	cursor: pointer;
-
-	:hover {
-		color: #ffc107;
-	}
-`;
-
-const StarRating = ({ onChangeRating }) => {
+import { StarInput, StarRatingContainer, StyledStar } from './StarRating.styled';
+export const StarRating = ({ onChangeRating }) => {
 	const [rating, setRating] = useState(null);
 	const [hover, setHover] = useState(null);
 	const handleRatingChange = ratingValue => {
@@ -62,5 +38,3 @@ const StarRating = ({ onChangeRating }) => {
 StarRating.propTypes = {
 	onChangeRating: PropTypes.func.isRequired,
 };
-
-export default StarRating;

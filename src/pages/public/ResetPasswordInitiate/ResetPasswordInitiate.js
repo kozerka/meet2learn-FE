@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import resetPass from '../../../assets/img/resetPass.png';
-import IntersectionTitle from '../../../components/layout/IntersectionTitle';
-import { Image, ImageContainer } from '../../../components/ui/Image.styled';
 import {
+	Image,
+	ImageContainer,
+	IntersectionTitle,
 	PageContainer,
 	ContentContainer,
 	FormContainer,
 	TextCenterContainer,
-} from '../../../components/ui/Containers';
+} from '../../../components/ui';
 import { useDispatch } from 'react-redux';
 import ResetPasswordForm from '../../../components/features/ResetPasswordForm/ResetPasswordForm';
 

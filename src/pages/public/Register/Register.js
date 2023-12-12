@@ -1,8 +1,13 @@
 import register from '../../../assets/img/register.png';
-import IntersectionTitle from '../../../components/layout/IntersectionTitle';
-import { PageContainer, ContentContainer, FormContainer } from '../../../components/ui/Containers';
-import { Image, ImageContainer } from '../../../components/ui/Image.styled';
-import { LinkStyled } from '../../../components/ui/Link.styled';
+import {
+	LinkStyled,
+	Image,
+	ImageContainer,
+	PageContainer,
+	ContentContainer,
+	FormContainer,
+	IntersectionTitle,
+} from '../../../components/ui';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import RegisterForm from '../../../components/features/RegisterForm/RegisterForm';

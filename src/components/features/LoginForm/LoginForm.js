@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
-import FormField from '../Form/FormField';
-import Button from '../../ui/Button';
+import { Button, FormField } from '../../ui';
 import { FiMail, FiLock } from 'react-icons/fi';
 import { loginFormSchema } from '../../../schemas';
 import { loginUser, fetchUser } from '../../../store/thunks';

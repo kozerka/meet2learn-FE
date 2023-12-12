@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
-import Button from '../../ui/Button';
-import { ErrorText } from '../../ui/ErrorText.styled';
-import StarRating from '../../ui/StarRating';
+import { ErrorText, StarRating, Button } from '../../ui';
 import {
 	FeedbackContainer,
 	TextArea,

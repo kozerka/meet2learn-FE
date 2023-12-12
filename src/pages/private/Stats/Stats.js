@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserStats } from '../../../store/thunks';
-import { NavContainer, DashboardContainer } from '../../../components/ui/Containers';
-import { StatsCards, WelcomeMessage, SectionTitle } from '../../../components';
-import Loader from '../../../components/ui/Loader/Loader';
+import { NavContainer, DashboardContainer, Loader, SectionTitle } from '../../../components/ui';
+import { StatsCards, WelcomeMessage } from '../../../components';
+
 const Stats = () => {
 	const dispatch = useDispatch();
 	const { stats, isLoading } = useSelector(state => state.stats);

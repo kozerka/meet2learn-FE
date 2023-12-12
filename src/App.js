@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import router from './Router';
 import { GlobalStyle } from './styles/globalStyles';
 import { darkTheme, lightTheme } from './styles/themes';
-import ThemedToast from './components/ui/ThemedToast';
+import { ThemedToast } from './components/ui';
 import { useSelector } from 'react-redux';
 
 function App() {

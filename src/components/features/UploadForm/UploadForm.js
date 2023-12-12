@@ -1,15 +1,12 @@
 import { useFormik } from 'formik';
-import { ErrorText } from '../../ui/ErrorText.styled';
 import ImgPreview from '../../ImgPreview';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { uploadAvatar, fetchUser } from '../../../store/thunks';
 import { uploadAvatarSchema } from '../../../schemas';
-import Button from '../../ui/Button';
 import { FormStyled } from './UploadForm.styled';
 import { LuFileImage } from 'react-icons/lu';
-import { FormContainer } from '../../ui/Containers';
-import Loader from '../../ui/Loader/Loader';
+import { FormContainer, Button, Loader, ErrorText } from '../../ui';
 
 const UploadForm = () => {
 	const dispatch = useDispatch();

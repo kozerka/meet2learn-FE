@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { ErrorText } from '../../ui/ErrorText.styled';
-import Button from '../../ui/Button';
+import { ErrorText, Button } from '../../ui';
 import PropTypes from 'prop-types';
 import { SearchBarContainer, InputContainer, StyledInput } from './SearchBar.styled';
 

@@ -1,7 +1,12 @@
 import beInTouch from '../../../assets/img/beIntouch.png';
-import IntersectionTitle from '../../../components/layout/IntersectionTitle';
-import { Image, ImageContainer } from '../../../components/ui/Image.styled';
-import { PageContainer, ContentContainer, FormContainer } from '../../../components/ui/Containers';
+import {
+	Image,
+	ImageContainer,
+	PageContainer,
+	ContentContainer,
+	FormContainer,
+	IntersectionTitle,
+} from '../../../components/ui';
 import ContactForm from '../../../components/features/ContactForm/ContactForm';
 
 const Contact = () => {

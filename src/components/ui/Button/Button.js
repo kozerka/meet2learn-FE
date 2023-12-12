@@ -1,7 +1,7 @@
 import { StyledButton } from './Button.styled';
 import PropTypes from 'prop-types';
 
-const Button = ({
+export const Button = ({
 	children,
 	onClick,
 	$disabled,
@@ -38,4 +38,3 @@ Button.propTypes = {
 	type: PropTypes.string,
 	onClick: PropTypes.func,
 };
-export default Button;

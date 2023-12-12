@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ImgContainer } from '../components/ui/Containers';
+import { ImgContainer } from '../components/ui';
 const ImgPreview = ({ file }) => {
 	const [preview, setPreview] = useState({});
 	if (file) {

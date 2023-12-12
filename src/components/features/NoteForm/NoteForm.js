@@ -1,9 +1,6 @@
 import { useFormik, ErrorMessage } from 'formik';
 import CreatableReactSelect from 'react-select/creatable';
-import FormField from '../Form/FormField';
-import { StyledLabel } from '../Form/FormField.styled';
-import Button from '../../ui/Button';
-import { ButtonContainer } from '../../ui/Containers';
+import { ButtonContainer, StyledLabel, Button, FormField } from '../../ui';
 import { useDispatch } from 'react-redux';
 import { createNote, updateNote } from '../../../store/thunks';
 import PropTypes from 'prop-types';

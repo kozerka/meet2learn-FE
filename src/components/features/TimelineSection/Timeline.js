@@ -10,8 +10,7 @@ import {
 } from './Timeline.styled';
 import { timelineData } from '../../../data/timelineData';
 import Proptypes from 'prop-types';
-import IntersectionTitle from '../../layout/IntersectionTitle';
-import Button from '../../ui/Button';
+import { Button, IntersectionTitle } from '../../ui';
 
 const TimelineItemComponent = ({ title, link, linkText, index }) => {
 	const [ref, inView] = useInView({ threshold: 0.1 });

@@ -14,10 +14,9 @@ import {
 	Dropdown,
 } from './Navbar.styled';
 import { NavigationLink } from './NavigationLink.styled';
-import Button from '../../ui/Button';
+import { Button, Logo } from '../../ui';
 import MobileNavbar from './MobileNavbar';
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
-import Logo from '../../ui/Logo/Logo';
 import { navLinks } from '../../../data';
 import { logoutUser } from '../../../store/thunks';
 import { toast } from 'react-toastify';

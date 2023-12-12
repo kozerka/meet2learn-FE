@@ -1,8 +1,14 @@
 import { useDispatch } from 'react-redux';
 import resetPass from '../../../assets/img/resetPass.png';
-import { PageContainer, ContentContainer, FormContainer } from '../../../components/ui/Containers';
-import { Image, ImageContainer } from '../../../components/ui/Image.styled';
-import IntersectionTitle from '../../../components/layout/IntersectionTitle';
+import {
+	Image,
+	ImageContainer,
+	PageContainer,
+	ContentContainer,
+	FormContainer,
+	IntersectionTitle,
+} from '../../../components/ui';
+
 import ChangePasswordAfterReset from '../../../components/features/ChangePasswordAfterResetForm/ChangePasswordAfterReset';
 
 const ResetPasswordFinalize = () => {

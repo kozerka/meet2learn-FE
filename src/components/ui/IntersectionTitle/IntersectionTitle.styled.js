@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Content = styled.div`
@@ -36,19 +35,4 @@ const SubTitle = styled.h3`
 
 	letter-spacing: 3px;
 `;
-
-const IntersectionTitle = ({ title, text }) => {
-	return (
-		<Content>
-			<Title>{title}</Title>
-			<SubTitle>{text}</SubTitle>
-		</Content>
-	);
-};
-
-IntersectionTitle.propTypes = {
-	title: PropTypes.string.isRequired,
-	text: PropTypes.string.isRequired,
-};
-
-export default IntersectionTitle;
+export { Content, Title, SubTitle };

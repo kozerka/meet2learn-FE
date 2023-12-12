@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
 	background-color: ${({ theme }) => theme.primaryButton};
 	color: ${({ theme }) => theme.text};
 	text-align: center;
@@ -97,5 +97,3 @@ const StyledButton = styled.button`
 			}
 		`}
 `;
-
-export { StyledButton };

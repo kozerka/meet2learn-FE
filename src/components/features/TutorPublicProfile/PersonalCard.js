@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
-import Button from '../../ui/Button';
-import { LinkStyled } from '../../ui/Link.styled';
+import { LinkStyled, Button } from '../../ui';
 import {
 	CardContainer,
 	ImageContainer,

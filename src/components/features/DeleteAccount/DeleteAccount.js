@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import Button from '../../../components/ui/Button';
-import Modal from '../../../components/ui/Modal/Modal';
 import PropTypes from 'prop-types';
-import { ButtonContainer } from '../../ui/Containers';
+import { ButtonContainer, Button, Modal } from '../../ui';
 
 const DeleteAccount = ({ onConfirm }) => {
 	const [modalOpen, setModalOpen] = useState(false);

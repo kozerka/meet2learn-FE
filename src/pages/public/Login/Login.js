@@ -1,13 +1,14 @@
 import login from '../../../assets/img/login2.png';
-import IntersectionTitle from '../../../components/layout/IntersectionTitle';
 import {
+	LinkStyled,
+	Image,
+	ImageContainer,
 	PageContainer,
 	ContentContainer,
 	FormContainer,
 	TextCenterContainer,
-} from '../../../components/ui/Containers';
-import { Image, ImageContainer } from '../../../components/ui/Image.styled';
-import { LinkStyled } from '../../../components/ui/Link.styled';
+	IntersectionTitle,
+} from '../../../components/ui';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../../../components/features/LoginForm/LoginForm';

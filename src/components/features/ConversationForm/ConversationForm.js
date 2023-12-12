@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import Button from '../../ui/Button';
-import FormField from '../Form/FormField';
+import { Button, FormField } from '../../ui';
 import { useFormik } from 'formik';
 import { conversationSchema } from '../../../schemas';
 

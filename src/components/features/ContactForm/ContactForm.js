@@ -1,11 +1,10 @@
 import { useFormik } from 'formik';
-import FormField from '../../../components/features/Form/FormField';
-import CheckboxField from '../../../components/features/Form/CheckboxField';
+
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetFormData } from '../../../store/slices/contactFormSlice';
 import { sendContactForm } from '../../../store/thunks';
-import Button from '../../../components/ui/Button';
+import { Button, CheckboxField, FormField } from '../../../components/ui';
 import { contactFormSchema } from '../../../schemas';
 import { contactFormFields } from '../../../data';
 

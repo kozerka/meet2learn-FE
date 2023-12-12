@@ -1,8 +1,7 @@
 import EditProfileForm from '../../../components/features/EditProfileForm/EditProfileForm';
 import styled from 'styled-components';
 import { useUserData } from '../../../hooks';
-import { SectionTitle } from '../../../components';
-import Loader from '../../../components/ui/Loader/Loader';
+import { Loader, SectionTitle } from '../../../components/ui';
 
 const Wrapper = styled.div`
 	max-width: 1200px;

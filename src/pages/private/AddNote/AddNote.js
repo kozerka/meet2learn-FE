@@ -1,6 +1,6 @@
 import NoteForm from '../../../components/features/NoteForm/NoteForm';
-import { FormContainer } from '../../../components/ui/Containers';
-import { SectionTitle } from '../../../components';
+import { FormContainer, SectionTitle } from '../../../components/ui';
+
 const AddNote = () => {
 	return (
 		<FormContainer>

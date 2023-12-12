@@ -1,13 +1,11 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTutorData } from '../../../hooks';
-import Loader from '../../../components/ui/Loader/Loader';
 import Tabs from '../../../components/layout/Tabs/Tabs';
 import Wrapper from '../../../components/layout/Wrapper';
 import PersonalCard from '../../../components/features/TutorPublicProfile/PersonalCard';
 import AboutCard from '../../../components/features/TutorPublicProfile/About';
-import { LinkStyled } from '../../../components/ui/Link.styled';
-import Button from '../../../components/ui/Button';
+import { Button, Loader, LinkStyled } from '../../../components/ui';
 import Reviews from '../../../components/features/Reviews/Reviews';
 import FeedbackForm from '../../../components/features/FeedbackForm/FeedbackForm';
 

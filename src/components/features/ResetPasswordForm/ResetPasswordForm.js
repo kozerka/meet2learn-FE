@@ -1,6 +1,5 @@
 import { FiMail } from 'react-icons/fi';
-import Button from '../../../components/ui/Button';
-import FormField from '../../../components/features/Form/FormField';
+import { Button, FormField } from '../../ui';
 import PropTypes from 'prop-types';
 import { useResetPasswordForm } from '../../../hooks';
 

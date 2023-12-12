@@ -10,7 +10,7 @@ import {
 } from './Hero.styled';
 import animation from '../../../assets/animations/Animation - 1699902481250.json';
 import Lottie from 'lottie-react';
-import Button from '../../ui/Button';
+import { Button } from '../../ui';
 
 const Hero = () => {
 	return (

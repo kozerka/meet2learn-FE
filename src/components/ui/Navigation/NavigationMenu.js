@@ -1,8 +1,8 @@
-import NavigationLink from './NavigationLink';
+import { NavigationLink } from '../';
 import { NavigationStyled } from './NavigationMenu.styled';
 import PropTypes from 'prop-types';
 
-const NavigationMenu = ({ links }) => {
+export const NavigationMenu = ({ links }) => {
 	return (
 		<NavigationStyled>
 			{links.map((link, index) => (
@@ -23,5 +23,3 @@ NavigationMenu.propTypes = {
 		})
 	).isRequired,
 };
-
-export default NavigationMenu;

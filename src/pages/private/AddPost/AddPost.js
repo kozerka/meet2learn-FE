@@ -4,15 +4,17 @@ import { createPost, updatePost } from '../../../store/thunks';
 import fetchCategories from '../../../services/categoryServices';
 import { useFormik } from 'formik';
 import Select from 'react-select';
-import FormField from '../../../components/features/Form/FormField';
-import { StyledLabel } from '../../../components/features/Form/FormField.styled';
-import { FormContainer } from '../../../components/ui/Containers';
 import { toast } from 'react-toastify';
-import Button from '../../../components/ui/Button';
-import SectionTitle from '../../../components/ui/SectionTitle/SectionTitle';
+import {
+	Button,
+	SectionTitle,
+	ErrorText,
+	FormContainer,
+	FormField,
+	StyledLabel,
+} from '../../../components/ui/';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { ErrorText } from '../../../components/ui/ErrorText.styled';
 import { postFormSchema } from '../../../schemas';
 import PropTypes from 'prop-types';
 import JoditEditor from 'jodit-react';

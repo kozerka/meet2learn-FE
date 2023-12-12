@@ -1,10 +1,18 @@
-import { CustomContainer, SectionContainer } from '../../../components/ui/Containers';
+import {
+	CustomContainer,
+	SectionContainer,
+	Modal,
+	Button,
+	Loader,
+	SectionTitle,
+	CustomPagination,
+} from '../../../components/ui';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link, useParams } from 'react-router-dom';
 import { deleteNote, getUniqueTags, getAllNotes } from '../../../store/thunks';
 import { cutText } from '../../../utils/cutText';
-import Modal from '../../../components/ui/Modal/Modal';
+
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
@@ -18,9 +26,6 @@ import {
 	Title,
 	TagsContainer,
 } from './AllNotes.styled';
-import { SectionTitle, CustomPagination } from '../../../components';
-import Button from '../../../components/ui/Button';
-import Loader from '../../../components/ui/Loader/Loader';
 
 const AllNotes = () => {
 	const { notes, isLoading, uniqueTags, currentPage, totalPages, error } = useSelector(

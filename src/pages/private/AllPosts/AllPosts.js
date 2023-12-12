@@ -3,7 +3,7 @@ import { getPosts } from '../../../store/thunks';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactSelect from 'react-select';
-import Loader from '../../../components/ui/Loader/Loader';
+import { Loader } from '../../../components/ui';
 const AllPosts = () => {
 	const dispatch = useDispatch();
 	const [selectedCategory, setSelectedCategory] = useState(null);

@@ -13,7 +13,7 @@ import {
 	Container,
 	ImageContainer,
 } from './Faqs.styled';
-import IntersectionTitle from '../../layout/IntersectionTitle';
+import { IntersectionTitle } from '../../ui/';
 
 const Accordion = () => {
 	const [openItemIndex, setOpenItemIndex] = useState(null);

@@ -1,6 +1,5 @@
 import { FiLock } from 'react-icons/fi';
-import Button from '../../../components/ui/Button';
-import FormField from '../../../components/features/Form/FormField';
+import { Button, FormField } from '../../../components/ui';
 import PropTypes from 'prop-types';
 import { useChangePasswordAfterReset } from '../../../hooks';
 

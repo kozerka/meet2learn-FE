@@ -8,10 +8,10 @@ import {
 	CloseButton,
 	ModalWrapper,
 } from './Modal.styled';
-import Button from '../Button';
+import { Button } from '../';
 import { ButtonContainer } from '../Containers';
 
-const Modal = ({ isOpen, onClose, onConfirm, message }) => {
+export const Modal = ({ isOpen, onClose, onConfirm, message }) => {
 	if (!isOpen) return null;
 	const modalRoot = document.getElementById('modal-root');
 	if (!modalRoot) return null;
@@ -46,5 +46,3 @@ Modal.propTypes = {
 	onConfirm: PropTypes.func.isRequired,
 	message: PropTypes.string.isRequired,
 };
-
-export default Modal;

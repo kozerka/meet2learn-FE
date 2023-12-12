@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { CheckboxContainer } from './CheckboxField.styled';
-import { ErrorText } from '../../ui/ErrorText.styled';
+import { ErrorText } from '../';
 
-const CheckboxField = ({ name, label, errors, touched, handleChange }) => {
+export const CheckboxField = ({ name, label, errors, touched, handleChange }) => {
 	const hasError = touched[name] && Boolean(errors[name]);
 	return (
 		<>
@@ -31,5 +31,3 @@ CheckboxField.defaultProps = {
 	touched: {},
 	values: { agreeTerms: false },
 };
-
-export default CheckboxField;

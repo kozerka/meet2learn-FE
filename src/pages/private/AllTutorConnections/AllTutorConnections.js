@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllMeetings } from '../../../store/thunks';
-import { CustomContainer } from '../../../components/ui/Containers';
-import { SectionTitle } from '../../../components';
+import { CustomContainer, Loader, SectionTitle } from '../../../components/ui';
 import MeetingList from '../../../components/features/LearningConnectionsList/LearningConnections';
 import {
 	TutorMessage,
 	StudentMessage,
 } from '../../../components/features/LearningConnectionsList/MessagesForParticipants';
-import Loader from '../../../components/ui/Loader/Loader';
+
 const AllTutorConnections = () => {
 	const dispatch = useDispatch();
 	const { meetings, isLoading } = useSelector(state => state.meetings);

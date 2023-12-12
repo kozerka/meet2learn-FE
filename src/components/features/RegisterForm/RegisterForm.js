@@ -1,14 +1,11 @@
 // RegisterForm.js
 import { useFormik } from 'formik';
-import FormField from '../Form/FormField';
-import CheckboxField from '../Form/CheckboxField';
-import Button from '../../ui/Button';
 import { registerFormSchema } from '../../../schemas';
 import { registerFormFields } from '../../../data';
 import { registerUser } from '../../../store/thunks';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
-import { SelectContainer } from '../../ui/Containers';
+import { SelectContainer, Button, FormField, CheckboxField } from '../../ui';
 
 const RegisterForm = ({ dispatch, navigate }) => {
 	const { values, errors, touched, handleBlur, handleChange, isSubmitting, handleSubmit } =

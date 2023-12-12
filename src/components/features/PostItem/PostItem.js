@@ -7,7 +7,6 @@ import {
 	FaEdit,
 	FaComment,
 } from 'react-icons/fa';
-import Modal from '../../ui/Modal/Modal';
 import CommentForm from '../CommentForm/CommentForm';
 import CommentItem from '../CommentItem/CommentItem';
 import {
@@ -31,6 +30,7 @@ import { deletePost, getPostsByUserId } from '../../../store/thunks';
 import { toast } from 'react-toastify';
 import { useModal, usePostInteractions } from '../../../hooks';
 import { formatDate } from '../../../utils';
+import { Modal } from '../../ui';
 import DOMPurify from 'dompurify';
 const PostItem = ({ post, userId }) => {
 	const { _id, text, title, category, createdAt, updatedAt, comments, user } = post;

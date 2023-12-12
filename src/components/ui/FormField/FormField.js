@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { StyledLabel, StyledInput, StyledTextArea } from './FormField.styled';
-import { ErrorText } from '../../ui/ErrorText.styled';
-import { StyledIcon, StyledIconForPasswordVisibility } from '../../ui/Icon.styled';
+import { ErrorText } from '../ErrorText/ErrorText.styled';
+import { StyledIcon, StyledIconForPasswordVisibility } from '../Icon/Icon.styled';
 import { FiEyeOff, FiEye } from 'react-icons/fi';
 
-const FormField = ({
+export const FormField = ({
 	label,
 	type,
 	name,
@@ -78,5 +78,3 @@ FormField.defaultProps = {
 	errors: {},
 	touched: {},
 };
-
-export default FormField;

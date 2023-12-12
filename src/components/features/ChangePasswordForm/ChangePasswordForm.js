@@ -1,8 +1,7 @@
 import { useFormik } from 'formik';
 import { passwordChangeSchema } from '../../../schemas';
 import { passwordChangeFields } from '../../../data';
-import FormField from '../../../components/features/Form/FormField';
-import Button from '../../../components/ui/Button';
+import { Button, FormField } from '../../../components/ui';
 import PropTypes from 'prop-types';
 
 const ChangePasswordForm = ({ onSubmit }) => {

@@ -1,9 +1,7 @@
 import { useSelector } from 'react-redux';
 import { getDateInfo } from '../../../utils';
-import { SectionTitle } from '../..';
-
 import { MessageStyled } from './WelcomeMessage.styled';
-import Loader from '../../ui/Loader/Loader';
+import { Loader, SectionTitle } from '../../ui';
 const WelcomeMessage = () => {
 	const user = useSelector(state => state.user.userData);
 	const { formatDate, today, daysUntilEndOfYear, currentYear } = getDateInfo();

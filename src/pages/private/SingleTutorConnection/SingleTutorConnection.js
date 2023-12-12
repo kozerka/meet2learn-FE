@@ -9,18 +9,16 @@ import {
 	ConversationContainer,
 	ArrowIcon,
 } from './SingleTutorConnection.styled';
-import Button from '../../../components/ui/Button';
-import { ButtonContainer } from '../../../components/ui/Containers';
+
+import { ButtonContainer, Button, Modal, Loader } from '../../../components/ui';
 import { deleteMeeting } from '../../../store/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
-import Modal from '../../../components/ui/Modal/Modal';
 import { useConversations, useModal } from '../../../hooks';
 import { calculateDaysOfConnection, groupConversationsByDate } from '../../../utils';
 import { ConversationForm } from '../../../components';
 import ConversationMessage from '../../../components/features/ConversationMessage/ConversationMessage';
-import Loader from '../../../components/ui/Loader/Loader';
 
 const SingleTutorConnection = ({ meeting, onDiscuss }) => {
 	const {
