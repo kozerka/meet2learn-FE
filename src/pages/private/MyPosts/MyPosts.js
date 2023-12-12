@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PostItem } from '../../../components/features';
 import { getPostsByUserId } from '../../../store/slices/postSlice';
+import Loader from '../../../components/ui/Loader/Loader';
 
 const MyPosts = () => {
 	const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const MyPosts = () => {
 	}, [dispatch, userId]);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <Loader />;
 	}
 
 	if (userPosts.length === 0) {

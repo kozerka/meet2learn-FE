@@ -20,6 +20,7 @@ import { useConversations, useModal } from '../../../hooks';
 import { calculateDaysOfConnection, groupConversationsByDate } from '../../../utils';
 import { ConversationForm } from '../../../components';
 import ConversationMessage from '../../../components/features/ConversationMessage/ConversationMessage';
+import Loader from '../../../components/ui/Loader/Loader';
 
 const SingleTutorConnection = ({ meeting, onDiscuss }) => {
 	const {
@@ -54,7 +55,7 @@ const SingleTutorConnection = ({ meeting, onDiscuss }) => {
 	};
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <Loader />;
 	}
 
 	const groupedConversations = groupConversationsByDate(conversations);
@@ -91,7 +92,7 @@ const SingleTutorConnection = ({ meeting, onDiscuss }) => {
 								onCancel={handleConversationCancel}
 							/>
 							{isConversationsLoading ? (
-								<p>Loading conversations...</p>
+								<Loader />
 							) : (
 								Object.entries(groupedConversations).map(([date, conversationsForDate]) => (
 									<ConversationContainer key={date}>

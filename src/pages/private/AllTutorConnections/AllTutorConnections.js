@@ -8,6 +8,7 @@ import {
 	TutorMessage,
 	StudentMessage,
 } from '../../../components/features/LearningConnectionsList/MessagesForParticipants';
+import Loader from '../../../components/ui/Loader/Loader';
 const AllTutorConnections = () => {
 	const dispatch = useDispatch();
 	const { meetings, isLoading } = useSelector(state => state.meetings);
@@ -18,7 +19,7 @@ const AllTutorConnections = () => {
 	}, [dispatch]);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <Loader />;
 	}
 
 	if (meetings.length === 0) {

@@ -20,6 +20,7 @@ import {
 } from './AllNotes.styled';
 import { SectionTitle, CustomPagination } from '../../../components';
 import Button from '../../../components/ui/Button';
+import Loader from '../../../components/ui/Loader/Loader';
 
 const AllNotes = () => {
 	const { notes, isLoading, uniqueTags, currentPage, totalPages, error } = useSelector(
@@ -81,7 +82,7 @@ const AllNotes = () => {
 	};
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <Loader />;
 	}
 	if (error) {
 		return <div>Error: {error.message}</div>;

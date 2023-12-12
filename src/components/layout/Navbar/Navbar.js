@@ -23,6 +23,7 @@ import { logoutUser } from '../../../store/slices/userSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useUserData } from '../../../hooks';
+import Loader from '../../ui/Loader/Loader';
 
 const Navbar = () => {
 	const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const Navbar = () => {
 	const closeDropDown = () => setIsDropdownOpen(false);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <Loader />;
 	}
 
 	return (

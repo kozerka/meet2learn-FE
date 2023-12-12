@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { CustomContainer } from '../../../components/ui/Containers';
 import { Tag, TagsContainer, Title } from '../AllNotes/AllNotes.styled';
 import Button from '../../../components/ui/Button';
+import Loader from '../../../components/ui/Loader/Loader';
 const ViewNote = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const ViewNote = () => {
 	};
 
 	if (!note) {
-		return <div>Loading...</div>;
+		return <Loader />;
 	}
 
 	const createdAt = new Date(note.createdAt).toLocaleDateString();

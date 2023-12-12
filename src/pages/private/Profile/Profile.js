@@ -5,11 +5,12 @@ import { Greetings, ProfileContainer } from './Profile.styled';
 import { NavigationMenu } from '../../../components';
 import { profileNavLinks } from '../../../data';
 import { useSelector } from 'react-redux';
+import Loader from '../../../components/ui/Loader/Loader';
 
 const Profile = () => {
 	const { userData } = useSelector(state => state.user);
 	if (!userData) {
-		return <div>Loading...</div>;
+		return <Loader />;
 	}
 	return (
 		<DashboardContainer>

@@ -2,6 +2,7 @@ import EditProfileForm from '../../../components/features/EditProfileForm/EditPr
 import styled from 'styled-components';
 import { useUserData } from '../../../hooks';
 import { SectionTitle } from '../../../components';
+import Loader from '../../../components/ui/Loader/Loader';
 
 const Wrapper = styled.div`
 	max-width: 1200px;
@@ -20,7 +21,7 @@ const EditProfile = () => {
 	const { userData, isLoading } = useUserData();
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <Loader />;
 	}
 
 	return (
