@@ -4,7 +4,12 @@ import { useFormik } from 'formik';
 import IntersectionTitle from '../../../components/layout/IntersectionTitle';
 import { loginFormSchema } from '../../../schemas';
 import FormField from '../../../components/features/Form/FormField';
-import { PageContainer, ContentContainer, FormContainer } from '../../../components/ui/Containers';
+import {
+	PageContainer,
+	ContentContainer,
+	FormContainer,
+	TextCenterContainer,
+} from '../../../components/ui/Containers';
 import { Image, ImageContainer } from '../../../components/ui/Image.styled';
 import { LinkStyled } from '../../../components/ui/Link.styled';
 import { FiMail, FiLock } from 'react-icons/fi';
@@ -76,9 +81,15 @@ const Login = () => {
 							{isSubmitting ? 'Logging in...' : 'Login'}
 						</Button>
 					</form>
-					<p>
-						Don&apos;t have an account? <LinkStyled to={'/register'}>Register</LinkStyled>
-					</p>
+					<TextCenterContainer>
+						<p>
+							Don&apos;t have an account? <LinkStyled to={'/register'}>Register</LinkStyled>
+						</p>
+						<p>
+							Don&apos;t remember your password?{' '}
+							<LinkStyled to={'/reset-password'}>Reset</LinkStyled>
+						</p>
+					</TextCenterContainer>
 				</FormContainer>
 			</ContentContainer>
 		</PageContainer>

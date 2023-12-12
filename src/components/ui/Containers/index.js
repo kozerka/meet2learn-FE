@@ -8,3 +8,4 @@ export * from './SectionContainer.styled';
 export * from './CustomContainer.styled';
 export * from './ImgContainer.styled';
 export * from './NavContainer.styled';
+export * from './TextCenterContainer.styled';

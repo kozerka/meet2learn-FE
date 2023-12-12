@@ -29,6 +29,8 @@ import {
 	EditPost,
 	MyPosts,
 	AddPost,
+	ResetPasswordInitiate,
+	ResetPasswordFinalize,
 } from './pages';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -41,6 +43,8 @@ const router = createBrowserRouter([
 			{ index: true, element: <Landing /> },
 			{ path: '/login', element: <Login />, errorElement: <NotFound /> },
 			{ path: '/register', element: <Register />, errorElement: <NotFound /> },
+			{ path: '/reset-password', element: <ResetPasswordInitiate /> },
+			{ path: '/finalize-reset-password', element: <ResetPasswordFinalize /> },
 			{ path: 'about', element: <About /> },
 			{
 				path: 'tutors',
