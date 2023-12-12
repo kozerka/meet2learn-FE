@@ -4,7 +4,7 @@ import {
 	getConversationsForMeeting,
 	deleteConversation,
 	createConversation,
-} from '../store/slices/conversationSlice';
+} from '../store/thunks';
 
 export const useConversations = meetingId => {
 	const dispatch = useDispatch();

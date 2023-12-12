@@ -14,7 +14,7 @@ import { Image, ImageContainer } from '../../../components/ui/Image.styled';
 import { LinkStyled } from '../../../components/ui/Link.styled';
 import { FiMail, FiLock } from 'react-icons/fi';
 import { toast } from 'react-toastify';
-import { fetchUser, loginUser } from '../../../store/slices/userSlice';
+import { fetchUser, loginUser } from '../../../store/thunks';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 

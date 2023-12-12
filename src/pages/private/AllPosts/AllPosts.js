@@ -1,5 +1,5 @@
 import { PostItem } from '../../../components/features';
-import { getPosts } from '../../../store/slices/postSlice';
+import { getPosts } from '../../../store/thunks';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactSelect from 'react-select';

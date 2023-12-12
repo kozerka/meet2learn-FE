@@ -14,7 +14,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { editProfileFormSchema } from '../../../schemas/editProfileForm';
 import { ErrorText } from '../../ui/ErrorText.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../../../store/slices/userSlice';
+import { updateUser } from '../../../store/thunks';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 

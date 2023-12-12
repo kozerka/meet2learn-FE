@@ -11,7 +11,7 @@ import {
 } from './SingleTutorConnection.styled';
 import Button from '../../../components/ui/Button';
 import { ButtonContainer } from '../../../components/ui/Containers';
-import { deleteMeeting } from '../../../store/slices/meetingSlice';
+import { deleteMeeting } from '../../../store/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useState } from 'react';

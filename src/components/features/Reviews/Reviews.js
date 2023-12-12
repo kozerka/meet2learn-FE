@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteReview, getTutorReviews } from '../../../store/slices/reviewSlice';
-import { getTutorById } from '../../../store/slices/tutorSlice';
+import { getTutorById, deleteReview, getTutorReviews } from '../../../store/thunks';
 import { toast } from 'react-toastify';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';

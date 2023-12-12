@@ -5,7 +5,7 @@ import { StyledLabel } from '../Form/FormField.styled';
 import Button from '../../ui/Button';
 import { ButtonContainer } from '../../ui/Containers';
 import { useDispatch } from 'react-redux';
-import { createNote, updateNote } from '../../../store/slices/noteSlice';
+import { createNote, updateNote } from '../../../store/thunks';
 import PropTypes from 'prop-types';
 import { useNavigate, Link } from 'react-router-dom';
 import { noteSchema } from '../../../schemas';

@@ -1,12 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import {
-	likePost,
-	dislikePost,
-	givePriority,
-	getPosts,
-	getPostsByUserId,
-} from '../store/slices/postSlice';
+import { likePost, dislikePost, givePriority, getPosts, getPostsByUserId } from '../store/thunks';
 
 export const usePostInteractions = (postId, userId) => {
 	const dispatch = useDispatch();

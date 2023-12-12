@@ -27,7 +27,7 @@ import {
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePost, getPostsByUserId } from '../../../store/slices/postSlice';
+import { deletePost, getPostsByUserId } from '../../../store/thunks';
 import { toast } from 'react-toastify';
 import { useModal, usePostInteractions } from '../../../hooks';
 import { formatDate } from '../../../utils';

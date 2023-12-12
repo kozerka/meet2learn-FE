@@ -15,7 +15,7 @@ import { Image, ImageContainer } from '../../../components/ui/Image.styled';
 import { LinkStyled } from '../../../components/ui/Link.styled';
 import { registerFormFields } from '../../../data';
 import { toast } from 'react-toastify';
-import { registerUser } from '../../../store/slices/userSlice';
+import { registerUser } from '../../../store/thunks';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 

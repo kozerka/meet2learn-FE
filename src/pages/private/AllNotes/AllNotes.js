@@ -2,7 +2,7 @@ import { CustomContainer, SectionContainer } from '../../../components/ui/Contai
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link, useParams } from 'react-router-dom';
-import { deleteNote, getUniqueTags, getAllNotes } from '../../../store/slices/noteSlice';
+import { deleteNote, getUniqueTags, getAllNotes } from '../../../store/thunks';
 import { cutText } from '../../../utils/cutText';
 import Modal from '../../../components/ui/Modal/Modal';
 import { toast } from 'react-toastify';

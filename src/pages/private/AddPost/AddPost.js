@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createPost, updatePost } from '../../../store/slices/postSlice';
+import { createPost, updatePost } from '../../../store/thunks';
 import fetchCategories from '../../../services/categoryServices';
 import { useFormik } from 'formik';
 import Select from 'react-select';

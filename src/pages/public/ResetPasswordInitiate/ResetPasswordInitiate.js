@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { resetPasswordInitiate } from '../../../store/slices/userSlice';
+import { resetPasswordInitiate } from '../../../store/thunks';
 import resetPass from '../../../assets/img/resetPass.png';
 import Button from '../../../components/ui/Button';
 import { useFormik } from 'formik';

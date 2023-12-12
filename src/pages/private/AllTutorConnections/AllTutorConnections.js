@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllMeetings } from '../../../store/slices/meetingSlice';
+import { getAllMeetings } from '../../../store/thunks';
 import { CustomContainer } from '../../../components/ui/Containers';
 import { SectionTitle } from '../../../components';
 import MeetingList from '../../../components/features/LearningConnectionsList/LearningConnections';

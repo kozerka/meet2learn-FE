@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { addReview, getTutorReviews, updateReview } from '../store/slices/reviewSlice';
-import { getTutorById } from '../store/slices/tutorSlice';
+import { getTutorById, addReview, getTutorReviews, updateReview } from '../store/thunks';
 import { feedbackFormSchema } from '../schemas';
 
 export const useFeedbackForm = (tutorId, reviewData) => {

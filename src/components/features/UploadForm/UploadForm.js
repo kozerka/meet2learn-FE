@@ -3,7 +3,7 @@ import { ErrorText } from '../../ui/ErrorText.styled';
 import ImgPreview from '../../ImgPreview';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { uploadAvatar, fetchUser } from '../../../store/slices/userSlice';
+import { uploadAvatar, fetchUser } from '../../../store/thunks';
 import { uploadAvatarSchema } from '../../../schemas';
 import Button from '../../ui/Button';
 import { FormStyled } from './UploadForm.styled';

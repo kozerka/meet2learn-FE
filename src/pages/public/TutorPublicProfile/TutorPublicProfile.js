@@ -9,9 +9,7 @@ import Reviews from '../../../components/features/Reviews/Reviews';
 import FeedbackForm from '../../../components/features/FeedbackForm/FeedbackForm';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTutorById } from '../../../store/slices/tutorSlice';
-import { getTutorReviews } from '../../../store/slices/reviewSlice';
-import { fetchUser } from '../../../store/slices/userSlice';
+import { fetchUser, getTutorById, getTutorReviews } from '../../../store/thunks';
 import Loader from '../../../components/ui/Loader/Loader';
 const TutorPublicProfile = () => {
 	const { id } = useParams();

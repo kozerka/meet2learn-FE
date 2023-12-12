@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getAllTutors } from '../../../store/slices/tutorSlice';
+import { getAllTutors } from '../../../store/thunks';
 import TutorCard from '../../../components/features/TutorCard/TutorCard';
 import Wrapper from '../../../components/layout/Wrapper';
 import IntersectionTitle from '../../../components/layout/IntersectionTitle';

@@ -13,7 +13,7 @@ import {
 	SubjectLabel,
 } from './PersonalCard.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { createMeeting, getAllMeetings } from '../../../store/slices/meetingSlice';
+import { createMeeting, getAllMeetings } from '../../../store/thunks';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PostItem } from '../../../components/features';
-import { getPostsByUserId } from '../../../store/slices/postSlice';
+import { getPostsByUserId } from '../../../store/thunks';
 import Loader from '../../../components/ui/Loader/Loader';
 import { CustomContainer } from '../../../components/ui/Containers';
 import { SectionTitle } from '../../../components';

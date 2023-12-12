@@ -5,7 +5,7 @@ import { myNotesNavLinks } from '../../../data';
 import styled from 'styled-components';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getAllNotes } from '../../../store/slices/noteSlice';
+import { getAllNotes } from '../../../store/thunks';
 
 const NavContainer = styled.div`
 	max-width: 1200px;

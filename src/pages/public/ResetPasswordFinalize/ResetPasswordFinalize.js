@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { resetPasswordFinalize } from '../../../store/slices/userSlice';
+import { resetPasswordFinalize } from '../../../store/thunks';
 import { toast } from 'react-toastify';
 import resetPass from '../../../assets/img/resetPass.png';
 import { PageContainer, ContentContainer, FormContainer } from '../../../components/ui/Containers';

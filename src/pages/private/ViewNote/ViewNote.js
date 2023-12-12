@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getNoteById, clearNote } from '../../../store/slices/noteSlice';
+import { clearNote } from '../../../store/slices/noteSlice';
+import { getNoteById } from '../../../store/thunks';
 import { useEffect } from 'react';
 import { CustomContainer } from '../../../components/ui/Containers';
 import { Tag, TagsContainer, Title } from '../AllNotes/AllNotes.styled';

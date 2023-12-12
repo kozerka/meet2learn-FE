@@ -19,7 +19,7 @@ import MobileNavbar from './MobileNavbar';
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
 import Logo from '../../ui/Logo/Logo';
 import { navLinks } from '../../../data';
-import { logoutUser } from '../../../store/slices/userSlice';
+import { logoutUser } from '../../../store/thunks';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useUserData } from '../../../hooks';

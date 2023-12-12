@@ -3,7 +3,7 @@ import ChangePasswordForm from '../../../components/features/ChangePasswordForm/
 import DeleteAccount from '../../../components/features/DeleteAccount/DeleteAccount';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { changePassword, deleteUser } from '../../../store/slices/userSlice';
+import { changePassword, deleteUser } from '../../../store/thunks';
 import { useNavigate } from 'react-router-dom';
 const Settings = () => {
 	const dispatch = useDispatch();
