@@ -16,6 +16,7 @@ import {
 } from '../../../components/ui/Containers';
 import { FiMail } from 'react-icons/fi';
 import { toast } from 'react-toastify';
+
 const ResetPasswordInitiate = () => {
 	const dispatch = useDispatch();
 	const [emailSent, setEmailSent] = useState(false);
@@ -26,18 +27,22 @@ const ResetPasswordInitiate = () => {
 				email: '',
 			},
 			validationSchema: emailCheckForResetSchema,
-			onSubmit: (values, { setSubmitting }) => {
-				dispatch(resetPasswordInitiate(values.email))
-					.then(() => {
+			onSubmit: async (values, { setSubmitting, resetForm }) => {
+				try {
+					const actionResponse = await dispatch(resetPasswordInitiate(values.email));
+					if (resetPasswordInitiate.fulfilled.match(actionResponse)) {
 						setEmailSent(true);
-						toast.success('Password reset email has been sent');
-					})
-					.catch(error => {
-						toast.error(`Error: ${error.message}`);
-					})
-					.finally(() => {
-						setSubmitting(false);
-					});
+						resetForm();
+						toast.success('Password reset request has been sent');
+					} else {
+						throw actionResponse;
+					}
+				} catch (error) {
+					const errorMessage = error?.payload?.message || 'Error occurred during password reset';
+					toast.error(errorMessage);
+				} finally {
+					setSubmitting(false);
+				}
 			},
 		});
 
@@ -72,8 +77,9 @@ const ResetPasswordInitiate = () => {
 						<>
 							<IntersectionTitle title={'Link sent...'} text={'Go to mail'} />
 							<TextCenterContainer>
-								If the provided email exists in our database, you will receive an email with a link
-								to reset your password. Please follow the instructions in the email.
+								Now you will receive an email with a link to reset your password. Some mail boxes
+								can put it into spam so be sure to check it. Please follow the instructions in the
+								email.
 							</TextCenterContainer>
 						</>
 					)}

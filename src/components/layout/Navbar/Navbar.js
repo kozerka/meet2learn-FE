@@ -102,6 +102,8 @@ const Navbar = () => {
 				isMobileNavOpen={isMobileNavOpen}
 				currentTheme={currentTheme}
 				handleToggleTheme={handleToggleTheme}
+				userAuth={userAuth}
+				handleLogout={handleLogout}
 			/>
 		</Nav>
 	);

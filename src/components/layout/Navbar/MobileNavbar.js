@@ -1,12 +1,21 @@
+import PropTypes from 'prop-types';
 import { SidebarContainer, MobileIcon, ThemeToggler, StyledLink } from './Navbar.styled';
 import { NavigationLinkMobile } from './NavigationLink.styled';
 import { FaTimes, FaBars, FaSun, FaMoon } from 'react-icons/fa';
-import PropTypes from 'prop-types';
 import Button from '../../ui/Button';
 import Logo from '../../ui/Logo/Logo';
+import { TextCenterContainer } from '../../ui/Containers';
 import { navLinks } from '../../../data';
 
-const MobileNavbar = ({ $isOpen, toggleNav, isMobileNavOpen, currentTheme, handleToggleTheme }) => {
+const MobileNavbar = ({
+	$isOpen,
+	toggleNav,
+	isMobileNavOpen,
+	currentTheme,
+	handleToggleTheme,
+	userAuth,
+	handleLogout,
+}) => {
 	return (
 		<SidebarContainer $isOpen={$isOpen}>
 			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
@@ -23,18 +32,34 @@ const MobileNavbar = ({ $isOpen, toggleNav, isMobileNavOpen, currentTheme, handl
 					</NavigationLinkMobile>
 				))}
 				<div>
-					<StyledLink to={'/login'}>
-						<Button $primary={true} onClick={toggleNav}>
-							Login
-						</Button>
-					</StyledLink>
-					<ThemeToggler
-						onClick={() => {
-							handleToggleTheme();
-						}}
-					>
-						{currentTheme === 'dark' ? <FaSun /> : <FaMoon />}
-					</ThemeToggler>
+					{userAuth?.userInfo ? (
+						<TextCenterContainer>
+							<ThemeToggler onClick={handleToggleTheme}>
+								{currentTheme === 'dark' ? <FaSun /> : <FaMoon />}
+							</ThemeToggler>
+							<StyledLink to={'/dashboard'} onClick={toggleNav}>
+								<Button $primary={true}>Dashboard</Button>
+							</StyledLink>
+							<StyledLink
+								to={'/login'}
+								onClick={() => {
+									handleLogout();
+									toggleNav();
+								}}
+							>
+								<Button $primary={true}>Logout</Button>
+							</StyledLink>
+						</TextCenterContainer>
+					) : (
+						<>
+							<StyledLink to={'/login'} onClick={toggleNav}>
+								<Button $primary={true}>Login</Button>
+							</StyledLink>
+							<ThemeToggler onClick={handleToggleTheme}>
+								{currentTheme === 'dark' ? <FaSun /> : <FaMoon />}
+							</ThemeToggler>
+						</>
+					)}
 				</div>
 			</div>
 		</SidebarContainer>
@@ -47,6 +72,8 @@ MobileNavbar.propTypes = {
 	isMobileNavOpen: PropTypes.bool.isRequired,
 	currentTheme: PropTypes.string.isRequired,
 	handleToggleTheme: PropTypes.func.isRequired,
+	userAuth: PropTypes.object,
+	handleLogout: PropTypes.func,
 };
 
 export default MobileNavbar;

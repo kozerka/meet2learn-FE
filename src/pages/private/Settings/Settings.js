@@ -9,7 +9,7 @@ const Settings = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const handlePasswordChange = async values => {
+	const handlePasswordChange = async (values, { resetForm }) => {
 		try {
 			await dispatch(
 				changePassword({
@@ -19,6 +19,7 @@ const Settings = () => {
 				})
 			);
 			toast.success('Password changed successfully');
+			resetForm();
 		} catch (error) {
 			toast.error(error.message || 'Error changing password');
 		}
