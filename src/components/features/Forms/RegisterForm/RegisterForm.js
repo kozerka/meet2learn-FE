@@ -1,41 +1,11 @@
-// RegisterForm.js
-import { useFormik } from 'formik';
-import { registerFormSchema } from '../../../../schemas';
 import { registerFormFields } from '../../../../data';
-import { registerUser } from '../../../../store/thunks';
-import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
+import { useRegisterForm } from '../../../../hooks';
 import { SelectContainer, Button, FormField, CheckboxField } from '../../../ui';
 
 const RegisterForm = ({ dispatch, navigate }) => {
 	const { values, errors, touched, handleBlur, handleChange, isSubmitting, handleSubmit } =
-		useFormik({
-			initialValues: {
-				name: '',
-				email: '',
-				password: '',
-				confirmPassword: '',
-				role: 'student',
-				agreeTerms: false,
-			},
-			validationSchema: registerFormSchema,
-			onSubmit: async (values, { setSubmitting }) => {
-				try {
-					const actionResponse = await dispatch(registerUser(values));
-					if (registerUser.fulfilled.match(actionResponse)) {
-						toast.success('Registration successful!');
-						navigate('/login');
-					} else {
-						throw actionResponse;
-					}
-				} catch (error) {
-					const errorMessage = error?.payload?.message || 'Error occurred during registration';
-					toast.error(errorMessage);
-				} finally {
-					setSubmitting(false);
-				}
-			},
-		});
+		useRegisterForm(dispatch, navigate);
 
 	return (
 		<form onSubmit={handleSubmit}>

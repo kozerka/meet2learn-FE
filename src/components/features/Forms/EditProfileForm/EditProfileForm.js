@@ -1,21 +1,15 @@
-import { Formik, Field, FieldArray, ErrorMessage } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import { editFormFieldsData } from '../../../../data';
 import PropTypes from 'prop-types';
-import {
-	StyledInput,
-	StyledTextArea,
-	StyledLabel,
-	Form,
-	RemoveBtn,
-	SmallInput,
-} from './EditProfileForm.styled';
+import { StyledInput, StyledTextArea, StyledLabel, Form } from './EditProfileForm.styled';
 import { Button, ErrorText } from '../../../ui';
-import { FaTrashAlt } from 'react-icons/fa';
 import { editProfileFormSchema } from '../../../../schemas/editProfileForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../../../../store/thunks';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { SubjectsFieldArray } from './SubjectFieldArray';
+import { ExperiencesFieldArray } from './ExperiencesFieldArray';
 
 const EditProfileForm = ({ user }) => {
 	const dispatch = useDispatch();
@@ -56,8 +50,8 @@ const EditProfileForm = ({ user }) => {
 			validationSchema={editProfileFormSchema(user)}
 			onSubmit={handleSubmit}
 		>
-			{({ values, errors, touched }) => (
-				<Form>
+			{formik => (
+				<Form onSubmit={formik.handleSubmit}>
 					{editFormFieldsData.map(field => (
 						<div key={field.name}>
 							<StyledLabel htmlFor={field.name}>{field.label}</StyledLabel>
@@ -65,7 +59,7 @@ const EditProfileForm = ({ user }) => {
 								name={field.name}
 								type={field.type}
 								as={field.type === 'textarea' ? StyledTextArea : StyledInput}
-								$hasError={touched[field.name] && errors[field.name]}
+								$hasError={formik.touched[field.name] && formik.errors[field.name]}
 							/>
 							<ErrorMessage name={field.name} component={ErrorText} />
 						</div>
@@ -75,65 +69,16 @@ const EditProfileForm = ({ user }) => {
 						<>
 							<div>
 								<StyledLabel htmlFor={'bio'}>Bio:</StyledLabel>
-								<Field name={'bio'} as={StyledTextArea} $hasError={touched.bio && errors.bio} />
+								<Field
+									name={'bio'}
+									as={StyledTextArea}
+									$hasError={formik.touched.bio && formik.errors.bio}
+								/>
 								<ErrorMessage name={'bio'} component={ErrorText} />
 							</div>
-							<FieldArray
-								name={'subjects'}
-								render={arrayHelpers => (
-									<div>
-										<StyledLabel htmlFor={'subjects'}>Subjects:</StyledLabel>
-										{values.subjects.map((subject, index) => (
-											<div
-												key={index}
-												style={{
-													display: 'flex',
-													justifyContent: 'center',
-													alignItems: 'center',
-													gap: '2rem',
-												}}
-											>
-												<Field name={`subjects[${index}].name`} as={SmallInput} />
-												<ErrorMessage name={`subjects[${index}].name`} component={ErrorText} />
-												<RemoveBtn type={'button'} onClick={() => arrayHelpers.remove(index)}>
-													<FaTrashAlt size={'1rem'} />
-												</RemoveBtn>
-											</div>
-										))}
-										<Button $small type={'button'} onClick={() => arrayHelpers.push({ name: '' })}>
-											+ Add Subject
-										</Button>
-									</div>
-								)}
-							/>
 
-							<FieldArray
-								name={'experiences'}
-								render={arrayHelpers => (
-									<div>
-										<StyledLabel htmlFor={'experiences'}>Teaching Experience:</StyledLabel>
-										{values.experiences.map((experience, index) => (
-											<div key={index}>
-												<Field as={StyledTextArea} name={`experiences[${index}].description`} />
-												<ErrorMessage
-													name={`experiences[${index}].description`}
-													component={ErrorText}
-												/>
-												<RemoveBtn type={'button'} onClick={() => arrayHelpers.remove(index)}>
-													<FaTrashAlt size={'1rem'} /> Remove this experience
-												</RemoveBtn>
-											</div>
-										))}
-										<Button
-											$small
-											type={'button'}
-											onClick={() => arrayHelpers.push({ description: '' })}
-										>
-											+ Add Experience
-										</Button>
-									</div>
-								)}
-							/>
+							<SubjectsFieldArray formik={formik} />
+							<ExperiencesFieldArray formik={formik} />
 						</>
 					)}
 
@@ -157,8 +102,16 @@ EditProfileForm.propTypes = {
 		city: PropTypes.string,
 		country: PropTypes.string,
 		about: PropTypes.string,
-		subjects: PropTypes.arrayOf(PropTypes.string),
-		experiences: PropTypes.arrayOf(PropTypes.string),
+		subjects: PropTypes.arrayOf(
+			PropTypes.shape({
+				name: PropTypes.string.isRequired,
+			})
+		),
+		experiences: PropTypes.arrayOf(
+			PropTypes.shape({
+				description: PropTypes.string.isRequired,
+			})
+		),
 		bio: PropTypes.string,
 		role: PropTypes.string.isRequired,
 	}).isRequired,

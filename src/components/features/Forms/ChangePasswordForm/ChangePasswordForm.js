@@ -1,20 +1,11 @@
-import { useFormik } from 'formik';
-import { passwordChangeSchema } from '../../../../schemas';
 import { passwordChangeFields } from '../../../../data';
 import { Button, FormField } from '../../../ui';
 import PropTypes from 'prop-types';
+import { useChangePasswordForm } from '../../../../hooks';
 
 const ChangePasswordForm = ({ onSubmit }) => {
-	const { values, errors, touched, handleBlur, handleChange, isSubmitting, handleSubmit } =
-		useFormik({
-			initialValues: {
-				currentPassword: '',
-				newPassword: '',
-				confirmPassword: '',
-			},
-			validationSchema: passwordChangeSchema,
-			onSubmit,
-		});
+	const { values, errors, touched, handleChange, handleBlur, isSubmitting, handleSubmit } =
+		useChangePasswordForm(onSubmit);
 
 	return (
 		<form onSubmit={handleSubmit}>

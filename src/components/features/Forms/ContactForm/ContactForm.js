@@ -1,48 +1,10 @@
-import { useFormik } from 'formik';
-
-import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
-import { resetFormData } from '../../../../store/slices/contactFormSlice';
-import { sendContactForm } from '../../../../store/thunks';
 import { Button, CheckboxField, FormField } from '../../../ui';
-import { contactFormSchema } from '../../../../schemas';
+import { useContactForm } from '../../../../hooks';
 import { contactFormFields } from '../../../../data';
 
 const ContactForm = () => {
-	const dispatch = useDispatch();
-	const { formData } = useSelector(state => state.contactForm);
-
-	const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } =
-		useFormik({
-			initialValues: {
-				username: formData.username || '',
-				email: formData.email || '',
-				messageTitle: formData.messageTitle || '',
-				messageBody: formData.messageBody || '',
-				agreeTerms: false,
-			},
-			validationSchema: contactFormSchema,
-			onSubmit: (values, { resetForm }) => {
-				dispatch(sendContactForm(values))
-					.unwrap()
-					.then(() => {
-						toast.success('Form submitted successfully');
-						dispatch(resetFormData());
-						resetForm({
-							values: {
-								username: '',
-								email: '',
-								messageTitle: '',
-								messageBody: '',
-								agreeTerms: false,
-							},
-						});
-					})
-					.catch(error => {
-						toast.error(error.message || 'Error submitting form');
-					});
-			},
-		});
+	const { handleSubmit, errors, values, touched, handleChange, handleBlur, isSubmitting } =
+		useContactForm();
 
 	return (
 		<form onSubmit={handleSubmit}>

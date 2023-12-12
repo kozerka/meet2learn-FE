@@ -1,34 +1,11 @@
 import PropTypes from 'prop-types';
-import { useFormik } from 'formik';
 import { Button, FormField } from '../../../ui';
 import { FiMail, FiLock } from 'react-icons/fi';
-import { loginFormSchema } from '../../../../schemas';
-import { loginUser, fetchUser } from '../../../../store/thunks';
-import { toast } from 'react-toastify';
+import { useLoginForm } from '../../../../hooks';
 
 const LoginForm = ({ dispatch, navigate }) => {
 	const { values, errors, touched, handleBlur, handleChange, isSubmitting, handleSubmit } =
-		useFormik({
-			initialValues: { email: '', password: '' },
-			validationSchema: loginFormSchema,
-			onSubmit: async (values, { setSubmitting }) => {
-				try {
-					const actionResponse = await dispatch(loginUser(values));
-					if (loginUser.fulfilled.match(actionResponse)) {
-						dispatch(fetchUser());
-						toast.success('Login successful!');
-						navigate('/dashboard');
-					} else {
-						throw actionResponse;
-					}
-				} catch (error) {
-					const errorMessage = error?.payload?.message || 'Error occurred during login';
-					toast.error(errorMessage);
-				} finally {
-					setSubmitting(false);
-				}
-			},
-		});
+		useLoginForm(dispatch, navigate);
 
 	return (
 		<form onSubmit={handleSubmit}>
