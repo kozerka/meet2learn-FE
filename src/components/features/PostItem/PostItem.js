@@ -27,12 +27,12 @@ import {
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { deletePost } from '../../../store/slices/postSlice';
+import { deletePost, getPostsByUserId } from '../../../store/slices/postSlice';
 import { toast } from 'react-toastify';
 import { useModal, usePostInteractions } from '../../../hooks';
 import { formatDate } from '../../../utils';
 import DOMPurify from 'dompurify';
-const PostItem = ({ post }) => {
+const PostItem = ({ post, userId }) => {
 	const { _id, text, title, category, createdAt, updatedAt, comments, user } = post;
 	const [commentOpen, setCommentOpen] = useState(false);
 	const [postComments, setComments] = useState(comments || []);
@@ -41,7 +41,7 @@ const PostItem = ({ post }) => {
 	const loggedInUserId = userAuth?.userInfo?._id;
 	const dispatch = useDispatch();
 	const { isOpen, openModal, closeModal } = useModal();
-	const { handleLike, handleDislike, handlePriority } = usePostInteractions(_id);
+	const { handleLike, handleDislike, handlePriority } = usePostInteractions(_id, loggedInUserId);
 
 	useEffect(() => {
 		setComments(comments);
@@ -54,6 +54,7 @@ const PostItem = ({ post }) => {
 			.then(() => {
 				toast.success('Post deleted successfully!');
 				closeModal();
+				dispatch(getPostsByUserId(userId));
 			})
 			.catch(error => {
 				toast.error(`Error: ${error.message}`);
@@ -142,7 +143,7 @@ const PostItem = ({ post }) => {
 
 			{commentOpen && (
 				<>
-					<CommentForm postId={_id} />
+					<CommentForm postId={_id} userId={userId} />
 					<div
 						style={{
 							display: 'flex',
@@ -163,6 +164,7 @@ const PostItem = ({ post }) => {
 
 PostItem.propTypes = {
 	post: PropTypes.object.isRequired,
+	userId: PropTypes.string.isRequired,
 };
 
 export default PostItem;

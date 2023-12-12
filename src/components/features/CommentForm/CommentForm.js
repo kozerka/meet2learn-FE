@@ -2,13 +2,13 @@ import { useFormik } from 'formik';
 import FormField from '../Form/FormField';
 import { useDispatch } from 'react-redux';
 import { createComment } from '../../../store/slices/commentSlice';
-import { getPosts } from '../../../store/slices/postSlice';
+import { getPosts, getPostsByUserId } from '../../../store/slices/postSlice';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import Button from '../../ui/Button';
 import { commentPostSchema } from '../../../schemas';
 
-const CommentForm = ({ postId }) => {
+const CommentForm = ({ postId, userId }) => {
 	const dispatch = useDispatch();
 
 	const formik = useFormik({
@@ -22,6 +22,7 @@ const CommentForm = ({ postId }) => {
 				resetForm();
 				toast.success('Comment added successfully');
 				dispatch(getPosts());
+				dispatch(getPostsByUserId(userId));
 			} catch (error) {
 				console.error(error);
 			}
@@ -50,6 +51,7 @@ const CommentForm = ({ postId }) => {
 
 CommentForm.propTypes = {
 	postId: PropTypes.string.isRequired,
+	userId: PropTypes.string.isRequired,
 };
 
 export default CommentForm;

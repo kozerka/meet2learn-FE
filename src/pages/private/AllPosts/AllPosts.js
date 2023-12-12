@@ -16,7 +16,6 @@ const AllPosts = () => {
 		label: category,
 	}));
 
-	// Filtrowanie postów
 	const filteredPosts = selectedCategory
 		? posts.filter(post => post.category === selectedCategory.value)
 		: posts;

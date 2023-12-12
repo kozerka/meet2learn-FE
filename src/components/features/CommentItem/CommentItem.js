@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaTrashAlt } from 'react-icons/fa';
 import { deleteComment } from '../../../store/slices/commentSlice';
-import { getPosts } from '../../../store/slices/postSlice';
+import { getPosts, getPostsByUserId } from '../../../store/slices/postSlice';
 import { toast } from 'react-toastify';
 
 const CommentItem = ({ comment, postId }) => {
@@ -27,6 +27,7 @@ const CommentItem = ({ comment, postId }) => {
 			await dispatch(deleteComment({ postId, commentId: comment._id })).unwrap();
 			toast.success('Comment deleted successfully');
 			dispatch(getPosts());
+			dispatch(getPostsByUserId(loggedInUserId));
 		} catch (error) {
 			console.error(error);
 		}
