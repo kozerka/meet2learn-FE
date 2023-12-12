@@ -132,12 +132,12 @@
 
 ### Added
 
- - forum for portal users
- - adding, editing, deleting posts
- - filtering posts by categories
- - adding a priority (maximum 5 priority from one user)
- - adding likes, dislikes,
- - adding comments under a specific post
+ - Forum for portal users
+ - Adding, editing, deleting posts
+ - Filtering posts by categories
+ - Adding a priority (maximum 5 priority from one user)
+ - Adding likes, dislikes,
+ - Adding comments under a specific post
 
 ## [0.15.0] - 2023-12-07
 
@@ -150,3 +150,11 @@
 ### Added
 
  - Add rich editor for adding posts
+
+## [0.17.0] - 2023-12-12
+
+### Added
+
+ - Password reset functionality with separate views for reset initiation and password change
+ - Reset form to change Password component
+ - Additional buttons for navbar
