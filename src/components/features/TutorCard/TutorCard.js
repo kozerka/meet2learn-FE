@@ -16,10 +16,26 @@ import {
 } from './TutorCard.styled';
 const TutorCard = ({ tutor }) => {
 	const navigate = useNavigate();
+	const profileComplete = tutor.firstName && tutor.lastName;
 
 	const viewProfile = () => {
 		navigate(`/tutors/${tutor._id}`);
 	};
+	if (!profileComplete) {
+		return (
+			<TutorCardWrapper>
+				<ImageContainer>
+					<img src={tutor.avatar} alt={'Pending profile'} />
+				</ImageContainer>
+				<ItemInfo>
+					<TopSection>
+						<Name>Pending Profile...</Name>
+					</TopSection>
+					<Reviews>Wait till tutor profile is complete.</Reviews>
+				</ItemInfo>
+			</TutorCardWrapper>
+		);
+	}
 
 	return (
 		<TutorCardWrapper>

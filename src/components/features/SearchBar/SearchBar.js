@@ -36,7 +36,8 @@ const SearchBar = ({ onSearch }) => {
 			<InputContainer>
 				<StyledInput
 					type={'text'}
-					placeholder={'Search by name or category'}
+					placeholder={'Search by name or learning subject'}
+					name={'search'}
 					value={searchTerm}
 					onChange={handleChange}
 					onKeyDown={handleKeyDown}

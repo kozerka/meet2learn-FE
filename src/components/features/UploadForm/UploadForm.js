@@ -9,6 +9,7 @@ import Button from '../../ui/Button';
 import { FormStyled } from './UploadForm.styled';
 import { LuFileImage } from 'react-icons/lu';
 import { FormContainer } from '../../ui/Containers';
+import Loader from '../../ui/Loader/Loader';
 
 const UploadForm = () => {
 	const dispatch = useDispatch();
@@ -57,7 +58,7 @@ const UploadForm = () => {
 
 			{!errors.avatar &&
 				values.avatar &&
-				(isLoading ? <p>Loading img...</p> : <ImgPreview file={values.avatar} />)}
+				(isLoading ? <Loader /> : <ImgPreview file={values.avatar} />)}
 		</FormContainer>
 	);
 };
