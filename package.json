@@ -1,6 +1,6 @@
 {
 	"name": "meet2learn-fe",
-	"version": "0.17.0",
+	"version": "0.18.0",
 	"private": true,
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.9.7",
