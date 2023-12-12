@@ -158,3 +158,9 @@
  - Password reset functionality with separate views for reset initiation and password change
  - Reset form to change Password component
  - Additional buttons for navbar
+
+## [0.18.0] - 2023-12-12
+
+### Added
+
+ - Add custom loader using react-loader-spinner 
