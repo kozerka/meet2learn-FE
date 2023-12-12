@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTutorById } from '../../../store/slices/tutorSlice';
 import { getTutorReviews } from '../../../store/slices/reviewSlice';
 import { fetchUser } from '../../../store/slices/userSlice';
+import Loader from '../../../components/ui/Loader/Loader';
 const TutorPublicProfile = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const TutorPublicProfile = () => {
 	};
 
 	if (isTutorLoading || isReviewsLoading) {
-		return <div>Loading...</div>;
+		return <Loader />;
 	}
 	if (!tutor) {
 		return <div>Tutor not found</div>;

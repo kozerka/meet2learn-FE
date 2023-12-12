@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserStats } from '../../../store/slices/statsSlice';
 import { NavContainer, DashboardContainer } from '../../../components/ui/Containers';
 import { StatsCards, WelcomeMessage, SectionTitle } from '../../../components';
+import Loader from '../../../components/ui/Loader/Loader';
 const Stats = () => {
 	const dispatch = useDispatch();
 	const { stats, isLoading } = useSelector(state => state.stats);
@@ -15,7 +16,7 @@ const Stats = () => {
 	}, [dispatch, userId]);
 
 	if (isLoading) {
-		return <p>loading...</p>;
+		return <Loader />;
 	}
 
 	return (

@@ -3,6 +3,7 @@ import { getPosts } from '../../../store/slices/postSlice';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactSelect from 'react-select';
+import Loader from '../../../components/ui/Loader/Loader';
 const AllPosts = () => {
 	const dispatch = useDispatch();
 	const [selectedCategory, setSelectedCategory] = useState(null);
@@ -20,7 +21,7 @@ const AllPosts = () => {
 		? posts.filter(post => post.category === selectedCategory.value)
 		: posts;
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <Loader />;
 	}
 	const handleCategoryChange = selectedOption => {
 		setSelectedCategory(selectedOption);

@@ -9,3 +9,4 @@ export * from './CustomContainer.styled';
 export * from './ImgContainer.styled';
 export * from './NavContainer.styled';
 export * from './TextCenterContainer.styled';
+export * from './LoaderContainer.styled';
