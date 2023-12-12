@@ -17,7 +17,7 @@ import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { useConversations, useModal } from '../../../hooks';
 import { calculateDaysOfConnection, groupConversationsByDate } from '../../../utils';
-import { ConversationForm } from '../../../components';
+import { ConversationForm } from '../../../components/features/Forms';
 import ConversationMessage from '../../../components/features/ConversationMessage/ConversationMessage';
 
 const SingleTutorConnection = ({ meeting, onDiscuss }) => {

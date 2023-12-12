@@ -1,5 +1,5 @@
 import { Container, Heading, SettingsContainer, Text, IconStyled } from './Settings.styled';
-import ChangePasswordForm from '../../../components/features/ChangePasswordForm/ChangePasswordForm';
+import { ChangePasswordForm } from '../../../components/features/Forms';
 import DeleteAccount from '../../../components/features/DeleteAccount/DeleteAccount';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';

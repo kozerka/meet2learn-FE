@@ -7,7 +7,7 @@ import {
 	FormContainer,
 	IntersectionTitle,
 } from '../../../components/ui';
-import ContactForm from '../../../components/features/ContactForm/ContactForm';
+import { ContactForm } from '../../../components/features/Forms';
 
 const Contact = () => {
 	return (

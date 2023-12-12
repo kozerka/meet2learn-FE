@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import NoteForm from '../../../components/features/NoteForm/NoteForm';
+import { NoteForm } from '../../../components/features/Forms';
 import { FormContainer, SectionTitle } from '../../../components/ui';
 
 const EditNote = () => {

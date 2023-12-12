@@ -1,5 +1,5 @@
 import { Formik, Field, FieldArray, ErrorMessage } from 'formik';
-import { editFormFieldsData } from '../../../data';
+import { editFormFieldsData } from '../../../../data';
 import PropTypes from 'prop-types';
 import {
 	StyledInput,
@@ -9,11 +9,11 @@ import {
 	RemoveBtn,
 	SmallInput,
 } from './EditProfileForm.styled';
-import { Button, ErrorText } from '../../ui';
+import { Button, ErrorText } from '../../../ui';
 import { FaTrashAlt } from 'react-icons/fa';
-import { editProfileFormSchema } from '../../../schemas/editProfileForm';
+import { editProfileFormSchema } from '../../../../schemas/editProfileForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../../../store/thunks';
+import { updateUser } from '../../../../store/thunks';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 

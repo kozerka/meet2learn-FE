@@ -1,9 +1,9 @@
 import { FiLock } from 'react-icons/fi';
-import { Button, FormField } from '../../../components/ui';
+import { Button, FormField } from '../../../ui';
 import PropTypes from 'prop-types';
-import { useChangePasswordAfterReset } from '../../../hooks';
+import { useChangePasswordAfterReset } from '../../../../hooks';
 
-const ChangePasswordAfterReset = ({ dispatch }) => {
+const ChangePasswordAfterResetForm = ({ dispatch }) => {
 	const { handleSubmit, errors, values, touched, handleChange, handleBlur, isSubmitting } =
 		useChangePasswordAfterReset(dispatch);
 
@@ -38,8 +38,8 @@ const ChangePasswordAfterReset = ({ dispatch }) => {
 	);
 };
 
-ChangePasswordAfterReset.propTypes = {
+ChangePasswordAfterResetForm.propTypes = {
 	dispatch: PropTypes.func.isRequired,
 };
 
-export default ChangePasswordAfterReset;
+export default ChangePasswordAfterResetForm;

@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
-import { Button, FormField } from '../../ui';
+import { Button, FormField } from '../../../ui';
 import { FiMail, FiLock } from 'react-icons/fi';
-import { loginFormSchema } from '../../../schemas';
-import { loginUser, fetchUser } from '../../../store/thunks';
+import { loginFormSchema } from '../../../../schemas';
+import { loginUser, fetchUser } from '../../../../store/thunks';
 import { toast } from 'react-toastify';
 
 const LoginForm = ({ dispatch, navigate }) => {

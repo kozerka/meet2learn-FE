@@ -7,7 +7,7 @@ import PersonalCard from '../../../components/features/TutorPublicProfile/Person
 import AboutCard from '../../../components/features/TutorPublicProfile/About';
 import { Button, Loader, LinkStyled } from '../../../components/ui';
 import Reviews from '../../../components/features/Reviews/Reviews';
-import FeedbackForm from '../../../components/features/FeedbackForm/FeedbackForm';
+import { FeedbackForm } from '../../../components/features/Forms';
 
 const TutorPublicProfile = () => {
 	const { id } = useParams();

@@ -1,11 +1,11 @@
 import { useFormik, ErrorMessage } from 'formik';
 import CreatableReactSelect from 'react-select/creatable';
-import { ButtonContainer, StyledLabel, Button, FormField } from '../../ui';
+import { ButtonContainer, StyledLabel, Button, FormField } from '../../../ui';
 import { useDispatch } from 'react-redux';
-import { createNote, updateNote } from '../../../store/thunks';
+import { createNote, updateNote } from '../../../../store/thunks';
 import PropTypes from 'prop-types';
 import { useNavigate, Link } from 'react-router-dom';
-import { noteSchema } from '../../../schemas';
+import { noteSchema } from '../../../../schemas';
 import { toast } from 'react-toastify';
 
 const NoteForm = ({ initialNote, isEditing }) => {

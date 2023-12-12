@@ -1,7 +1,7 @@
 import { FiMail } from 'react-icons/fi';
-import { Button, FormField } from '../../ui';
+import { Button, FormField } from '../../../ui';
 import PropTypes from 'prop-types';
-import { useResetPasswordForm } from '../../../hooks';
+import { useResetPasswordForm } from '../../../../hooks';
 
 const ResetPasswordForm = ({ dispatch, setEmailSent }) => {
 	const { values, errors, touched, handleBlur, handleChange, isSubmitting, handleSubmit } =

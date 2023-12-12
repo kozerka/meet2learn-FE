@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { Button, FormField } from '../../ui';
+import { Button, FormField } from '../../../ui';
 import { useFormik } from 'formik';
-import { conversationSchema } from '../../../schemas';
+import { conversationSchema } from '../../../../schemas';
 
 const ConversationForm = ({ onSubmit, onCancel }) => {
 	const formik = useFormik({

@@ -11,7 +11,7 @@ import {
 } from '../../../components/ui';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import LoginForm from '../../../components/features/LoginForm/LoginForm';
+import { LoginForm } from '../../../components/features/Forms';
 
 const Login = () => {
 	const dispatch = useDispatch();

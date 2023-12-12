@@ -2,11 +2,11 @@ import { useFormik } from 'formik';
 
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetFormData } from '../../../store/slices/contactFormSlice';
-import { sendContactForm } from '../../../store/thunks';
-import { Button, CheckboxField, FormField } from '../../../components/ui';
-import { contactFormSchema } from '../../../schemas';
-import { contactFormFields } from '../../../data';
+import { resetFormData } from '../../../../store/slices/contactFormSlice';
+import { sendContactForm } from '../../../../store/thunks';
+import { Button, CheckboxField, FormField } from '../../../ui';
+import { contactFormSchema } from '../../../../schemas';
+import { contactFormFields } from '../../../../data';
 
 const ContactForm = () => {
 	const dispatch = useDispatch();

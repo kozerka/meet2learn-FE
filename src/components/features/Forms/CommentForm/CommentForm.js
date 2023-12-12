@@ -1,10 +1,10 @@
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { createComment, getPosts, getPostsByUserId } from '../../../store/thunks';
+import { createComment, getPosts, getPostsByUserId } from '../../../../store/thunks';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
-import { Button, FormField } from '../../ui';
-import { commentPostSchema } from '../../../schemas';
+import { Button, FormField } from '../../../ui';
+import { commentPostSchema } from '../../../../schemas';
 
 const CommentForm = ({ postId, userId }) => {
 	const dispatch = useDispatch();

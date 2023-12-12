@@ -10,7 +10,7 @@ import {
 } from '../../../components/ui';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import RegisterForm from '../../../components/features/RegisterForm/RegisterForm';
+import { RegisterForm } from '../../../components/features/Forms';
 
 const Register = () => {
 	const dispatch = useDispatch();

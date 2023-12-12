@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import { ErrorText, StarRating, Button } from '../../ui';
+import { ErrorText, StarRating, Button } from '../../../ui';
 import {
 	FeedbackContainer,
 	TextArea,
 	ErrorContainer,
 	ButtonContainer,
 } from './FeedbackForm.styled';
-import { useFeedbackForm } from '../../../hooks';
+import { useFeedbackForm } from '../../../../hooks';
 
 const FeedbackForm = ({ tutorId, reviewData }) => {
 	const { formik, showForm, toggleForm, handleFeedbackButtonClick } = useFeedbackForm(

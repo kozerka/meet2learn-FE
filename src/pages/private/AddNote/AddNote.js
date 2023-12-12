@@ -1,4 +1,4 @@
-import NoteForm from '../../../components/features/NoteForm/NoteForm';
+import { NoteForm } from '../../../components/features/Forms';
 import { FormContainer, SectionTitle } from '../../../components/ui';
 
 const AddNote = () => {

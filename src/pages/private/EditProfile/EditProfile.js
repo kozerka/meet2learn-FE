@@ -1,4 +1,4 @@
-import EditProfileForm from '../../../components/features/EditProfileForm/EditProfileForm';
+import { EditProfileForm } from '../../../components/features/Forms';
 import styled from 'styled-components';
 import { useUserData } from '../../../hooks';
 import { Loader, SectionTitle } from '../../../components/ui';

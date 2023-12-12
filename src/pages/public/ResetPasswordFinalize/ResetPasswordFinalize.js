@@ -9,7 +9,7 @@ import {
 	IntersectionTitle,
 } from '../../../components/ui';
 
-import ChangePasswordAfterReset from '../../../components/features/ChangePasswordAfterResetForm/ChangePasswordAfterReset';
+import { ChangePasswordAfterResetForm } from '../../../components/features/Forms';
 
 const ResetPasswordFinalize = () => {
 	const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const ResetPasswordFinalize = () => {
 				</ImageContainer>
 				<FormContainer>
 					<IntersectionTitle title={'Provide new Password'} text={'Reset'} />
-					<ChangePasswordAfterReset dispatch={dispatch} />
+					<ChangePasswordAfterResetForm dispatch={dispatch} />
 				</FormContainer>
 			</ContentContainer>
 		</PageContainer>

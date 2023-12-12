@@ -1,4 +1,3 @@
-export { default as ConversationForm } from './ConversationForm/ConversationForm';
 export { default as PostItem } from './PostItem/PostItem';
 export { default as WelcomeMessage } from './WelcomeMessage/WelcomeMessage';
 export { default as StatsCards } from './StatsCards/StatsCards';

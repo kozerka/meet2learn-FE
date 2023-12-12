@@ -10,7 +10,7 @@ import {
 	TextCenterContainer,
 } from '../../../components/ui';
 import { useDispatch } from 'react-redux';
-import ResetPasswordForm from '../../../components/features/ResetPasswordForm/ResetPasswordForm';
+import { ResetPasswordForm } from '../../../components/features/Forms';
 
 const ResetPasswordInitiate = () => {
 	const dispatch = useDispatch();
