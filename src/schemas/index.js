@@ -10,3 +10,4 @@ export * from './conversation';
 export * from './postForm';
 export * from './emailCheckForReset';
 export * from './passwordReset';
+export * from './commentPost';

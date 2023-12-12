@@ -1,5 +1,4 @@
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import FormField from '../Form/FormField';
 import { useDispatch } from 'react-redux';
 import { createComment } from '../../../store/slices/commentSlice';
@@ -7,6 +6,7 @@ import { getPosts } from '../../../store/slices/postSlice';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import Button from '../../ui/Button';
+import { commentPostSchema } from '../../../schemas';
 
 const CommentForm = ({ postId }) => {
 	const dispatch = useDispatch();
@@ -15,9 +15,7 @@ const CommentForm = ({ postId }) => {
 		initialValues: {
 			comment: '',
 		},
-		validationSchema: Yup.object({
-			comment: Yup.string().required('Comment is required'),
-		}),
+		validationSchema: commentPostSchema,
 		onSubmit: async (values, { resetForm }) => {
 			try {
 				await dispatch(createComment({ postId, commentData: { text: values.comment } })).unwrap();
