@@ -8,3 +8,5 @@ export * from './uploadAvatar';
 export * from './editProfileForm';
 export * from './conversation';
 export * from './postForm';
+export * from './emailCheckForReset';
+export * from './passwordReset';
