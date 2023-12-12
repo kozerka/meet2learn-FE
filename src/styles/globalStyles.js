@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
   scroll-behavior: smooth;
 }
 
-   body {
+body {
     
   font-family: 'Rubik', 'Open Sans','Gluten', 'Grandstander', 'Itim',
     sans-serif;
@@ -26,6 +26,5 @@ a, button {
     &:hover {
       background-color: ${({ theme }) => theme.hover};
     }
-   
   }
 `;
