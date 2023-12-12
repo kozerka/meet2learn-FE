@@ -14,3 +14,4 @@ export * from './myNotesNavLinks';
 export * from './tutoringNavLinks';
 export * from './forumNavLinks';
 export * from './contactFormFields';
+export * from './statsData';

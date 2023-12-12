@@ -98,6 +98,7 @@ const AddPost = ({ initialPost, isEditing }) => {
 						formik.validateField('text');
 					}}
 					onBlur={() => formik.handleBlur('text')}
+					className={'my-jodit-editor'}
 				/>
 
 				<div>
