@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import {
-	About,
 	Contact,
 	Home,
 	Landing,
@@ -32,7 +31,7 @@ import {
 	ResetPasswordInitiate,
 	ResetPasswordFinalize,
 } from './pages';
-import ProtectedRoute from './components/ProtectedRoute';
+import { ProtectedRoute } from './components/features';
 
 const router = createBrowserRouter([
 	{
@@ -45,7 +44,6 @@ const router = createBrowserRouter([
 			{ path: '/register', element: <Register />, errorElement: <NotFound /> },
 			{ path: '/reset-password', element: <ResetPasswordInitiate /> },
 			{ path: '/finalize-reset-password', element: <ResetPasswordFinalize /> },
-			{ path: 'about', element: <About /> },
 			{
 				path: 'tutors',
 				element: <Tutors />,

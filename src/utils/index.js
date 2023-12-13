@@ -4,3 +4,4 @@ export * from './groupConversationsByDate';
 export { default as BASE_URL } from './baseUrl';
 export * from './formatDate';
 export * from './getDateInfo';
+export * from './createMarkup';

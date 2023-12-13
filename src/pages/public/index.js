@@ -1,4 +1,3 @@
-export { default as About } from './About/About';
 export { default as Contact } from './Contact/Contact';
 export { default as ResetPasswordFinalize } from './ResetPasswordFinalize/ResetPasswordFinalize';
 export { default as ResetPasswordInitiate } from './ResetPasswordInitiate/ResetPasswordInitiate';

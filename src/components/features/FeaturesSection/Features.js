@@ -1,4 +1,4 @@
-import IntersectionTitle from '../../layout/IntersectionTitle';
+import { IntersectionTitle } from '../../ui';
 import { featuresData } from '../../../data';
 import { FeaturesContainer, FeatureBox, FeatureImg } from './Features.styled';
 

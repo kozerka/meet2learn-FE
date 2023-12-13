@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from '../../../store/slices/themeSlice';
 import {
@@ -14,26 +13,25 @@ import {
 	Dropdown,
 } from './Navbar.styled';
 import { NavigationLink } from './NavigationLink.styled';
-import Button from '../../ui/Button';
+import { Button, Logo } from '../../ui';
 import MobileNavbar from './MobileNavbar';
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
-import Logo from '../../ui/Logo/Logo';
 import { navLinks } from '../../../data';
-import { logoutUser } from '../../../store/slices/userSlice';
+import { logoutUser } from '../../../store/thunks';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { useUserData } from '../../../hooks';
-import Loader from '../../ui/Loader/Loader';
+import { useUserData, useDropdown, useMobileNav } from '../../../hooks';
 
 const Navbar = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const currentTheme = useSelector(state => state.theme.theme);
-	const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
 	const handleToggleTheme = () => dispatch(toggleTheme());
-	const toggleMobileNav = () => setIsMobileNavOpen(prevState => !prevState);
-	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-	const toggleDropdown = () => setIsDropdownOpen(prevState => !prevState);
+
+	const { isDropdownOpen, toggleDropdown, closeDropdown } = useDropdown();
+	const { isMobileNavOpen, toggleMobileNav } = useMobileNav();
+
 	const userAuth = useSelector(state => state.user.userAuth);
 	const handleLogout = () => {
 		dispatch(logoutUser());
@@ -41,12 +39,7 @@ const Navbar = () => {
 		navigate('/login');
 	};
 
-	const { userData, isLoading } = useUserData();
-	const closeDropDown = () => setIsDropdownOpen(false);
-
-	if (isLoading) {
-		return <Loader />;
-	}
+	const { userData } = useUserData();
 
 	return (
 		<Nav>
@@ -69,14 +62,14 @@ const Navbar = () => {
 							</ImageContainer>
 							{isDropdownOpen && (
 								<Dropdown>
-									<StyledLink to={'/dashboard'} onClick={closeDropDown}>
+									<StyledLink to={'/dashboard'} onClick={closeDropdown}>
 										Dashboard
 									</StyledLink>
 									<StyledLink
 										to={'/login'}
 										onClick={() => {
 											handleLogout();
-											closeDropDown();
+											closeDropdown();
 										}}
 									>
 										Logout

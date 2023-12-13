@@ -1,6 +1,6 @@
 import { Title } from './SectionTitle.styled';
 import PropTypes from 'prop-types';
-const SectionTitle = ({ title, size }) => {
+export const SectionTitle = ({ title, size }) => {
 	return <Title size={size}>{title}</Title>;
 };
 
@@ -12,4 +12,3 @@ SectionTitle.propTypes = {
 SectionTitle.defaultProps = {
 	size: 'default',
 };
-export default SectionTitle;

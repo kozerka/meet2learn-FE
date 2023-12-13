@@ -3,7 +3,7 @@ import StyledLogo from './Logo.styled';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Logo = ({ isLink, linkTo }) => {
+export const Logo = ({ isLink, linkTo }) => {
 	return isLink ? (
 		<Link to={linkTo}>
 			<StyledLogo>
@@ -26,5 +26,3 @@ Logo.defaultProps = {
 	isLink: true,
 	linkTo: '/',
 };
-
-export default Logo;

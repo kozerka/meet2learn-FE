@@ -1,26 +1,19 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { faqsData } from '../../../data';
 import question from '../../../assets/img/question.png';
-import {
-	AccordionSection,
-	Item,
-	Number,
-	Text,
-	HiddenBox,
-	Paragraph,
-	Icon,
-	Image,
-	Container,
-	ImageContainer,
-} from './Faqs.styled';
-import IntersectionTitle from '../../layout/IntersectionTitle';
+import { AccordionSection, Image, Container, ImageContainer } from './Faqs.styled';
+import { IntersectionTitle } from '../../ui/';
+import FaqItem from './FaqItem';
 
 const Accordion = () => {
 	const [openItemIndex, setOpenItemIndex] = useState(null);
 
-	const handleToggle = index => {
-		setOpenItemIndex(openItemIndex === index ? null : index);
-	};
+	const handleToggle = useCallback(
+		index => {
+			setOpenItemIndex(openItemIndex === index ? null : index);
+		},
+		[openItemIndex]
+	);
 
 	return (
 		<div>
@@ -31,18 +24,12 @@ const Accordion = () => {
 				</ImageContainer>
 				<AccordionSection>
 					{faqsData.map((item, index) => (
-						<Item
-							key={index}
-							className={openItemIndex === index ? 'open' : ''}
+						<FaqItem
+							key={item.number}
+							item={item}
+							isOpen={openItemIndex === index}
 							onClick={() => handleToggle(index)}
-						>
-							<Number>{item.number}</Number>
-							<Text>{item.question}</Text>
-							<Icon $isOpen={openItemIndex === index} />
-							<HiddenBox className={'hiddenBox'}>
-								<Paragraph>{item.answer}</Paragraph>
-							</HiddenBox>
-						</Item>
+						/>
 					))}
 				</AccordionSection>
 			</Container>

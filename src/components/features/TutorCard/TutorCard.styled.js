@@ -67,7 +67,7 @@ const Categories = styled.div`
 
 const CategoryLabel = styled.span`
 	background-color: ${({ theme }) => theme.primary};
-	color: #fff;
+	color: ${({ theme }) => theme.textInverted};
 	padding: 0.25rem 0.5rem;
 	border-radius: 0.25rem;
 	font-size: 0.7rem;

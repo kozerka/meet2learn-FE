@@ -3,7 +3,7 @@ import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { logoutUser } from '../../../store/slices/userSlice';
+import { logoutUser } from '../../../store/thunks';
 import { LuArrowLeftSquare, LuArrowRightSquare } from 'react-icons/lu';
 import { ToggleIcon, SidebarStyled, Nav, NavLink, DashboardMenu } from './Sidebar.styled';
 import { useNavigate } from 'react-router-dom';

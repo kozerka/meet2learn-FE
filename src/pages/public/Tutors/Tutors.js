@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getAllTutors } from '../../../store/slices/tutorSlice';
-import TutorCard from '../../../components/features/TutorCard/TutorCard';
-import Wrapper from '../../../components/layout/Wrapper';
-import IntersectionTitle from '../../../components/layout/IntersectionTitle';
-import SearchBar from '../../../components/features/SearchBar/SearchBar';
+import { getAllTutors } from '../../../store/thunks';
+import { Wrapper } from '../../../components/layout';
+import { IntersectionTitle, CustomPagination } from '../../../components/ui';
+import { SearchBar, TutorCard } from '../../../components/features';
 import noTutorFound from '../../../assets/img/noTutorFound.png';
 import { TutorsGrid, NoResultsMessage } from './Tutors.styled';
-import { CustomPagination } from '../../../components';
 
 const Tutors = () => {
 	const dispatch = useDispatch();

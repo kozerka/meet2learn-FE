@@ -1,68 +1,53 @@
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import Tabs from '../../../components/layout/Tabs/Tabs';
-import Wrapper from '../../../components/layout/Wrapper';
-import PersonalCard from '../../../components/features/TutorPublicProfile/PersonalCard';
-import AboutCard from '../../../components/features/TutorPublicProfile/About';
-import { LinkStyled } from '../../../components/ui/Link.styled';
-import Button from '../../../components/ui/Button';
-import Reviews from '../../../components/features/Reviews/Reviews';
-import FeedbackForm from '../../../components/features/FeedbackForm/FeedbackForm';
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getTutorById } from '../../../store/slices/tutorSlice';
-import { getTutorReviews } from '../../../store/slices/reviewSlice';
-import { fetchUser } from '../../../store/slices/userSlice';
-import Loader from '../../../components/ui/Loader/Loader';
+import { useTutorData } from '../../../hooks';
+import { Wrapper, Tabs } from '../../../components/layout';
+import { Button, Loader, LinkStyled } from '../../../components/ui';
+import { Reviews, AboutCard, PersonalCard } from '../../../components/features';
+import { FeedbackForm } from '../../../components/features/Forms';
+
 const TutorPublicProfile = () => {
 	const { id } = useParams();
-	const dispatch = useDispatch();
-	const { tutor, isLoading: isTutorLoading } = useSelector(state => state.tutors);
-	const { reviews, isLoading: isReviewsLoading } = useSelector(state => state.reviews);
-	const [editingReview, setEditingReview] = useState(null);
+	const { tutor, reviews, isLoading, editingReview, setEditingReview } = useTutorData(id);
 
-	useEffect(() => {
-		if (id) {
-			dispatch(getTutorById(id));
-			dispatch(getTutorReviews(id));
-			dispatch(fetchUser());
-		}
-	}, [dispatch, id]);
+	const tabsContent = useMemo(
+		() =>
+			tutor
+				? [
+						{
+							label: 'About',
+							content: (
+								<AboutCard about={tutor.about} bio={tutor.bio} experiences={tutor.experiences} />
+							),
+						},
+						{
+							label: 'Reviews',
+							content: (
+								<>
+									{reviews && (
+										<Reviews reviews={reviews} tutorId={id} onEditReview={setEditingReview} />
+									)}
+									<FeedbackForm tutorId={id} reviewData={editingReview} />
+								</>
+							),
+						},
+				  ]
+				: [],
+		[tutor, reviews, id, editingReview, setEditingReview]
+	);
 
-	const handleEditReview = review => {
-		setEditingReview(review);
-	};
-
-	if (isTutorLoading || isReviewsLoading) {
+	if (isLoading) {
 		return <Loader />;
 	}
+
 	if (!tutor) {
 		return <div>Tutor not found</div>;
 	}
+
 	return (
 		<Wrapper>
 			<PersonalCard user={tutor} />
-			<Tabs
-				tabs={[
-					{
-						label: 'About',
-						content: (
-							<AboutCard about={tutor.about} bio={tutor.bio} experiences={tutor.experiences} />
-						),
-					},
-
-					{
-						label: 'Reviews',
-						content: (
-							<>
-								{tutor && tutor.reviews && (
-									<Reviews reviews={reviews} tutorId={id} onEditReview={handleEditReview} />
-								)}
-								<FeedbackForm tutorId={id} reviewData={editingReview} />
-							</>
-						),
-					},
-				]}
-			/>
+			<Tabs tabs={tabsContent} />
 			<LinkStyled to={'/tutors'}>
 				<Button $primary={true}>Back to Tutors Page</Button>
 			</LinkStyled>

@@ -1,13 +1,19 @@
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { likePost, dislikePost, givePriority, getPosts } from '../store/slices/postSlice';
+import { likePost, dislikePost, givePriority, getPosts, getPostsByUserId } from '../store/thunks';
 
-export const usePostInteractions = postId => {
+export const usePostInteractions = (postId, userId) => {
 	const dispatch = useDispatch();
+	const refreshPosts = () => {
+		if (userId) {
+			dispatch(getPostsByUserId(userId));
+		}
+	};
 
 	const handleLike = async () => {
 		try {
 			const response = await dispatch(likePost(postId)).unwrap();
+			refreshPosts();
 			toast.success(response.message || 'You liked the post.');
 			dispatch(getPosts());
 		} catch (error) {
@@ -18,6 +24,7 @@ export const usePostInteractions = postId => {
 	const handleDislike = async () => {
 		try {
 			const response = await dispatch(dislikePost(postId)).unwrap();
+			refreshPosts();
 			toast.success(response.message || 'You disliked the post.');
 			dispatch(getPosts());
 		} catch (error) {
@@ -28,6 +35,7 @@ export const usePostInteractions = postId => {
 	const handlePriority = async () => {
 		try {
 			const response = await dispatch(givePriority(postId)).unwrap();
+			refreshPosts();
 			toast.success(response.message || 'Priority increased for the post.');
 			dispatch(getPosts());
 		} catch (error) {

@@ -1,7 +1,7 @@
-import { NavLinkStyled } from '../Link.styled';
+import { NavLinkStyled } from '../Link/Link.styled';
 import { createElement } from 'react';
 import PropTypes from 'prop-types';
-const NavigationLink = ({ icon, to, children }) => {
+export const NavigationLink = ({ icon, to, children }) => {
 	return (
 		<NavLinkStyled to={to}>
 			{createElement(icon, { size: '1.5em', style: { marginRight: '0.5rem' } })}
@@ -15,5 +15,3 @@ NavigationLink.propTypes = {
 	to: PropTypes.string.isRequired,
 	children: PropTypes.node.isRequired,
 };
-
-export default NavigationLink;

@@ -2,9 +2,7 @@ import PropTypes from 'prop-types';
 import { SidebarContainer, MobileIcon, ThemeToggler, StyledLink } from './Navbar.styled';
 import { NavigationLinkMobile } from './NavigationLink.styled';
 import { FaTimes, FaBars, FaSun, FaMoon } from 'react-icons/fa';
-import Button from '../../ui/Button';
-import Logo from '../../ui/Logo/Logo';
-import { TextCenterContainer } from '../../ui/Containers';
+import { Button, Logo, TextCenterContainer } from '../../ui/';
 import { navLinks } from '../../../data';
 
 const MobileNavbar = ({

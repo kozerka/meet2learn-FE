@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
-import Button from '../../ui/Button';
-import { LinkStyled } from '../../ui/Link.styled';
+import { LinkStyled, Button } from '../../ui';
 import {
 	CardContainer,
 	ImageContainer,
+	Details,
 	ContentContainer,
 	Name,
 	Info,
@@ -12,7 +12,7 @@ import {
 	SubjectLabel,
 } from './PersonalCard.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { createMeeting, getAllMeetings } from '../../../store/slices/meetingSlice';
+import { createMeeting, getAllMeetings } from '../../../store/thunks';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -63,7 +63,7 @@ const PersonalCard = ({ user }) => {
 				<Name>
 					{user.firstName} {user.lastName}
 				</Name>
-				<div>
+				<Details>
 					<Info>Email: {user.email}</Info>
 					<Info>Age: {user.age}</Info>
 					<Info>
@@ -75,7 +75,7 @@ const PersonalCard = ({ user }) => {
 							<SubjectLabel key={index}>{subject.name}</SubjectLabel>
 						))}
 					</Info>
-				</div>
+				</Details>
 				<LinkStyled to={'/'}>
 					<Button $primary={true} onClick={handleConnectClick}>
 						Connect

@@ -17,7 +17,7 @@ export const darkTheme = {
 	body: '#262935',
 	text: '#f9f7f9',
 	textInverted: '#181921',
-	background: '#1c1e28',
+	background: '#202330',
 	primary: '#FFD700',
 	secondary: '#E03268',
 	secondaryButton: '#179AD3',

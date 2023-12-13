@@ -1,6 +1,6 @@
 import { useRouteError } from 'react-router-dom';
 import erroronpage from '../../../assets/img/erroronpage.png';
-import Button from '../../../components/ui/Button';
+import { Button } from '../../../components/ui';
 import {
 	ErrorNumber,
 	StyledHeading,

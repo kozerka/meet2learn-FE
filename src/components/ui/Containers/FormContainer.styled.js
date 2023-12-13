@@ -15,4 +15,8 @@ export const FormContainer = styled.div`
 	button {
 		margin-top: 1rem;
 	}
+
+	.my-jodit-editor {
+		color: black;
+	}
 `;

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PostItem } from '../../../components/features';
-import { getPostsByUserId } from '../../../store/slices/postSlice';
-import Loader from '../../../components/ui/Loader/Loader';
+import { getPostsByUserId } from '../../../store/thunks';
+import { CustomContainer, Loader, SectionTitle } from '../../../components/ui';
 
 const MyPosts = () => {
 	const dispatch = useDispatch();
@@ -21,13 +21,18 @@ const MyPosts = () => {
 	}
 
 	if (userPosts.length === 0) {
-		return <div>You have no posts yet.</div>;
+		return (
+			<CustomContainer>
+				<SectionTitle size={'big'} title={'All My Posts'} />
+				You have no posts yet. Create one!
+			</CustomContainer>
+		);
 	}
 
 	return (
 		<div style={{ width: '100%' }}>
 			{userPosts.map(post => (
-				<PostItem key={post._id} post={post} />
+				<PostItem key={post._id} post={post} userId={userId} />
 			))}
 		</div>
 	);

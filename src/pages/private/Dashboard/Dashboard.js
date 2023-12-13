@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../../../components/layout/Sidebar/Sidebar';
+import { Sidebar } from '../../../components/layout';
 import { Container, DashContainer } from './Dashboard.styled';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchUser } from '../../../store/slices/userSlice';
+import { fetchUser } from '../../../store/thunks';
 const Dashboard = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {

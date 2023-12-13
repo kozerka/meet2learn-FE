@@ -1,8 +1,8 @@
 import ReactPaginate from 'react-paginate';
-import { PaginationContainer } from './CustomPagination.styled.js.js';
+import { PaginationContainer } from './CustomPagination.styled.js';
 import PropTypes from 'prop-types';
 
-const CustomPagination = ({ pageCount, onPageChange, currentPage }) => {
+export const CustomPagination = ({ pageCount, onPageChange, currentPage }) => {
 	return (
 		<PaginationContainer>
 			<ReactPaginate
@@ -25,5 +25,3 @@ CustomPagination.propTypes = {
 	onPageChange: PropTypes.func.isRequired,
 	currentPage: PropTypes.number.isRequired,
 };
-
-export default CustomPagination;

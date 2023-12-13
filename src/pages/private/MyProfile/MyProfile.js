@@ -1,7 +1,7 @@
-import ExtendedProfileCard from '../../../components/features/User/ExpandedProfileCard';
-
 import { useSelector } from 'react-redux';
-import Loader from '../../../components/ui/Loader/Loader';
+import { ExtendedProfileCard } from '../../../components/features';
+import { Loader } from '../../../components/ui';
+
 const MyProfile = () => {
 	const { userData } = useSelector(state => state.user);
 
