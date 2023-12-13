@@ -1,88 +1,60 @@
 import PropTypes from 'prop-types';
-import BasicProfileCard from '../../../components/features/UserCards/BasicProfileCard';
 import {
 	ConnectionCard,
 	ParticipantContainer,
 	ConnectionInfo,
-	StudentInfo,
-	TutorInfo,
-	ConversationContainer,
-	ArrowIcon,
 } from './SingleTutorConnection.styled';
-
-import { ButtonContainer, Button, Modal, Loader } from '../../../components/ui';
-import { deleteMeeting } from '../../../store/thunks';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import { useState } from 'react';
-import { useConversations, useModal } from '../../../hooks';
-import { calculateDaysOfConnection, groupConversationsByDate } from '../../../utils';
+import { Modal, Loader } from '../../../components/ui';
+import { useSelector } from 'react-redux';
+import { useTutorConnection } from '../../../hooks';
+import { calculateDaysOfConnection } from '../../../utils';
 import { ConversationForm } from '../../../components/features/Forms';
-import ConversationMessage from '../../../components/features/ConversationMessage/ConversationMessage';
+import {
+	ConversationSection,
+	ParticipantInfo,
+	ConversationActionButtons,
+} from '../../../components/features';
 
 const SingleTutorConnection = ({ meeting, onDiscuss }) => {
+	const meetings = useSelector(state => state.meetings.meetings);
+	const isLoading = useSelector(state => state.meetings.isLoading);
+	const userAuth = useSelector(state => state.user.userAuth);
 	const {
+		isOpen,
+		openModal,
+		closeModal,
+		visibleConversations,
+		toggleVisibility,
 		isConversationFormOpen,
 		handleToggleConversationForm,
 		handleConversationSubmit,
 		handleConversationCancel,
 		handleDeleteConversation,
-		conversations,
 		isConversationsLoading,
-	} = useConversations(meeting._id);
-	const { isOpen, openModal, closeModal } = useModal();
-	const dispatch = useDispatch();
-	const isLoading = useSelector(state => state.meetings.isLoading);
-	const userAuth = useSelector(state => state.user.userAuth);
-	const [visibleConversations, setVisibleConversations] = useState({});
-	const daysOfConnection = calculateDaysOfConnection(meeting.date);
-	const toggleVisibility = date => {
-		setVisibleConversations(prev => ({ ...prev, [date]: !prev[date] }));
-	};
-
-	const handleConfirmDelete = () => {
-		dispatch(deleteMeeting(meeting._id))
-			.unwrap()
-			.then(() => {
-				toast.success('Tutoring connection deleted successfully!');
-				closeModal();
-			})
-			.catch(error => {
-				toast.error(`Error: ${error.message}`);
-			});
-	};
+		groupedConversations,
+		handleConfirmDelete,
+	} = useTutorConnection(meeting._id, meetings);
 
 	if (isLoading) {
 		return <Loader />;
 	}
-
-	const groupedConversations = groupConversationsByDate(conversations);
+	const daysOfConnection = calculateDaysOfConnection(meeting.date);
 
 	return (
 		<>
 			<ConnectionCard>
 				<ParticipantContainer>
-					<StudentInfo>
-						<BasicProfileCard user={meeting.student} />
-						<span>Student: {meeting.student.name}</span>
-					</StudentInfo>
-					<TutorInfo>
-						<BasicProfileCard user={meeting.tutor} />
-						<span>Tutor: {meeting.tutor.name}</span>
-					</TutorInfo>
+					<ParticipantInfo user={meeting.student} role={'student'} />
+					<ParticipantInfo user={meeting.tutor} role={'tutor'} />
 				</ParticipantContainer>
 
 				<ConnectionInfo>
 					<p>Connected on: {new Date(meeting.date).toLocaleDateString()}</p>
 					<p>Cooperating for: {daysOfConnection} day(s)</p>
-					<ButtonContainer>
-						<Button $secondary onClick={openModal}>
-							Delete Connection
-						</Button>
-						<Button $secondary onClick={handleToggleConversationForm}>
-							Conversations
-						</Button>
-					</ButtonContainer>
+					<ConversationActionButtons
+						onDelete={openModal}
+						onToggleConversation={handleToggleConversationForm}
+					/>
 					{isConversationFormOpen && (
 						<>
 							<ConversationForm
@@ -92,27 +64,14 @@ const SingleTutorConnection = ({ meeting, onDiscuss }) => {
 							{isConversationsLoading ? (
 								<Loader />
 							) : (
-								Object.entries(groupedConversations).map(([date, conversationsForDate]) => (
-									<ConversationContainer key={date}>
-										<button onClick={() => toggleVisibility(date)}>
-											<p>Conversations from: {date} </p>
-											<ArrowIcon
-												size={'1.2rem'}
-												className={visibleConversations[date] ? 'rotated' : ''}
-											/>
-										</button>
-										{visibleConversations[date] &&
-											conversationsForDate.map(conversation => (
-												<ConversationMessage
-													key={conversation._id}
-													message={conversation}
-													isTutor={conversation.user._id === meeting.tutor._id}
-													onDelete={() => handleDeleteConversation(conversation._id)}
-													userAuth={userAuth}
-												/>
-											))}
-									</ConversationContainer>
-								))
+								<ConversationSection
+									groupedConversations={groupedConversations}
+									visibleConversations={visibleConversations}
+									toggleVisibility={toggleVisibility}
+									handleDeleteConversation={handleDeleteConversation}
+									userAuth={userAuth}
+									meeting={meeting}
+								/>
 							)}
 						</>
 					)}

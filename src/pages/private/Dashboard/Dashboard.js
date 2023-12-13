@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../../../components/layout/Sidebar/Sidebar';
+import { Sidebar } from '../../../components/layout';
 import { Container, DashContainer } from './Dashboard.styled';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';

@@ -2,6 +2,8 @@ import { PostItem } from '../../../components/features';
 import { Loader } from '../../../components/ui';
 import ReactSelect from 'react-select';
 import { useAllPosts } from '../../../hooks';
+import { Container } from './AllPosts.styled';
+import { customStyles } from '../../../styles/customStylesForSelect';
 
 const AllPosts = () => {
 	const { isLoading, categories, filteredPosts, handleCategoryChange, selectedCategory, userId } =
@@ -13,15 +15,16 @@ const AllPosts = () => {
 
 	return (
 		<div style={{ width: '100%' }}>
-			<div style={{ width: '100%', maxWidth: '1200px', margin: '1rem  auto' }}>
+			<Container>
 				<ReactSelect
 					options={categories}
 					onChange={handleCategoryChange}
 					value={selectedCategory}
 					placeholder={'Select a category'}
+					styles={customStyles}
 					isClearable
 				/>
-			</div>
+			</Container>
 			{filteredPosts.map(post => (
 				<PostItem key={post._id} post={post} userId={userId} />
 			))}

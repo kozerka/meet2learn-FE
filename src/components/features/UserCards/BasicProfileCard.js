@@ -26,7 +26,7 @@ BasicProfileCard.propTypes = {
 		firstName: PropTypes.string,
 		lastName: PropTypes.string,
 		name: PropTypes.string.isRequired,
-		avatar: PropTypes.string.isRequired,
+		avatar: PropTypes.string,
 	}).isRequired,
 };
 

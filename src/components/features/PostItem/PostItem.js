@@ -8,7 +8,7 @@ import {
 	FaComment,
 } from 'react-icons/fa';
 import { CommentForm } from '../Forms';
-import CommentItem from '../CommentItem/CommentItem';
+import { CommentItem } from '../';
 import {
 	PostCard,
 	PostContent,

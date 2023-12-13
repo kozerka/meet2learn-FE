@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getAllTutors } from '../../../store/thunks';
-import TutorCard from '../../../components/features/TutorCard/TutorCard';
-import Wrapper from '../../../components/layout/Wrapper';
+import { Wrapper } from '../../../components/layout';
 import { IntersectionTitle, CustomPagination } from '../../../components/ui';
-import SearchBar from '../../../components/features/SearchBar/SearchBar';
+import { SearchBar, TutorCard } from '../../../components/features';
 import noTutorFound from '../../../assets/img/noTutorFound.png';
 import { TutorsGrid, NoResultsMessage } from './Tutors.styled';
 

@@ -9,3 +9,7 @@ export function formatDate(dateString) {
 	};
 	return new Intl.DateTimeFormat('default', options).format(new Date(dateString));
 }
+
+export function formatDateSimple(dateString) {
+	return new Intl.DateTimeFormat().format(new Date(dateString));
+}

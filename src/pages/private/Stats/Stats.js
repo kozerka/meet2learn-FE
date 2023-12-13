@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserStats } from '../../../store/thunks';
 import { NavContainer, DashboardContainer, Loader, SectionTitle } from '../../../components/ui';
-import { StatsCards, WelcomeMessage } from '../../../components';
+import { StatsCards, WelcomeMessage } from '../../../components/features';
 
 const Stats = () => {
 	const dispatch = useDispatch();

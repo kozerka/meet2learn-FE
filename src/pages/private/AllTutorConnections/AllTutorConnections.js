@@ -2,11 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllMeetings } from '../../../store/thunks';
 import { CustomContainer, Loader, SectionTitle } from '../../../components/ui';
-import MeetingList from '../../../components/features/LearningConnectionsList/LearningConnections';
-import {
-	TutorMessage,
-	StudentMessage,
-} from '../../../components/features/LearningConnectionsList/MessagesForParticipants';
+import { TutorMessage, StudentMessage, MeetingList } from '../../../components/features/';
 
 const AllTutorConnections = () => {
 	const dispatch = useDispatch();

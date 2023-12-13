@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-	createConversation,
-	getConversationsForMeeting,
-	getAllConversations,
-	deleteConversation,
-} from '../thunks';
+import { createConversation, getConversationsForMeeting, deleteConversation } from '../thunks';
 const initialState = {
 	conversations: [],
 	isLoading: false,
@@ -35,17 +30,6 @@ const conversationSlice = createSlice({
 				state.conversations[action.meta.arg] = action.payload;
 			})
 			.addCase(getConversationsForMeeting.rejected, (state, action) => {
-				state.isLoading = false;
-				state.error = action.payload;
-			})
-			.addCase(getAllConversations.pending, state => {
-				state.isLoading = true;
-			})
-			.addCase(getAllConversations.fulfilled, (state, action) => {
-				state.isLoading = false;
-				state.conversations = action.payload;
-			})
-			.addCase(getAllConversations.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			})

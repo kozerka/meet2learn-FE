@@ -1,7 +1,5 @@
-import Features from '../../../components/features/FeaturesSection/Features';
-import Hero from '../../../components/features/HeroSection/Hero';
-import { Timeline, Faqs } from '../../../components';
-import Wrapper from '../../../components/layout/Wrapper';
+import { Features, Hero, Faqs, Timeline } from '../../../components/features';
+import { Wrapper } from '../../../components/layout';
 
 const Landing = () => {
 	return (

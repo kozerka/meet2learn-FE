@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	getConversationsForMeeting,
@@ -6,16 +6,22 @@ import {
 	createConversation,
 } from '../store/thunks';
 
-export const useConversations = meetingId => {
+export const useConversations = (meetingId, meetings) => {
 	const dispatch = useDispatch();
 	const [isConversationFormOpen, setIsConversationFormOpen] = useState(false);
 	const [conversationText, setConversationText] = useState('');
-	const conversations = useSelector(state => state.conversations.conversations[meetingId] || []);
+	const allConversations = useSelector(state => state.conversations.conversations);
+	const conversations = useMemo(() => {
+		return allConversations[meetingId] || [];
+	}, [allConversations, meetingId]);
+
 	const isConversationsLoading = useSelector(state => state.conversations.isLoading);
 
 	useEffect(() => {
-		dispatch(getConversationsForMeeting(meetingId));
-	}, [dispatch, meetingId]);
+		if (meetings.length > 0 && meetings.some(meeting => meeting._id === meetingId)) {
+			dispatch(getConversationsForMeeting(meetingId));
+		}
+	}, [dispatch, meetingId, meetings]);
 
 	const handleToggleConversationForm = () => {
 		setIsConversationFormOpen(!isConversationFormOpen);

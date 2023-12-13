@@ -4,7 +4,7 @@ import { ButtonContainer, StyledLabel, Button, FormField } from '../../../ui';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useNoteForm } from '../../../../hooks';
-
+import { customStyles } from '../../../../styles/customStylesForSelect';
 const NoteForm = ({ initialNote, isEditing }) => {
 	const {
 		handleSubmit,
@@ -40,6 +40,7 @@ const NoteForm = ({ initialNote, isEditing }) => {
 				id={'tags'}
 				value={values.tags}
 				touched={!!touched.tags}
+				styles={customStyles}
 			/>
 			{touched?.tags && errors?.tags && <ErrorMessage>{errors.tags}</ErrorMessage>}
 

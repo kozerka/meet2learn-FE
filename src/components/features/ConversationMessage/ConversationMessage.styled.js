@@ -11,7 +11,7 @@ const Message = styled.div`
 
 		padding: 5px 10px;
 		border-radius: 10px;
-		background-color: #f0f0f0;
+		background-color: ${({ theme }) => theme.body};
 		margin-left: ${props => (props.$isTutor ? '4rem' : '0')};
 		margin-right: ${props => (props.$isTutor ? '0' : '4rem')};
 		word-break: break-all;

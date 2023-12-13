@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearNote } from '../../../store/slices/noteSlice';
 import { getNoteById } from '../../../store/thunks';
 import { useEffect } from 'react';
-import { Tag, TagsContainer, Title } from '../AllNotes/AllNotes.styled';
+import { Tag, TagsContainer, Title, Content } from './ViewNote.styled';
 import { Button, Loader, CustomContainer } from '../../../components/ui';
+import { formatDateSimple } from '../../../utils/formatDate';
 
 const ViewNote = () => {
 	const { id } = useParams();
@@ -28,21 +29,13 @@ const ViewNote = () => {
 		return <Loader />;
 	}
 
-	const createdAt = new Date(note.createdAt).toLocaleDateString();
-	const updatedAt = new Date(note.updatedAt).toLocaleDateString();
+	const createdAt = formatDateSimple(note.createdAt);
+	const updatedAt = formatDateSimple(note.updatedAt);
 	const showUpdatedDate = createdAt !== updatedAt;
 
 	return (
 		<CustomContainer>
-			<div
-				style={{
-					width: '100%',
-					display: 'flex',
-					flexDirection: 'column',
-					gap: '2rem',
-					marginTop: '2rem',
-				}}
-			>
+			<Content>
 				<Title>Title: {note.title}</Title>
 				<TagsContainer>
 					{note.tags.map((tag, index) => (
@@ -52,7 +45,7 @@ const ViewNote = () => {
 				<p>{note.content}</p>
 				<p>Created at: {createdAt}</p>
 				{showUpdatedDate && <p>Updated at: {updatedAt}</p>}
-			</div>
+			</Content>
 			<Button $primary onClick={goBack}>
 				Go back to notes
 			</Button>

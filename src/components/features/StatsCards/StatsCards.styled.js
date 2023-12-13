@@ -39,7 +39,7 @@ export const Card = styled.article`
 		display: block;
 		font-weight: 500;
 		font-size: 2rem;
-		color: ${({ theme }) => theme.secondary};
+		color: #179ad3;
 		line-height: 2;
 	}
 	.title {
@@ -56,7 +56,7 @@ export const Card = styled.article`
 		justify-content: center;
 		svg {
 			font-size: 2.2rem;
-			color: ${({ theme }) => theme.secondary};
+			color: #179ad3;
 		}
 	}
 `;

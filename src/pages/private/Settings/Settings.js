@@ -1,6 +1,6 @@
 import { Container, Heading, SettingsContainer, Text, IconStyled } from './Settings.styled';
 import { ChangePasswordForm } from '../../../components/features/Forms';
-import DeleteAccount from '../../../components/features/DeleteAccount/DeleteAccount';
+import { DeleteAccount } from '../../../components/features';
 import { useChangePassword, useDeleteAccount } from '../../../hooks';
 
 const Settings = () => {

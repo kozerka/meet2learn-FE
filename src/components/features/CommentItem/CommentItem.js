@@ -9,17 +9,17 @@ import {
 	CommentBubble,
 } from './CommentItem.styled';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FaTrashAlt } from 'react-icons/fa';
 import { deleteComment, getPosts, getPostsByUserId } from '../../../store/thunks';
 import { toast } from 'react-toastify';
+import { formatDateSimple } from '../../../utils';
+import { useCommentActions } from '../../../hooks';
 
 const CommentItem = ({ comment, postId }) => {
 	const dispatch = useDispatch();
 	const { text, date, user } = comment;
-	const userAuth = useSelector(state => state.user.userAuth);
-	const loggedInUserId = userAuth?.userInfo?._id;
-	const isCommentAuthor = comment.user?._id === loggedInUserId;
+	const { loggedInUserId, isCommentAuthor } = useCommentActions(comment);
 
 	const handleDelete = async () => {
 		try {
@@ -31,9 +31,6 @@ const CommentItem = ({ comment, postId }) => {
 			console.error(error);
 		}
 	};
-	function formatDate(dateString) {
-		return new Intl.DateTimeFormat().format(new Date(dateString));
-	}
 
 	return (
 		<CommentWrapper>
@@ -43,7 +40,7 @@ const CommentItem = ({ comment, postId }) => {
 			</UserWrapper>
 			<CommentBubble>
 				<CommentText>{text}</CommentText>
-				<CommentDate>Posted on {formatDate(date)}</CommentDate>
+				<CommentDate>Posted on {formatDateSimple(date)}</CommentDate>
 				{isCommentAuthor && (
 					<DeleteButton onClick={handleDelete}>
 						<FaTrashAlt />

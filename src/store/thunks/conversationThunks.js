@@ -26,19 +26,6 @@ export const getConversationsForMeeting = createAsyncThunk(
 	}
 );
 
-export const getAllConversations = createAsyncThunk(
-	'conversations/getAll',
-	async (_, { getState, rejectWithValue }) => {
-		try {
-			const userId = getState().user.userAuth._id;
-			const response = await axios.get(`${BASE_URL}/api/conversations`, { params: { userId } });
-			return response.data;
-		} catch (error) {
-			return rejectWithValue(error.response.data);
-		}
-	}
-);
-
 export const deleteConversation = createAsyncThunk(
 	'conversations/delete',
 	async ({ meetingId, conversationId }, { rejectWithValue }) => {

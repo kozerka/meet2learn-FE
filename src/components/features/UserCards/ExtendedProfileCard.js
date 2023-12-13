@@ -9,7 +9,7 @@ import {
 	ExperienceDescription,
 	ExperiencesContainer,
 	SubjectLabel,
-} from './ExpandedProfileCard.styled';
+} from './ExtendedProfileCard.styled';
 const ExtendedProfileCard = ({ user }) => {
 	return (
 		<InfoContainer>

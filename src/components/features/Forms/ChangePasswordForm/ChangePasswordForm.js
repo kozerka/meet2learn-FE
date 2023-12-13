@@ -23,7 +23,7 @@ const ChangePasswordForm = ({ onSubmit }) => {
 					icon={field.icon}
 				/>
 			))}
-			<Button $disabled={isSubmitting} $primary $fullWidth type="submit">
+			<Button $disabled={isSubmitting} $primary $fullWidth type={'submit'}>
 				{isSubmitting ? 'Changing password...' : 'Change Password'}
 			</Button>
 		</form>

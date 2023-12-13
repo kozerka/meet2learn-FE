@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { DashboardContainer, Loader, NavigationMenu } from '../../../components/ui';
-import BasicProfileCard from '../../../components/features/UserCards/BasicProfileCard';
+import { BasicProfileCard } from '../../../components/features';
 import { Greetings, ProfileContainer } from './Profile.styled';
 import { profileNavLinks } from '../../../data';
 import { useSelector } from 'react-redux';

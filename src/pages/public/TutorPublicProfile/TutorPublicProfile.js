@@ -1,12 +1,9 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTutorData } from '../../../hooks';
-import Tabs from '../../../components/layout/Tabs/Tabs';
-import Wrapper from '../../../components/layout/Wrapper';
-import PersonalCard from '../../../components/features/TutorPublicProfile/PersonalCard';
-import AboutCard from '../../../components/features/TutorPublicProfile/About';
+import { Wrapper, Tabs } from '../../../components/layout';
 import { Button, Loader, LinkStyled } from '../../../components/ui';
-import Reviews from '../../../components/features/Reviews/Reviews';
+import { Reviews, AboutCard, PersonalCard } from '../../../components/features';
 import { FeedbackForm } from '../../../components/features/Forms';
 
 const TutorPublicProfile = () => {

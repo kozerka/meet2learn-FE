@@ -10,3 +10,4 @@ export { default as ResetPasswordForm } from './ResetPasswordForm/ResetPasswordF
 export { default as RegisterForm } from './RegisterForm/RegisterForm';
 export { default as NoteForm } from './NoteForm/NoteForm';
 export { default as PostForm } from './PostForm/PostForm';
+export { default as UploadForm } from './UploadForm/UploadForm';

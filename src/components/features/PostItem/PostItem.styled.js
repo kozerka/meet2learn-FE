@@ -64,6 +64,10 @@ export const PostName = styled.h3`
 export const PostContent = styled.div`
 	margin-bottom: 1rem;
 	padding-bottom: 1rem;
+	padding: 1rem;
+	background-color: #f9f7f9;
+	color: #181921;
+	border-radius: 6px;
 `;
 
 export const PostCategory = styled.span`

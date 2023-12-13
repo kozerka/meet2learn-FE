@@ -1,4 +1,3 @@
-import { BsGithub } from 'react-icons/bs';
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
@@ -32,23 +31,4 @@ const FooterContent = styled.div`
 		}
 	}
 `;
-
-const Footer = () => {
-	const copyright = String.fromCodePoint(0x00a9);
-	const currentYear = new Date().getFullYear();
-	return (
-		<StyledFooter>
-			<FooterContent>
-				<p>
-					{' '}
-					Copyright {copyright} {currentYear} All rights reserved This template is made with
-					<a href={'https://github.com/kozerka'} target={'_blank'} rel={'noreferrer'}>
-						<BsGithub /> kozerka
-					</a>
-				</p>
-			</FooterContent>
-		</StyledFooter>
-	);
-};
-
-export default Footer;
+export { StyledFooter, FooterContent };

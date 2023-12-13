@@ -13,17 +13,6 @@ const ConnectionCard = styled.div`
 	background-color: ${({ theme }) => theme.background};
 `;
 
-const StudentInfo = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-`;
-const TutorInfo = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-`;
-
 const ConnectionInfo = styled.div`
 	flex-grow: 1;
 	text-align: center;
@@ -71,12 +60,4 @@ const ParticipantContainer = styled.div`
 		flex-direction: column;
 	}
 `;
-export {
-	ConnectionCard,
-	StudentInfo,
-	TutorInfo,
-	ConnectionInfo,
-	ParticipantContainer,
-	ArrowIcon,
-	ConversationContainer,
-};
+export { ConnectionCard, ConnectionInfo, ParticipantContainer, ArrowIcon, ConversationContainer };
