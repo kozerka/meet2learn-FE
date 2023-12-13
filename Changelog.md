@@ -164,3 +164,22 @@
 ### Added
 
  - Add custom loader using react-loader-spinner 
+
+## [0.18.1] - 2023-12-14
+
+### Changed
+ - Move contact form into separate component
+ - Refactor statsCards and feedbackForm
+ - Fix updates on single user post view
+ - Add pending profile for tutors
+ - Reorganize store structure
+ - Reorganize UI components
+ - Reorganize forms
+ - Refactor forms with customHooks
+ - Remove dummyData files used for rendering
+ - Split profile related components info smaller components
+ - Change imports for features
+
+### Fixed  
+ - Correct redundant query for conversations
+ - Fix updates on single user post view
