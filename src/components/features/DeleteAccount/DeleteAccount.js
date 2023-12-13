@@ -1,23 +1,23 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonContainer, Button, Modal } from '../../ui';
+import { useModal } from '../../../hooks';
 
 const DeleteAccount = ({ onConfirm }) => {
-	const [modalOpen, setModalOpen] = useState(false);
+	const { isOpen, openModal, closeModal } = useModal();
 
 	return (
 		<>
 			<ButtonContainer>
-				<Button $primary onClick={() => setModalOpen(true)}>
+				<Button $primary onClick={openModal}>
 					Delete My Account
 				</Button>
 			</ButtonContainer>
 			<Modal
-				isOpen={modalOpen}
-				onClose={() => setModalOpen(false)}
+				isOpen={isOpen}
+				onClose={closeModal}
 				onConfirm={() => {
 					onConfirm();
-					setModalOpen(false);
+					closeModal();
 				}}
 				message={'Are you sure you want to permanently delete your account?'}
 			/>

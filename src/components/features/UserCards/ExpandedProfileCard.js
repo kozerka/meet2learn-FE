@@ -106,8 +106,6 @@ ExtendedProfileCard.propTypes = {
 		),
 		experiences: PropTypes.arrayOf(
 			PropTypes.shape({
-				name: PropTypes.string.isRequired,
-				period: PropTypes.string.isRequired,
 				description: PropTypes.string.isRequired,
 			})
 		),

@@ -17,3 +17,4 @@ export * from './StarRating/StarRating';
 export * from './ThemedToast/ThemedToast';
 export * from './IntersectionTitle/IntersectionTitle';
 export * from './FormField/FormField.styled';
+export * from './Select/SelectStyled.styled';

@@ -1,39 +1,12 @@
 import { Container, Heading, SettingsContainer, Text, IconStyled } from './Settings.styled';
 import { ChangePasswordForm } from '../../../components/features/Forms';
 import DeleteAccount from '../../../components/features/DeleteAccount/DeleteAccount';
-import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
-import { changePassword, deleteUser } from '../../../store/thunks';
-import { useNavigate } from 'react-router-dom';
+import { useChangePassword, useDeleteAccount } from '../../../hooks';
+
 const Settings = () => {
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	const changePasswordHandler = useChangePassword();
+	const handleDeleteAccount = useDeleteAccount();
 
-	const handlePasswordChange = async (values, { resetForm }) => {
-		try {
-			await dispatch(
-				changePassword({
-					currentPassword: values.currentPassword,
-					newPassword: values.newPassword,
-					confirmPassword: values.confirmPassword,
-				})
-			);
-			toast.success('Password changed successfully');
-			resetForm();
-		} catch (error) {
-			toast.error(error.message || 'Error changing password');
-		}
-	};
-
-	const handleDeleteAccount = async () => {
-		try {
-			await dispatch(deleteUser());
-			toast.success('Account deleted successfully');
-			navigate('/');
-		} catch (error) {
-			toast.error(error.message || 'Error deleting account');
-		}
-	};
 	return (
 		<SettingsContainer>
 			<Container>
@@ -42,7 +15,9 @@ const Settings = () => {
 					To change the password please enter your current password, and then enter your new
 					password twice for confirmation.
 				</Text>
-				<ChangePasswordForm onSubmit={handlePasswordChange} />
+				<ChangePasswordForm
+					onSubmit={(values, { resetForm }) => changePasswordHandler(values, resetForm)}
+				/>
 			</Container>
 			<Container>
 				<Heading>Delete Account</Heading>

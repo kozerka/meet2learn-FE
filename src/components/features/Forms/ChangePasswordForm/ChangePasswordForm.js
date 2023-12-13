@@ -1,6 +1,6 @@
-import { passwordChangeFields } from '../../../../data';
-import { Button, FormField } from '../../../ui';
 import PropTypes from 'prop-types';
+import { Button, FormField } from '../../../ui';
+import { passwordChangeFields } from '../../../../data';
 import { useChangePasswordForm } from '../../../../hooks';
 
 const ChangePasswordForm = ({ onSubmit }) => {
@@ -23,7 +23,7 @@ const ChangePasswordForm = ({ onSubmit }) => {
 					icon={field.icon}
 				/>
 			))}
-			<Button $disabled={isSubmitting} $primary $fullWidth type={'submit'}>
+			<Button $disabled={isSubmitting} $primary $fullWidth type="submit">
 				{isSubmitting ? 'Changing password...' : 'Change Password'}
 			</Button>
 		</form>

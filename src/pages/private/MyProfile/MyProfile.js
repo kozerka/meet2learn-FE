@@ -1,4 +1,4 @@
-import ExtendedProfileCard from '../../../components/features/User/ExpandedProfileCard';
+import ExtendedProfileCard from '../../../components/features/UserCards/ExpandedProfileCard';
 
 import { useSelector } from 'react-redux';
 import { Loader } from '../../../components/ui';

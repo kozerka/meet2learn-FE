@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import ImgPreview from '../../ImgPreview';
+import ImgPreview from '../../features/ImgPreview/ImgPreview';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { uploadAvatar, fetchUser } from '../../../store/thunks';

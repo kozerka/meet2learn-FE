@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import BasicProfileCard from '../../../components/features/User/BasicProfileCard';
+import BasicProfileCard from '../../../components/features/UserCards/BasicProfileCard';
 import {
 	ConnectionCard,
 	ParticipantContainer,

@@ -31,7 +31,7 @@ import {
 	ResetPasswordInitiate,
 	ResetPasswordFinalize,
 } from './pages';
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './components/features/ProtectedRoute/ProtectedRoute';
 
 const router = createBrowserRouter([
 	{
