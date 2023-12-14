@@ -20,7 +20,7 @@ const ResetPasswordInitiate = () => {
 		<PageContainer>
 			<ContentContainer>
 				<ImageContainer>
-					<Image src={resetPass} alt={'reset password'} />
+					<Image src={resetPass} alt={'reset password'} loading={'lazy'} />
 				</ImageContainer>
 				<FormContainer>
 					{!emailSent ? (

@@ -18,7 +18,7 @@ const ResetPasswordFinalize = () => {
 		<PageContainer>
 			<ContentContainer>
 				<ImageContainer>
-					<Image src={resetPass} alt={'reset password'} />
+					<Image src={resetPass} alt={'reset password'} loading={'lazy'} />
 				</ImageContainer>
 				<FormContainer>
 					<IntersectionTitle title={'Provide new Password'} text={'Reset'} />

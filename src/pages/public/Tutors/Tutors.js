@@ -55,7 +55,7 @@ const Tutors = () => {
 				</>
 			) : (
 				<NoResultsMessage>
-					<img src={noTutorFound} alt={'No Tutor Found'} />
+					<img src={noTutorFound} alt={'No Tutor Found'} loading={'lazy'} />
 					<h3>No Tutor match search criteria</h3>
 					<p>Try using different keywords</p>
 				</NoResultsMessage>

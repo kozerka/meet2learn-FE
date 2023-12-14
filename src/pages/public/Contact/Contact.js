@@ -14,7 +14,7 @@ const Contact = () => {
 		<PageContainer>
 			<ContentContainer>
 				<ImageContainer>
-					<Image src={beInTouch} alt={'Be in touch'} />
+					<Image src={beInTouch} alt={'Be in touch'} loading={'lazy'} />
 				</ImageContainer>
 				<FormContainer>
 					<IntersectionTitle title={'Contact'} text={'If any questions...'} />

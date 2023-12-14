@@ -20,7 +20,7 @@ const Register = () => {
 		<PageContainer>
 			<ContentContainer>
 				<ImageContainer>
-					<Image src={register} alt={'register'} />
+					<Image src={register} alt={'register'} loading={'lazy'} />
 				</ImageContainer>
 				<FormContainer>
 					<IntersectionTitle title={'Create an account'} text={'register'} />

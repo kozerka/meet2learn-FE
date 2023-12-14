@@ -18,7 +18,7 @@ const NotFound = () => {
 		return (
 			<Wrapper>
 				<StyledNotFoundContainer>
-					<StyledImage src={erroronpage} alt={'Error on page'} />
+					<StyledImage src={erroronpage} alt={'Error on page'} loading={'lazy'} />
 					<ErrorNumber>404</ErrorNumber>
 					<StyledHeading>Oops! Page not found!</StyledHeading>
 					<StyledParagraph>We can&apos;t find the page you are looking for...</StyledParagraph>

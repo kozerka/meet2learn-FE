@@ -21,7 +21,7 @@ const Login = () => {
 		<PageContainer>
 			<ContentContainer>
 				<ImageContainer>
-					<Image src={login} alt={'login'} />
+					<Image src={login} alt={'login'} loading={'lazy'} />
 				</ImageContainer>
 				<FormContainer>
 					<IntersectionTitle title={'go to your dashboard'} text={'login'} />
