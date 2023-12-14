@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllMeetings } from '../../../store/thunks';
 import { CustomContainer, Loader, SectionTitle } from '../../../components/ui';
@@ -7,10 +7,13 @@ import { TutorMessage, StudentMessage, MeetingList } from '../../../components/f
 const AllTutorConnections = () => {
 	const dispatch = useDispatch();
 	const { meetings, isLoading } = useSelector(state => state.meetings);
+	const [meetingsFetched, setMeetingsFetched] = useState(false);
 	const userAuth = useSelector(state => state.user.userAuth);
 
 	useEffect(() => {
-		dispatch(getAllMeetings());
+		dispatch(getAllMeetings()).then(() => {
+			setMeetingsFetched(true);
+		});
 	}, [dispatch]);
 
 	if (isLoading) {
@@ -26,7 +29,7 @@ const AllTutorConnections = () => {
 		);
 	}
 
-	return <MeetingList meetings={meetings} />;
+	return meetingsFetched ? <MeetingList meetings={meetings} /> : null;
 };
 
 export default AllTutorConnections;
