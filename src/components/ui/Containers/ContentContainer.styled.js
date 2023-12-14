@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ContentContainer = styled.div`
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	flex: 1;
@@ -10,7 +10,11 @@ export const ContentContainer = styled.div`
 	gap: 4rem;
 	margin-top: 8rem;
 
-	@media (min-width: 1024px) {
-		flex-direction: row;
+	@media (max-width: 1024px) {
+		flex-direction: column;
+		width: 60%;
+	}
+	@media (max-width: 768px) {
+		width: 100%;
 	}
 `;
