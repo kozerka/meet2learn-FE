@@ -25,6 +25,34 @@ const StyledInput = styled.input`
 	display: block;
 	background-color: ${({ theme }) => theme.background};
 	color: ${({ theme }) => theme.text};
+	text-align: center;
 	border-radius: 0.25rem;
+	::placeholder {
+		color: red;
+	}
+	&::placeholder {
+		color: ${({ theme }) => theme.primary};
+	}
+
+	&::-webkit-input-placeholder {
+		color: ${({ theme }) => theme.primary};
+	}
+
+	&::-moz-placeholder {
+		color: ${({ theme }) => theme.primary};
+		opacity: 1;
+	}
+
+	&:-ms-input-placeholder {
+		color: ${({ theme }) => theme.primary};
+	}
+
+	&:-moz-placeholder {
+		color: ${({ theme }) => theme.primary};
+	}
+	&:focus {
+		outline: none;
+		border: 2px solid ${({ theme }) => theme.primary};
+	}
 `;
 export { SearchBarContainer, InputContainer, StyledInput };
