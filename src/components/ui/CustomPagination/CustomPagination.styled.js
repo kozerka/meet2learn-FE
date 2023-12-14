@@ -20,7 +20,7 @@ export const PaginationContainer = styled.div`
 	.pagination li:not(.disabled) a:hover {
 		background-color: ${({ theme }) => theme.primary};
 		border: 1px solid ${({ theme }) => theme.primary};
-		color: ${({ theme }) => theme.text};
+		color: ${({ theme }) => theme.textInverted};
 
 		cursor: pointer;
 	}
@@ -30,7 +30,7 @@ export const PaginationContainer = styled.div`
 	}
 
 	.pagination li.active a {
-		color: #fff;
+		color: #f2f2f2;
 		background: ${({ theme }) => theme.secondary};
 	}
 

@@ -15,7 +15,7 @@ import {
 	ConversationActionButtons,
 } from '../../../components/features';
 
-const SingleTutorConnection = ({ meeting, onDiscuss }) => {
+const SingleTutorConnection = ({ meeting }) => {
 	const meetings = useSelector(state => state.meetings.meetings);
 	const isLoading = useSelector(state => state.meetings.isLoading);
 	const userAuth = useSelector(state => state.user.userAuth);
@@ -102,7 +102,6 @@ SingleTutorConnection.propTypes = {
 		}),
 		date: PropTypes.string.isRequired,
 	}),
-	onDiscuss: PropTypes.func,
 	onDelete: PropTypes.func,
 };
 

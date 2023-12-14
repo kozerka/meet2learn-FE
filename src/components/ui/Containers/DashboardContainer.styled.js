@@ -7,4 +7,5 @@ export const DashboardContainer = styled.div`
 	margin: 2rem;
 	border-radius: 0.5rem;
 	overflow-y: scroll;
+	padding: 1rem;
 `;

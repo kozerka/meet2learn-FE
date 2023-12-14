@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
-import { LinkStyled, Button } from '../../ui';
+import { Button } from '../../ui';
 import {
 	CardContainer,
 	ImageContainer,
@@ -25,6 +25,7 @@ const PersonalCard = ({ user }) => {
 	const handleConnectClick = async () => {
 		if (!userAuth?.userInfo) {
 			toast.error('You must be logged in to make a connection with this tutor');
+			navigate('/login');
 			return;
 		}
 		if (userInfo.role === 'tutor') {
@@ -76,11 +77,9 @@ const PersonalCard = ({ user }) => {
 						))}
 					</Info>
 				</Details>
-				<LinkStyled to={'/'}>
-					<Button $primary={true} onClick={handleConnectClick}>
-						Connect
-					</Button>
-				</LinkStyled>
+				<Button $primary={true} onClick={handleConnectClick}>
+					Connect
+				</Button>
 			</ContentContainer>
 			<RatingLabel>
 				<FaStar className={'star-icon'} /> {user.averageRating}
