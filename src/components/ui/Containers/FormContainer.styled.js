@@ -19,4 +19,10 @@ export const FormContainer = styled.div`
 	.my-jodit-editor {
 		color: black;
 	}
+
+	@media (max-width: 766px) {
+		width: 390px;
+		padding: 2rem 2rem;
+		margin-bottom: 2rem;
+	}
 `;
