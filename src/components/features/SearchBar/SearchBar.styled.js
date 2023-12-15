@@ -11,9 +11,10 @@ const InputContainer = styled.div`
 	gap: 1rem;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
 
-	@media (max-width: 768px) {
-		flex-direction: column;
+	@media (min-width: 768px) {
+		flex-direction: row;
 	}
 `;
 

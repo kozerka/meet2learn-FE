@@ -36,7 +36,7 @@ const Hero = () => {
 					</ButtonContainer>
 				</Content>
 
-				<Lottie animationData={animation} loop={true} />
+				<Lottie className={'animation'} animationData={animation} loop={true} />
 			</Container>
 		</Section>
 	);

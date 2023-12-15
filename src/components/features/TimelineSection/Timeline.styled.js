@@ -19,10 +19,11 @@ const TimelineItems = styled.div`
 		width: 0.25rem;
 		height: 100%;
 		background-color: ${({ theme }) => theme.secondary};
-		left: calc(50% - 0.05rem);
+		left: 0.5rem;
 		border-radius: 1rem;
-		@media (max-width: 767px) {
+		@media (min-width: 767px) {
 			left: 0.5rem;
+			left: calc(50% - 0.05rem);
 		}
 	}
 `;

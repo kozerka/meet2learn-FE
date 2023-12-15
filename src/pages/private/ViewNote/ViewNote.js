@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearNote } from '../../../store/slices/noteSlice';
 import { getNoteById } from '../../../store/thunks';
 import { useEffect } from 'react';
-import { Tag, TagsContainer, Title, Content } from './ViewNote.styled';
+import { Tag, TagsContainer, Title, Content, DateContainer, Date } from './ViewNote.styled';
 import { Button, Loader, CustomContainer } from '../../../components/ui';
 import { formatDateSimple } from '../../../utils/formatDate';
 
@@ -43,8 +43,10 @@ const ViewNote = () => {
 					))}
 				</TagsContainer>
 				<p>{note.content}</p>
-				<p>Created at: {createdAt}</p>
-				{showUpdatedDate && <p>Updated at: {updatedAt}</p>}
+				<DateContainer>
+					<Date>Created at: {createdAt}</Date>
+					{showUpdatedDate && <Date>Updated at: {updatedAt}</Date>}
+				</DateContainer>
 			</Content>
 			<Button $primary onClick={goBack}>
 				Go back to notes

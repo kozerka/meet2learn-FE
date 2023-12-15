@@ -19,20 +19,24 @@ const Title = styled.h2`
 	margin-top: 3rem;
 	font-weight: 500;
 	color: ${({ theme }) => theme.primary};
-	font-size: 1.3rem;
+	font-size: 1rem;
 	margin-bottom: -0.2rem;
+	@media (min-width: 768px) {
+		font-size: 1.3rem;
+	}
 `;
 
 const SubTitle = styled.h3`
 	margin-top: 0.5rem;
-	/* margin-bottom: 6rem; */
 	color: ${({ theme }) => theme.text};
-	font-size: 2.5rem;
+	font-size: 1.8rem;
 	text-transform: uppercase;
 	font-weight: 700;
 	color: ${({ theme }) => theme.text};
 	border-bottom: 4px solid ${({ theme }) => theme.secondary};
-
 	letter-spacing: 3px;
+	@media (min-width: 768px) {
+		font-size: 2.5rem;
+	}
 `;
 export { Content, Title, SubTitle };

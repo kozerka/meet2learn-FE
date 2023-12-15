@@ -52,12 +52,13 @@ const ConversationContainer = styled.div`
 
 const ParticipantContainer = styled.div`
 	display: flex;
+	flex-direction: column;
 	justify-content: space-evenly;
 	gap: 1rem;
 	align-items: center;
 
-	@media (max-width: 880px) {
-		flex-direction: column;
+	@media (min-width: 880px) {
+		flex-direction: row;
 	}
 `;
 export { ConnectionCard, ConnectionInfo, ParticipantContainer, ArrowIcon, ConversationContainer };

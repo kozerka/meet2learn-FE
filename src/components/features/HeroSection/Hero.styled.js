@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Section = styled.section``;
+const Section = styled.section`
+	padding: 1rem;
+`;
 
 const Container = styled.div`
 	display: flex;
@@ -17,6 +19,12 @@ const Container = styled.div`
 		padding-top: 6rem;
 		padding-bottom: 6rem;
 	}
+	.animation {
+		padding: 2rem;
+		@media (min-width: 1024px) {
+			padding: 0;
+		}
+	}
 `;
 
 const Content = styled.div`
@@ -27,7 +35,10 @@ const Content = styled.div`
 	padding: 1.5rem;
 	text-align: center;
 	border-radius: 0.125rem;
-	max-width: 32rem;
+	max-width: 22rem;
+	@media (min-width: 768px) {
+		max-width: 32rem;
+	}
 	@media (min-width: 1024px) {
 		margin: 0 auto;
 		align-items: flex-start;
@@ -37,7 +48,7 @@ const Content = styled.div`
 `;
 
 const Heading = styled.h1`
-	font-size: 3rem;
+	font-size: 2.5rem;
 	font-weight: bold;
 	line-height: 1.2;
 	@media (min-width: 640px) {
