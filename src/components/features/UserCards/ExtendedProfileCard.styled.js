@@ -49,10 +49,10 @@ const ExperienceItem = styled.div`
 	padding: 10px;
 	border-radius: 5px;
 	margin-bottom: 10px;
-	flex-basis: calc(50% - 1rem);
+	flex-basis: 100%;
 
-	@media (max-width: 768px) {
-		flex-basis: 100%;
+	@media (min-width: 768px) {
+		flex-basis: calc(50% - 1rem);
 	}
 `;
 const ExperienceDescription = styled.p`

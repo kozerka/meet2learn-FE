@@ -2,16 +2,24 @@ import styled from 'styled-components';
 const CardContainer = styled.div`
 	margin-top: 10rem;
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
 	background: ${({ theme }) => theme.background};
 	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 	position: relative;
-	@media (max-width: 992px) {
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		gap: 2rem;
+	@media (min-width: 992px) {
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: flex-start;
+		gap: 1rem;
+
+		& > :first-child {
+			flex-shrink: 0;
+		}
 	}
 `;
 
@@ -22,6 +30,9 @@ const ImageContainer = styled.div`
 		max-width: 400px;
 		height: auto;
 		border-radius: 8px;
+		@media (min-width: 992px) {
+			max-width: 600px;
+		}
 	}
 `;
 
@@ -29,13 +40,14 @@ const ContentContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	flex: 2;
+	margin-left: 0;
+	padding-left: 0;
 	margin-left: 2rem;
 	padding-left: 1rem;
 	justify-content: space-between;
-	@media (max-width: 992px) {
-		margin-left: 0;
-		padding-left: 0;
-		align-items: center;
+	@media (min-width: 992px) {
+		margin-left: 2rem;
+		padding-left: 1rem;
 	}
 `;
 

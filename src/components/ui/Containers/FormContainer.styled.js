@@ -7,10 +7,11 @@ export const FormContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 2rem 3rem;
+	width: 390px;
+	padding: 2rem 2rem;
+	margin-bottom: 2rem;
 	margin: 0 3rem 3rem;
 	gap: 3rem;
-	width: 100%;
 	max-width: 1200px;
 	button {
 		margin-top: 1rem;
@@ -20,9 +21,8 @@ export const FormContainer = styled.div`
 		color: black;
 	}
 
-	@media (max-width: 766px) {
-		width: 390px;
-		padding: 2rem 2rem;
-		margin-bottom: 2rem;
+	@media (min-width: 766px) {
+		width: 100%;
+		padding: 2rem 3rem;
 	}
 `;

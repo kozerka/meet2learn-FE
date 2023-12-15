@@ -2,11 +2,17 @@ import styled, { css } from 'styled-components';
 import { BiSolidDownArrow } from 'react-icons/bi';
 
 const AccordionSection = styled.div`
-	max-width: 48rem;
+	max-width: 100%;
+	padding: 1rem 2rem;
 	margin: 1rem auto;
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+
+	@media (min-width: 768px) {
+		max-width: 48rem;
+		padding: 0;
+	}
 `;
 
 const Item = styled.div`
@@ -36,7 +42,10 @@ const Number = styled.p`
 `;
 
 const Text = styled.p`
-	font-size: 1.2rem;
+	font-size: 1rem;
+	@media (min-width: 992px) {
+		font-size: 1.2rem;
+	}
 `;
 
 const HiddenBox = styled.div`
@@ -48,7 +57,11 @@ const Paragraph = styled.p`
 	font-size: 0.9rem;
 	line-height: 1.3;
 	margin-bottom: 1rem;
-	padding: 2rem;
+	padding: 1rem 0.5rem;
+	@media (min-width: 992px) {
+		font-size: 1.1rem;
+		padding: 2rem 1rem;
+	}
 `;
 const rotateIcon = css`
 	transform: rotate(180deg);
@@ -66,14 +79,12 @@ const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 1.5rem;
-	margin: 8rem auto;
+	padding: 6rem 2rem;
 	gap: 2rem;
 	@media (min-width: 1024px) {
 		flex-direction: row;
 		justify-content: space-between;
-
-		padding-bottom: 6rem;
+		padding: 4rem;
 	}
 `;
 

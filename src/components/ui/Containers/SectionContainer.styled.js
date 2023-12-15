@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 export const SectionContainer = styled.div`
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: space-between;
 	max-width: 1200px;
 	gap: 3rem;
-	@media (max-width: 992px) {
-		flex-direction: column;
+	@media (min-width: 992px) {
+		flex-direction: row;
 	}
 `;

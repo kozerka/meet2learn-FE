@@ -25,6 +25,18 @@ const Content = styled.div`
 	flex-direction: column;
 	gap: 2rem;
 	margin-top: 2rem;
+	position: relative;
+`;
+const DateContainer = styled.div`
+	position: absolute;
+	bottom: -4rem;
+	text-align: right;
+	right: 1rem;
+	color: ${({ theme }) => theme.text};
+`;
+const Date = styled.p`
+	color: #666;
+	font-size: 0.9rem;
 `;
 
-export { Title, TagsContainer, Tag, Content };
+export { Title, TagsContainer, Tag, Content, DateContainer, Date };
