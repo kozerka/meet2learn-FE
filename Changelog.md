@@ -1,7 +1,8 @@
 ## Changelog for meet2learn app
 
-## [Unreleased]
+## [1.0.0] - 2023-12-15
 
+- Readme added, version 1.0.0. released
 
 ## [0.18.3] - 2023-12-15
 
