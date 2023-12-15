@@ -1,0 +1,10 @@
+export { default as Contact } from './Contact/Contact';
+export { default as ResetPasswordFinalize } from './ResetPasswordFinalize/ResetPasswordFinalize';
+export { default as ResetPasswordInitiate } from './ResetPasswordInitiate/ResetPasswordInitiate';
+export { default as Login } from './Login/Login';
+export { default as Register } from './Register/Register';
+export { default as Tutors } from './Tutors/Tutors';
+export { default as TutorPublicProfile } from './TutorPublicProfile/TutorPublicProfile';
+export { default as Landing } from './Landing/Landing';
+export { default as NotFound } from './NotFound/NotFound';
+export { default as Home } from './Home/Home';
