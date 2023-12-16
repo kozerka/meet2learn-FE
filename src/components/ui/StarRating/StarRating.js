@@ -13,8 +13,14 @@ export const StarRating = ({ onChangeRating }) => {
 		<StarRatingContainer>
 			{[...Array(5)].map((star, index) => {
 				const ratingValue = index + 1;
+				const isChecked = ratingValue === rating;
 				return (
-					<label key={ratingValue}>
+					<label
+						key={ratingValue}
+						role={'radio'}
+						aria-checked={isChecked}
+						data-testid={`star-${ratingValue}`}
+					>
 						<StarInput
 							type={'radio'}
 							name={'rating'}
@@ -22,6 +28,7 @@ export const StarRating = ({ onChangeRating }) => {
 							onClick={() => handleRatingChange(ratingValue)}
 							onMouseEnter={() => setHover(ratingValue)}
 							onMouseLeave={() => setHover(null)}
+							role={'radio'}
 						/>
 						<StyledStar
 							size={'2rem'}
