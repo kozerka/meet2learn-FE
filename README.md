@@ -234,6 +234,11 @@ Created with ❤️ by [kozerka].
 
 ## 🙏 Special Thanks
 
-A heartfelt thank you to my [Mentor - devmentor.pl](https://devmentor.pl/) for setting forth this challenge.
+A heartfelt thank you to my mentors for their guidance and support. This project is a result of the course [Akademia Samouka](https://akademiasamouka.pl/).
+
+
+- Mateusz Bogolubow from [DevMentor.pl](https://devmentor.pl/)
+- Mateusz Choma from [Coderoad.pl](https://coderoad.pl/)
+
 
 ---

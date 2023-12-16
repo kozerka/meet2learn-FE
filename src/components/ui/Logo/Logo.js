@@ -1,4 +1,3 @@
-// Logo.js
 import StyledLogo from './Logo.styled';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
