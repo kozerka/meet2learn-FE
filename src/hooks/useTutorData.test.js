@@ -132,5 +132,5 @@ describe('TestComponent with useTutorData hook', () => {
 });
 
 TestComponent.propTypes = {
-	tutorId: PropTypes.string.isRequired,
+	tutorId: PropTypes.string,
 };
