@@ -1,7 +1,13 @@
 ## Changelog for meet2learn app
 
+## [1.0.1] - 2023-12-16
+
+### Added
+- Missing loader for tutors added
+
 ## [1.0.0] - 2023-12-15
 
+### Added
 - Readme added, version 1.0.0. released
 
 ## [0.18.3] - 2023-12-15
