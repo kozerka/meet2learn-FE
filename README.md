@@ -173,7 +173,7 @@ export const useTutorData = tutorId => {
 
 ## ⚙️ Configuration
 
- To use this application locally, you need to download both this repository and the backend repository - > [go to BE repository](https://github.com/kozerka/meet2learn-BE). Follow the instructions in each repository for setup. The application has a 'develop' branch configured to use with online backend server, which is already set up, so you don't need a .env file for this and you can skip the backend repo. However, if you want to run the application with a local backend, you must follow the specific instructions provided in the documentation.
+ To use this application locally, you need to download both this repository and the backend repository - > [go to BE repository](https://github.com/kozerka/meet2learn-BE). Follow the instructions in each repository for setup. The application has both 'develop' branches configured to use online, however, if you want to run the application with a local backend, you must follow the specific instructions provided in the documentation.
 
 ## 👉 Getting Started
 
@@ -234,6 +234,11 @@ Created with ❤️ by [kozerka].
 
 ## 🙏 Special Thanks
 
-A heartfelt thank you to my [Mentor - devmentor.pl](https://devmentor.pl/) for setting forth this challenge.
+A heartfelt thank you to my mentors for their guidance and support. This project is a result of the course [Akademia Samouka](https://akademiasamouka.pl/).
+
+
+- Mateusz Bogolubow from [DevMentor.pl](https://devmentor.pl/)
+- Mateusz Choma from [Coderoad.pl](https://coderoad.pl/)
+
 
 ---

@@ -1,4 +1,3 @@
-// statsConfig.js
 import { AiOutlineStar } from 'react-icons/ai';
 import { BsSticky } from 'react-icons/bs';
 import { IoChatbubblesOutline, IoSchoolOutline } from 'react-icons/io5';
