@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getAllTutors } from '../../../store/thunks';
 import { Wrapper } from '../../../components/layout';
-import { IntersectionTitle, CustomPagination } from '../../../components/ui';
+import { IntersectionTitle, CustomPagination, Loader } from '../../../components/ui';
 import { SearchBar, TutorCard } from '../../../components/features';
 import noTutorFound from '../../../assets/img/noTutorFound.png';
 import { TutorsGrid, NoResultsMessage } from './Tutors.styled';
@@ -12,7 +12,7 @@ const Tutors = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
-	const tutors = useSelector(state => state.tutors.tutors);
+	const { tutors, isLoading } = useSelector(state => state.tutors);
 	const totalPages = useSelector(state => state.tutors.totalPages);
 
 	const query = new URLSearchParams(location.search);
@@ -31,6 +31,9 @@ const Tutors = () => {
 		const newPage = event.selected + 1;
 		navigate(`/tutors?page=${newPage}${search ? '&search=' + search : ''}`);
 	};
+	if (isLoading) {
+		return <Loader />;
+	}
 
 	return (
 		<Wrapper>
