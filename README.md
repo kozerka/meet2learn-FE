@@ -11,12 +11,12 @@ Meet2Learn is a platform that makes it easy and friendly for students and tutors
 
 ## 🌍 Live
 
-To check all the features please register. If you want to be able to control your account please provide VALID email! All dummy email will be deleted from DataBase after 10 days ->
+To check all the features please register. If you want to be able to control your account please provide VALID email! All dummy emails will be deleted from DataBase after 10 days ->
 [meet2learn LIVE](https://meet2learn.netlify.app/)
 
 ## 💻 Technology Stack
 
-![React Logo](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black) ![Redux Logo](https://img.shields.io/badge/Redux-764ABC.svg?style=for-the-badge&logo=Redux&logoColor=white) ![CRA Logo](https://img.shields.io/badge/Create%20React%20App-09D3AC.svg?style=for-the-badge&logo=Create-React-App&logoColor=white) ![Webpack](https://img.shields.io/badge/Webpack-8DD6F9.svg?style=for-the-badge&logo=Webpack&logoColor=black) ![Styled-Components](https://img.shields.io/badge/styledcomponents-DB7093.svg?style=for-the-badge&logo=styled-components&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=black) ![ESLINT](https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white)
+![React Logo](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black) ![Redux Logo](https://img.shields.io/badge/Redux-764ABC.svg?style=for-the-badge&logo=Redux&logoColor=white) ![React Router](https://img.shields.io/badge/React%20Router-CA4245.svg?style=for-the-badge&logo=React-Router&logoColor=white) ![CRA Logo](https://img.shields.io/badge/Create%20React%20App-09D3AC.svg?style=for-the-badge&logo=Create-React-App&logoColor=white) ![Webpack](https://img.shields.io/badge/Webpack-8DD6F9.svg?style=for-the-badge&logo=Webpack&logoColor=black) ![Styled-Components](https://img.shields.io/badge/styledcomponents-DB7093.svg?style=for-the-badge&logo=styled-components&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4.svg?style=for-the-badge&logo=Axios&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=black) ![ESLINT](https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white) 
 
 
 
@@ -24,7 +24,7 @@ To check all the features please register. If you want to be able to control you
 
 ### Responsive and Adaptive Landing Page
 - **Responsive Design**: The landing page is fully responsive, ensuring a seamless user experience across various devices and screen sizes.
-- **Dark Mode**: A user-friendly dark mode option for enhanced accessibility and viewing comfort, especially in low-light environments.
+- **Dark Mode**: A user-friendly dark mode option for enhanced accessibility and viewing comfort, especially in low-light environments. User settings are saved in localStorage.
 
 ### Desktop
 <p align="center">
@@ -108,7 +108,7 @@ To check all the features please register. If you want to be able to control you
 - **Efficiency and Speed**: Key functionalities are implemented on the backend to enhance application performance.
 
 ### React Creatable Select
-- **Dynamic Tagging**: Implemented React Creatable Select for dynamic tagging capabilities. This feature allows users, especially tutors, to add custom tags dynamically, enhancing the searchability and categorization of their profiles and posts.
+- **Dynamic Tagging**: Implemented React Creatable Select for dynamic tagging capabilities. This feature allows users, to add custom tags dynamically, enhancing the searchability and categorization of their notes.
 
 ### Form Handling with Formik and Yup
 - **Streamlined Form Management**: Utilized Formik for efficient form handling, significantly simplifying the process of managing form state and submissions.
